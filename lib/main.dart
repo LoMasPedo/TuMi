@@ -37,7 +37,7 @@ class _PaginaBienvenidaState extends State<PaginaBienvenida> {
 
         children: [
           // principal(),
-          imagen(url: "https://github.com/festupinans/equipo2_grupo15/blob/master/lib/Imagenes/Logotipo-1%20-%20copia.png?raw=true"),
+          imagen(url: "https://github.com/festupinans/equipo2_grupo15/blob/master/lib/Imagenes/TuMi.png?raw=true"),
 
         ],
       ),
