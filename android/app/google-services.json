@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "261220087850",
+    "project_id": "mitu-9c614",
+    "storage_bucket": "mitu-9c614.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:261220087850:android:169df67e396de79ffeab53",
+        "android_client_info": {
+          "package_name": "edu.unbosque.equipo2.equipo2_grupo15"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "261220087850-4kap0umllcgkkqrlonodu49fgtn0ef5h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4Hy42AOYC9rqfi8gRnHa586m9dS4BVFI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "261220087850-4kap0umllcgkkqrlonodu49fgtn0ef5h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

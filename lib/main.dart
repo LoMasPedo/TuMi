@@ -47,7 +47,7 @@ class _PaginaBienvenidaState extends State<PaginaBienvenida> {
 
 
           Container(
-              padding: EdgeInsets.fromLTRB(20.0, 200.0, 20.0,20.0),
+              padding: EdgeInsets.fromLTRB(20.0, 100.0, 20.0,20.0),
 
             child:
               const Text('Equipo2_Grupo4', style: TextStyle(
@@ -86,8 +86,10 @@ class next extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+
       child:
         ElevatedButton(
+
             onPressed: (){
               Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const bienvedina()));
             },
