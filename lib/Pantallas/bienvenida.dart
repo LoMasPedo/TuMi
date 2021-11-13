@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:equipo2_grupo15/Pantallas/loginCliente.dart';
 import 'package:equipo2_grupo15/Pantallas/loginTendero.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+
 
 class bienvedina extends StatefulWidget {
   const bienvedina({Key? key}) : super(key: key);
@@ -10,6 +14,32 @@ class bienvedina extends StatefulWidget {
 }
 
 class _bienvedinaState extends State<bienvedina> {
+
+  List datos_nogocios=[];
+
+  void initState(){
+    super.initState();
+    getNegocios();
+  }
+
+  void getNegocios() async {
+    CollectionReference datos= FirebaseFirestore.instance.collection('Negocios'); //Conecta a la conexion
+    QuerySnapshot negocios= await datos.get(); //Traer todas las personas
+    if(negocios.docs.length>0){
+      print('Trae datos');
+
+      for(var doc in negocios.docs){
+        print(doc.data());
+        datos_nogocios.add(doc.data());
+
+      }
+    }else{
+      print('ha fallado....');
+    }
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
