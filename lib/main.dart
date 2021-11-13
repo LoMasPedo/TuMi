@@ -46,7 +46,7 @@ class _PaginaBienvenidaState extends State<PaginaBienvenida> {
           Container(
 
             child:
-              imagen(url: "https://github.com/festupinans/equipo2_grupo15/blob/master/lib/Imagenes/TuMI.png?raw=true")
+            imagen(url: "https://raw.githubusercontent.com/festupinans/equipo2_grupo15/master/lib/Imagenes/TuMI.png")
           ),
 
 
@@ -80,7 +80,7 @@ class imagen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.fromLTRB(20.0, 100.0, 20.0,20.0),
-      child: Image.network(url),
+      child: Image.network(url,scale:2),
     );
   }
 }

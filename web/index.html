@@ -33,6 +33,24 @@
   <!-- This script installs service_worker.js to provide PWA functionality to
        application. For more information, see:
        https://developers.google.com/web/fundamentals/primers/service-workers -->
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-firestore.js"></script>
+
+  <script>
+    const firebaseConfig = {
+    apiKey: "AIzaSyBxa0dUkK1P0F6Tg3Ynswe0im6YTn3VZ6c",
+    authDomain: "mitu-9c614.firebaseapp.com",
+    projectId: "mitu-9c614",
+    storageBucket: "mitu-9c614.appspot.com",
+    messagingSenderId: "261220087850",
+    appId: "1:261220087850:web:06420bd601193be9feab53",
+    measurementId: "G-4V2RLTJK3P"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const firestore = firebase.firestore();
+</script>
+
   <script>
     var serviceWorkerVersion = null;
     var scriptLoaded = false;
