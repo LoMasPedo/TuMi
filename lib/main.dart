@@ -75,7 +75,7 @@ class imagen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.fromLTRB(20.0, 200.0, 20.0,20.0),
+      padding: EdgeInsets.fromLTRB(20.0, 100.0, 20.0,20.0),
       child: Image.network(url),
     );
   }

@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 
-class loginTendero extends StatefulWidget {
-  const loginTendero({Key? key}) : super(key: key);
+class loginClientes extends StatefulWidget {
+  const loginClientes({Key? key}) : super(key: key);
 
   @override
-  _loginTenderoState createState() => _loginTenderoState();
+  _loginClientesState createState() => _loginClientesState();
 }
 
-class _loginTenderoState extends State<loginTendero> {
+class _loginClientesState extends State<loginClientes> {
   @override
   String UsuarioT="";
    String PasswordT="";
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Login del Veci"),
+        title: Text("Login del Cliente"),
       ),
       body: Column(
         children: <Widget>[

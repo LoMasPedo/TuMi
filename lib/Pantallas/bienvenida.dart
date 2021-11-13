@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:equipo2_grupo15/Pantallas/loginUsuarios.dart';
+import 'package:equipo2_grupo15/Pantallas/loginCliente.dart';
 import 'package:equipo2_grupo15/Pantallas/loginTendero.dart';
 
 class bienvedina extends StatefulWidget {
@@ -41,7 +41,7 @@ class next1 extends StatelessWidget {
         child:
         ElevatedButton(
             onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>loginUsuarios()));
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>loginClientes()));
             },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
