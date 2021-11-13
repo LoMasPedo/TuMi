@@ -46,7 +46,6 @@ class _PaginaBienvenidaState extends State<PaginaBienvenida> {
           Container(
 
             child:
-              // principal(),
               imagen(url: "https://github.com/festupinans/equipo2_grupo15/blob/master/lib/Imagenes/TuMI.png?raw=true")
           ),
 
@@ -93,18 +92,12 @@ class next extends StatelessWidget {
     return Container(
 
       child:
-        ElevatedButton(
-
-            onPressed: (){
-              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const bienvedina()));
-            },
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Text('Siguiente'),
-                Icon(Icons.arrow_forward_sharp)
-              ],
-            )
+        ElevatedButton(onPressed: (){
+          Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const bienvedina()));
+        },child:
+          Text('Continuar'),
+          style: ElevatedButton.styleFrom(
+              primary: Colors.pink)
         )
     );
 

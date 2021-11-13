@@ -42,21 +42,45 @@ class _negociosState extends State<negocios> {
 
         title: Text('Listado de negocios'),
       ),
+
       body: Center(
-
-        child: ListView.builder(
-          itemCount: datos_negocios.length,
-          itemBuilder: (BuildContext context, i){
-            return ListTile(
-              title: Text('Negocio '+i.toString()+' - '+datos_negocios[i]['Nombre'].toString()),
-            );
-          },
-        ),
-
+            child: ListView.builder(
+                  itemCount: datos_negocios.length,
+                  itemBuilder: (BuildContext context, i){
+                    return ListTile(
+                      title: Text('Negocio '+i.toString()+' - '+datos_negocios[i]['Nombre'].toString()),
+                    );
+                    boton();
+                    },
+                ),
       ),
     );
 
   }
 }
+
+
+class boton extends StatefulWidget {
+
+  @override
+  _botonState createState() => _botonState();
+}
+
+class _botonState extends State<boton> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        child: ElevatedButton(onPressed: (){
+
+        },child:
+        Text('Consultar'),
+            style: ElevatedButton.styleFrom(
+                primary: Colors.cyan)
+        ),
+    );
+  }
+}
+
+
 
 
