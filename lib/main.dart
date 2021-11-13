@@ -1,3 +1,4 @@
+import 'package:equipo2_grupo15/Pantallas/bienvenida.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,7 +14,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Mí Tú',
-
+      theme: ThemeData(
+        fontFamily: 'Roboto'
+      ),
       home: PaginaBienvenida(),
     );
   }
@@ -34,10 +37,30 @@ class _PaginaBienvenidaState extends State<PaginaBienvenida> {
       // ),
       
       body: Column(
-
         children: [
-          // principal(),
-          imagen(url: "https://github.com/festupinans/equipo2_grupo15/blob/master/lib/Imagenes/TuMi.png?raw=true"),
+          Container(
+
+            child:
+              // principal(),
+              imagen(url: "https://github.com/festupinans/equipo2_grupo15/blob/master/lib/Imagenes/TuMI.png?raw=true")
+          ),
+
+
+          Container(
+              padding: EdgeInsets.fromLTRB(20.0, 200.0, 20.0,20.0),
+
+            child:
+              const Text('Equipo2_Grupo4', style: TextStyle(
+                  color: Colors.cyan,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'RobotoR')
+              )
+          ),
+          Container(
+            child:
+            next(),
+          ),
 
         ],
       ),
@@ -52,8 +75,31 @@ class imagen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(20.0),
+      padding: EdgeInsets.fromLTRB(20.0, 200.0, 20.0,20.0),
       child: Image.network(url),
     );
+  }
+}
+
+class next extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child:
+        ElevatedButton(
+            onPressed: (){
+              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const bienvedina()));
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Text('Siguiente'),
+                Icon(Icons.arrow_forward_sharp)
+              ],
+            )
+        )
+    );
+
   }
 }
