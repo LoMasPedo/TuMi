@@ -9,8 +9,8 @@ class loginClientes extends StatefulWidget {
 
 class _loginClientesState extends State<loginClientes> {
   @override
-  String UsuarioT="";
-   String PasswordT="";
+  String UsuarioC="";
+   String PasswordC="";
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -21,11 +21,11 @@ class _loginClientesState extends State<loginClientes> {
           Container(
             padding: EdgeInsets.all(20.0),
             child: TextField(
-              onChanged: (usuariot){
+              onChanged: (usuarioc){
                 setState(() {
-                  UsuarioT=usuariot;
+                  UsuarioC=usuarioc;
                 });
-                print(UsuarioT);
+                print(UsuarioC);
               },
               autofocus: false,
               keyboardType: TextInputType.name,
@@ -39,11 +39,11 @@ class _loginClientesState extends State<loginClientes> {
           Container(
             padding: EdgeInsets.all(20.0),
             child: TextField(
-              onChanged: (passwordt){
+              onChanged: (passwordc){
                 setState(() {
-                  PasswordT=passwordt;
+                  PasswordC=passwordc;
                 });
-                print(PasswordT);
+                print(PasswordC);
               },
               obscureText: true,
               autofocus: false,
