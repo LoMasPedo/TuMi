@@ -2,10 +2,16 @@ import 'package:equipo2_grupo15/Pantallas/loginCliente.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:equipo2_grupo15/Pantallas/consultaNegocios.dart';
+
+
 
 class negocios extends StatefulWidget {
 
+
+  TextEditingController idbusqueda=TextEditingController();
   @override
+
   State<negocios> createState() => _negociosState();
 }
 
@@ -39,10 +45,10 @@ class _negociosState extends State<negocios> {
       print('ha fallado....');
     }
   }
-
+  
   @override
   Widget build(BuildContext context) {
-
+    
     return Scaffold(
       appBar: AppBar(
 
@@ -84,10 +90,12 @@ class _negociosState extends State<negocios> {
                   child: Text('Buscar Tienda'),
                 )
             ),
+
             Container(
                     margin: const EdgeInsets.only(top: 10.0),
                     child:Divider(),
                 ),
+
             Container(
               margin: const EdgeInsets.all(30.0),
               child: ListView.builder(
@@ -122,7 +130,9 @@ class _botonState extends State<boton> {
   Widget build(BuildContext context) {
     return Container(
         child: ElevatedButton(onPressed: (){
-
+          var idbusqueda;
+          print(idbusqueda.text);
+          Navigator.push(context, MaterialPageRoute(builder: (context)=> consultaNegocios(idbusqueda.text)));
         },child:
         Text('Consultar'),
             style: ElevatedButton.styleFrom(
