@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:equipo2_grupo15/Pantallas/negocios.dart';
+//import 'package:equipo2_grupo15/Pantallas/negocios.dart';
+import 'package:equipo2_grupo15/Pantallas/seleccionCliente.dart';
 
 class loginClientes extends StatefulWidget {
   const loginClientes({Key? key}) : super(key: key);
@@ -80,7 +81,7 @@ class login extends StatelessWidget {
         ElevatedButton(
             onPressed: (){
               //aqui se pone el salto de pagina
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>negocios()));
+             Navigator.push(context, MaterialPageRoute(builder: (context)=>seleccionCliente()));
             },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -104,7 +105,7 @@ class register extends StatelessWidget {
         ElevatedButton(
             onPressed: (){
               //aqui se pone el salto de pagina
-              //Navigator.push(context, MaterialPageRoute(builder: (context)=>loginUsuarios()));
+              //Navigator.push(context, MaterialPageRoute(builder: (context)=>seleccionCliente()));
             },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,

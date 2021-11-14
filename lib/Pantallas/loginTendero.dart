@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:equipo2_grupo15/Pantallas/negocios.dart';
 
 class loginTendero extends StatefulWidget {
   const loginTendero({Key? key}) : super(key: key);

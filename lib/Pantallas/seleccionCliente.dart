@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:equipo2_grupo15/Pantallas/negocios.dart';
 import 'package:equipo2_grupo15/Pantallas/consultaNegocios.dart';
 //import 'package:equipo2_grupo15/Pantallas/consultaProductos.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -73,7 +74,7 @@ class next2 extends StatelessWidget {
         child:
         ElevatedButton(
             onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>consultaNegocios('')));
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>consultaNegocios('')));//Aca toca cambiarlo por el de productos cuando este.
             },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -84,6 +85,7 @@ class next2 extends StatelessWidget {
             )
         )
     );
+
 
   }
 }
@@ -97,5 +99,28 @@ class imagen extends StatelessWidget {
       padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0,20.0),
       child: Image.network(url,scale:2),
     );
+  }
+}
+class login extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        child:
+        ElevatedButton(
+            onPressed: (){
+              //aqui se pone el salto de pagina
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>negocios()));
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Text('Login'),
+                Icon(Icons.arrow_forward_sharp)
+              ],
+            )
+        )
+    );
+
   }
 }
