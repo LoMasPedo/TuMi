@@ -51,7 +51,7 @@ class _PaginaBienvenidaState extends State<PaginaBienvenida> {
 
 
           Container(
-              padding: EdgeInsets.fromLTRB(20.0, 100.0, 20.0,20.0),
+              padding: EdgeInsets.fromLTRB(20.0, 50.0, 20.0,20.0),
 
             child:
               const Text('Equipo2_Grupo4', style: TextStyle(

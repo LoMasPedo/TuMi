@@ -52,12 +52,12 @@ class next1 extends StatelessWidget {
         child:
         ElevatedButton(
             onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>consultaNegocios('')));
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> negocios() ));
             },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
-                Text('Clientes'),
+                Text('Negocios'),
                 Icon(Icons.arrow_forward_sharp)
               ],
             )
@@ -74,7 +74,7 @@ class next2 extends StatelessWidget {
         child:
         ElevatedButton(
             onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>consultaNegocios('')));//Aca toca cambiarlo por el de productos cuando este.
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>negocios() /*aqui va productos*/  ));//Aca toca cambiarlo por el de productos cuando este.
             },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
