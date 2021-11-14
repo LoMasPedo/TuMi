@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
+/*
 class consultaNegocios extends StatefulWidget {
   final String consulta;
   const consultaNegocios(this.consulta,{Key? key}) : super(key: key);
@@ -33,4 +33,4 @@ class _consultaNegociosState extends State<consultaNegocios> {
       }
     }
   }
-}
+}*/
