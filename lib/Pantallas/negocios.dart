@@ -32,7 +32,8 @@ class _negociosState extends State<negocios> {
       //print('Trae datos getNegocios');
 
       for(var doc in negocios.docs){
-       // print(doc.data());
+       // print("---------");
+       // print(doc.id);
         setState(() {
         datos_negocios.add(doc.data());
         });
@@ -71,7 +72,8 @@ class _negociosState extends State<negocios> {
   
   @override
   Widget build(BuildContext context) {
-    
+
+
     return Scaffold(
       appBar: AppBar(
 
@@ -112,22 +114,6 @@ class _negociosState extends State<negocios> {
               ),
 
             ),
-           /* Container(
-                margin: const EdgeInsets.only(top: 10.0),
-                child: TextButton(
-                  style: TextButton.styleFrom(
-                    primary: Colors.white,
-                    backgroundColor: Colors.teal,
-                    onSurface: Colors.grey,
-                  ),
-
-                  onPressed:  () {
-                    print('Pressed');
-                    },
-                  child: Text('Buscar Tienda'),
-                )
-            ),*/
-
             Container(
                    // margin: const EdgeInsets.only(top: 10.0),
                     child:Divider(),
@@ -140,9 +126,25 @@ class _negociosState extends State<negocios> {
                 shrinkWrap: true,
                 itemCount: datos_negocios.length,
                 itemBuilder: (BuildContext context, i){
-                  print('item builder ');
-                  return ListTile(
-                    title: Text('Negocio '+i.toString()+' - '+datos_negocios[i]['Nombre'].toString()),
+                  var img=  "https://i.pinimg.com/736x/28/f1/a9/28f1a972e13e4281b5273891ead173eb.jpg";
+                  if(datos_negocios[i]['Logo'] !=null){
+                    img = datos_negocios[i]['Logo'];
+                  }
+
+                  return Card(
+                      child: ListTile(
+                          title: Text(datos_negocios[i]['Nombre'].toString()),
+                          subtitle: Text(datos_negocios[i]['Id'].toString()),
+                          leading: CircleAvatar(
+                              backgroundImage: NetworkImage(
+                                  img)),
+                          trailing: Icon(Icons.add_business_outlined),
+                          onTap: () => {
+                            print(datos_negocios[i]['Id'].toString()),
+                           // Navigator.push(context, MaterialPageRoute(builder: (context)=> consultaNegocios(datos_negocios[i])))
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=> consultaNegocios(datos_negocios[i]['Id'].toString())))
+                          }
+                      )
                   );
                 },
               ),
