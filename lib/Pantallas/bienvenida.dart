@@ -19,7 +19,7 @@ class _bienvedinaState extends State<bienvedina> {
 
   void initState(){
     super.initState();
-    getNegocios();
+   // getNegocios();
   }
 
   void getNegocios() async {

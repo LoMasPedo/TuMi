@@ -52,28 +52,26 @@ class _consultaNegociosState extends State<consultaNegocios> {
               itemCount: datos_negocios.length,
               itemBuilder: (BuildContext context, i) {
                 var img =
-                    "https://i.pinimg.com/736x/28/f1/a9/28f1a972e13e4281b5273891ead173eb.jpg";
-                if (datos_negocios[i]['Logo'] != null) {
+                    "https://raw.githubusercontent.com/festupinans/equipo2_grupo15/master/lib/Imagenes/icono-tienda.jpg";
+
+                var urlimage= 'https://source.unsplash.com/random/800x600?market';
+
+                // ESTO FUE NECESARIO YA QUE NO TODOS LOS REGISTROS TRAEN LOGO, DEBERIAN TRAER LOGO O UNA IMAGEN POR DFEFECTO PARA EVITAR ESTO
+                if ( datos_negocios[i].data()!["Logo"] != null &&  datos_negocios[i].data()!["Logo"] != "") {
                   img = datos_negocios[i]['Logo'];
                 }
 
-                var urlimage= 'https://source.unsplash.com/random/800x600?market';
-                if (datos_negocios[i]['Foto'] != null) {
+                if ( datos_negocios[i].data()!['Foto'] != null && datos_negocios[i].data()!['Foto'] != "") {
                   urlimage = datos_negocios[i]['Foto'];
                 }
-
 
                 var cardImage = NetworkImage(
                     urlimage);
 
                 return Card(
-                    child: /*ListTile(
-                  title: Text(datos_negocios[i]['Nombre'].toString()),
-                  subtitle: Text(datos_negocios[i]['Id'].toString()),
-                  leading: CircleAvatar(backgroundImage: NetworkImage(img)),
-                  trailing: Icon(Icons.add_business_outlined),
-                )*/
+                    child:
                     Column(
+
                         children: [
                           ListTile(
                            // trailing: Icon(Icons.favorite_outline),
@@ -88,16 +86,31 @@ class _consultaNegociosState extends State<consultaNegocios> {
                           ),
 
                           Container(
-                            height: 50.0,
+                            height: 300.0,
                             child: Ink.image(
                               image: cardImage,
                               fit: BoxFit.cover,
                             ),
                           ),
-                          Text(datos_negocios[i]['Celular'].toString()),
-                          Text(datos_negocios[i]['Pagina Web'].toString()),
-                          Text(datos_negocios[i]['Teléfono'].toString()),
-                          Text(datos_negocios[i]['Geolocalización'].toString()),
+
+                          Container(
+
+
+                              margin: const EdgeInsets.all(10.0),
+                                child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text("Celular: "+ datos_negocios[i].data()!['Celular'].toString()),
+                                          Text("Pagina Web: "+ datos_negocios[i].data()!['Pagina Web'].toString()),
+                                          Text("Telefono: " + datos_negocios[i].data()!['Teléfono'].toString()),
+                                          Text("Geo: "+ datos_negocios[i].data()!['Geolocalización'].toString()),
+
+                                        ]),
+
+                          ),
+
+
 
                         ]
 

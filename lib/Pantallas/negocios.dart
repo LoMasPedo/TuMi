@@ -126,7 +126,7 @@ class _negociosState extends State<negocios> {
                 shrinkWrap: true,
                 itemCount: datos_negocios.length,
                 itemBuilder: (BuildContext context, i){
-                  var img=  "https://i.pinimg.com/736x/28/f1/a9/28f1a972e13e4281b5273891ead173eb.jpg";
+                  var img=  "https://raw.githubusercontent.com/festupinans/equipo2_grupo15/master/lib/Imagenes/icono-tienda.jpg";
                   if(datos_negocios[i]['Logo'] !=null){
                     img = datos_negocios[i]['Logo'];
                   }
