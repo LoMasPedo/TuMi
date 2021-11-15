@@ -19,10 +19,14 @@ class negocios extends StatefulWidget {
 class _negociosState extends State<negocios> {
 
   List datos_negocios=[];
+
   String idbusqueda="";
+
+
   void initState(){
     super.initState();
     getNegocios();
+
   }
 
   void getNegocios() async {
@@ -80,10 +84,15 @@ class _negociosState extends State<negocios> {
     if(negocios.docs.length>0){
       for(var doc in negocios.docs){
         var data =  doc.data();
-        if(doc.get("Categoría").toLowerCase().indexOf(palabra.toLowerCase())!=-1){
+        if(doc.get("Categoria").toLowerCase().indexOf(palabra.toLowerCase())!=-1){
           //print("si ahy concidencia");
           setState(() {
             datos_negocios.add(doc.data());
+
+            for(var doc in datos_negocios){
+                    print(doc.data());
+
+                  };
           });
         }
       }
@@ -93,7 +102,8 @@ class _negociosState extends State<negocios> {
   }
 
 
-  var _listacategoria = ['Bebidas','Cervezas','Licores ','Otros','Snacks','Abarrotes','Cuidado Hogar','Cuidado Personal','Lacteos y Huevos','Frutas y Verduras','Carnes','Panadería'];
+
+  var _listacategoria = ['lacteos','cuidado personal','cuidado hogar','cervezas','bebidas','abarrotes'];
   String _vista = 'categoria';
   @override
   Widget build(BuildContext context) {
@@ -139,6 +149,7 @@ class _negociosState extends State<negocios> {
             ),
 
             Container(
+              padding: EdgeInsets.fromLTRB(40.0, 0.0, 40.0,0.0),
               child: DropdownButton(
                 items: _listacategoria.map((String a){
                   return DropdownMenuItem(
@@ -164,6 +175,7 @@ class _negociosState extends State<negocios> {
             Container(
               margin: const EdgeInsets.all(30.0),
               child: ListView.builder(
+
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
                 itemCount: datos_negocios.length,

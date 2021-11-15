@@ -40,7 +40,7 @@ class _consultaNegociosState extends State<consultaNegocios> {
         appBar: AppBar(
           title: Text('Informacion del negocio'),
         ),
-        body: Column(children: [
+        body: ListView(children: [
           Container(
             margin: const EdgeInsets.all(50.0),
             child: ListView.builder(

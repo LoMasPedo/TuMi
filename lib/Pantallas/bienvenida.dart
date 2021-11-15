@@ -15,28 +15,28 @@ class bienvedina extends StatefulWidget {
 
 class _bienvedinaState extends State<bienvedina> {
 
-  List datos_nogocios=[];
-
-  void initState(){
-    super.initState();
-   // getNegocios();
-  }
-
-  void getNegocios() async {
-    CollectionReference datos= FirebaseFirestore.instance.collection('Negocios'); //Conecta a la conexion
-    QuerySnapshot negocios= await datos.get(); //Traer todas las personas
-    if(negocios.docs.length>0){
-      print('Trae datos');
-
-      for(var doc in negocios.docs){
-        print(doc.data());
-        datos_nogocios.add(doc.data());
-
-      }
-    }else{
-      print('ha fallado....');
-    }
-  }
+  // List datos_nogocios=[];
+  //
+  // void initState(){
+  //   super.initState();
+  //  // getNegocios();
+  // }
+  //
+  // void getNegocios() async {
+  //   CollectionReference datos= FirebaseFirestore.instance.collection('Negocios'); //Conecta a la conexion
+  //   QuerySnapshot negocios= await datos.get(); //Traer todas las personas
+  //   if(negocios.docs.length>0){
+  //     print('Trae datos');
+  //
+  //     for(var doc in negocios.docs){
+  //       print(doc.data());
+  //       datos_nogocios.add(doc.data());
+  //
+  //     }
+  //   }else{
+  //     print('ha fallado....');
+  //   }
+  // }
 
 
 
@@ -71,17 +71,13 @@ class next1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         child:
-        ElevatedButton(
-            onPressed: (){
+        ElevatedButton(onPressed: (){
               Navigator.push(context, MaterialPageRoute(builder: (context)=>loginClientes()));
-            },
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+            }, child:
                 Text('Login Cliente'),
-                Icon(Icons.arrow_forward_sharp)
-              ],
-            )
+                style: ElevatedButton.styleFrom(
+                primary: Colors.pink)
+
         )
     );
 
@@ -94,17 +90,14 @@ class next2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         child:
-        ElevatedButton(
-            onPressed: (){
+        ElevatedButton(onPressed: (){
               Navigator.push(context, MaterialPageRoute(builder: (context)=>loginTendero()));
             },
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Text('Login Veci'),
-                Icon(Icons.arrow_forward_sharp)
-              ],
-            )
+            child: Text('Login Veci'),
+            style: ElevatedButton.styleFrom(
+                primary: Colors.pink)
+
+
         )
     );
 
@@ -117,7 +110,7 @@ class imagen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0,20.0),
+      padding: EdgeInsets.fromLTRB(30.0, 100.0, 30.0,30.0),
       child: Image.network(url,scale:2),
     );
   }

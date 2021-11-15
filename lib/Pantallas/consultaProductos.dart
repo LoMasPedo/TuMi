@@ -42,7 +42,8 @@ class _consultaProductosState extends State<consultaProductos> {
         appBar: AppBar(
           title: Text('Información del producto'),
         ),
-        body: Column(children: [
+        body: ListView(
+            children: [
 
           Container(
             margin: const EdgeInsets.all(50.0),
