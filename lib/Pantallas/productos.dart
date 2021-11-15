@@ -17,6 +17,7 @@ class _productosState extends State<productos> {
 
   List datos_productos=[];
   String idbusqueda="";
+
   void initState(){
     super.initState();
     getProductos();
@@ -67,6 +68,36 @@ class _productosState extends State<productos> {
 
   }
 
+  void getProductosCategoria(String palabra) async {
+    setState(() {
+      datos_productos=[];
+    });
+    CollectionReference datos= FirebaseFirestore.instance.collection('Productos');
+    QuerySnapshot productos= await datos.get();
+    //En el momento no encontre en las clases como hacer una busqeuda de texto en firebase realice un filtro.
+    if(productos.docs.length>0){
+      for(var doc in productos.docs){
+        var data =  doc.data();
+        if(doc.get("Categoría").toLowerCase().indexOf(palabra.toLowerCase())!=-1){
+          //print("si ahy concidencia");
+          setState(() {
+            datos_productos.add(doc.data());
+
+            // for(var doc in datos_productos){
+            //   print(doc.data());
+            //
+            // };
+          });
+        }
+      }
+    }else{
+      print('no se encontraron negocios....');
+    }
+  }
+
+  var _listacategoria = ['Cuidado Hogar','lacteos y huevos','Bebidas','Cervezas','Abarrotes','Bebidas'];
+  String _vista = 'categoria';
+
   @override
   Widget build(BuildContext context) {
 
@@ -110,6 +141,26 @@ class _productosState extends State<productos> {
             ),
 
           ),
+
+          Container(
+            padding: EdgeInsets.fromLTRB(40.0, 0.0, 40.0,0.0),
+            child: DropdownButton(
+              items: _listacategoria.map((String a){
+                return DropdownMenuItem(
+                    value: a,
+                    child: Text(a));
+              }).toList(),
+              onChanged: (_value)=>{
+                setState((){
+                  String _vista1 = _value.toString();
+                  _vista = _vista1;
+                  getProductosCategoria(_vista);
+                })
+              },
+              hint: Text(_vista),
+            ),
+          ),
+
           Container(
             // margin: const EdgeInsets.only(top: 10.0),
             child:Divider(),

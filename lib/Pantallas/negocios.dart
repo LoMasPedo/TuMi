@@ -19,9 +19,7 @@ class negocios extends StatefulWidget {
 class _negociosState extends State<negocios> {
 
   List datos_negocios=[];
-
   String idbusqueda="";
-
 
   void initState(){
     super.initState();
@@ -89,10 +87,10 @@ class _negociosState extends State<negocios> {
           setState(() {
             datos_negocios.add(doc.data());
 
-            for(var doc in datos_negocios){
-                    print(doc.data());
-
-                  };
+            // for(var doc in datos_negocios){
+            //         print(doc.data());
+            //
+            //       };
           });
         }
       }
@@ -105,9 +103,9 @@ class _negociosState extends State<negocios> {
 
   var _listacategoria = ['lacteos','cuidado personal','cuidado hogar','cervezas','bebidas','abarrotes'];
   String _vista = 'categoria';
+
   @override
   Widget build(BuildContext context) {
-
 
     return Scaffold(
       appBar: AppBar(
