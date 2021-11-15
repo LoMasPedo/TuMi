@@ -69,7 +69,32 @@ class _negociosState extends State<negocios> {
     }
 
   }
-  
+
+  void getNegociosCategoria(String palabra) async {
+    setState(() {
+      datos_negocios=[];
+    });
+    CollectionReference datos= FirebaseFirestore.instance.collection('Negocios');
+    QuerySnapshot negocios= await datos.get();
+    //En el momento no encontre en las clases como hacer una busqeuda de texto en firebase realice un filtro.
+    if(negocios.docs.length>0){
+      for(var doc in negocios.docs){
+        var data =  doc.data();
+        if(doc.get("Categoría").toLowerCase().indexOf(palabra.toLowerCase())!=-1){
+          //print("si ahy concidencia");
+          setState(() {
+            datos_negocios.add(doc.data());
+          });
+        }
+      }
+    }else{
+      print('no se encontraron negocios....');
+    }
+  }
+
+
+  var _listacategoria = ['Bebidas','Cervezas','Licores ','Otros','Snacks','Abarrotes','Cuidado Hogar','Cuidado Personal','Lacteos y Huevos','Frutas y Verduras','Carnes','Panadería'];
+  String _vista = 'categoria';
   @override
   Widget build(BuildContext context) {
 
@@ -80,7 +105,7 @@ class _negociosState extends State<negocios> {
         title: Text('Listado de negocios'),
       ),
 
-      body: Column(
+      body: ListView(
           children: [
             Container(
                 decoration: BoxDecoration(
@@ -106,14 +131,31 @@ class _negociosState extends State<negocios> {
                 textInputAction: TextInputAction.search,
                 decoration: InputDecoration(
                     hintText: "ingresa el id a buscar",
-
                     suffixIcon: Icon(Icons.search),
                     contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-
                 ),
               ),
 
             ),
+
+            Container(
+              child: DropdownButton(
+                items: _listacategoria.map((String a){
+                  return DropdownMenuItem(
+                      value: a,
+                      child: Text(a));
+                }).toList(),
+                onChanged: (_value)=>{
+                  setState((){
+                    String _vista1 = _value.toString();
+                    _vista = _vista1;
+                    getNegociosCategoria(_vista);
+                  })
+                },
+                hint: Text(_vista),
+              ),
+            ),
+
             Container(
                    // margin: const EdgeInsets.only(top: 10.0),
                     child:Divider(),

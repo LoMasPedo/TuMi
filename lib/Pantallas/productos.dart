@@ -76,7 +76,7 @@ class _productosState extends State<productos> {
         title: Text('Listado de Productos'),
       ),
 
-      body: Column(
+      body: ListView(
         children: [
           Container(
             decoration: BoxDecoration(

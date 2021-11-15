@@ -36,14 +36,11 @@ class _consultaNegociosState extends State<consultaNegocios> {
   Widget build(BuildContext context) {
     // TODO: implement build
 
-
-
     return Scaffold(
         appBar: AppBar(
           title: Text('Informacion del negocio'),
         ),
         body: Column(children: [
-
           Container(
             margin: const EdgeInsets.all(50.0),
             child: ListView.builder(
@@ -54,69 +51,61 @@ class _consultaNegociosState extends State<consultaNegocios> {
                 var img =
                     "https://raw.githubusercontent.com/festupinans/equipo2_grupo15/master/lib/Imagenes/icono-tienda.jpg";
 
-                var urlimage= 'https://source.unsplash.com/random/800x600?market';
+                var urlimage =
+                    'https://source.unsplash.com/random/800x600?market';
 
                 // ESTO FUE NECESARIO YA QUE NO TODOS LOS REGISTROS TRAEN LOGO, DEBERIAN TRAER LOGO O UNA IMAGEN POR DFEFECTO PARA EVITAR ESTO
-                if ( datos_negocios[i].data()!["Logo"] != null &&  datos_negocios[i].data()!["Logo"] != "") {
+                if (datos_negocios[i].data()!["Logo"] != null &&
+                    datos_negocios[i].data()!["Logo"] != "") {
                   img = datos_negocios[i]['Logo'];
                 }
 
-                if ( datos_negocios[i].data()!['Foto'] != null && datos_negocios[i].data()!['Foto'] != "") {
+                if (datos_negocios[i].data()!['Foto'] != null &&
+                    datos_negocios[i].data()!['Foto'] != "") {
                   urlimage = datos_negocios[i]['Foto'];
                 }
 
-                var cardImage = NetworkImage(
-                    urlimage);
+                var cardImage = NetworkImage(urlimage);
 
                 return Card(
-                    child:
-                    Column(
-
+                    child: Column(children: [
+                  ListTile(
+                    // trailing: Icon(Icons.favorite_outline),
+                    title: Text(datos_negocios[i]['Nombre'].toString()),
+                    subtitle: Text(
+                      datos_negocios[i]['Id'].toString(),
+                      style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                    ),
+                    leading: CircleAvatar(backgroundImage: NetworkImage(img)),
+                  ),
+                  Container(
+                    height: 300.0,
+                    child: Ink.image(
+                      image: cardImage,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.all(10.0),
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          ListTile(
-                           // trailing: Icon(Icons.favorite_outline),
-                            title: Text(datos_negocios[i]['Nombre'].toString()),
-                            subtitle: Text(
-                              datos_negocios[i]['Id'].toString(),
-                              style: TextStyle(color: Colors.black.withOpacity(0.6)),
-                            ),
-                              leading: CircleAvatar(
-                                  backgroundImage: NetworkImage(
-                                      img)),
-                          ),
-
-                          Container(
-                            height: 300.0,
-                            child: Ink.image(
-                              image: cardImage,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-
-                          Container(
-
-
-                              margin: const EdgeInsets.all(10.0),
-                                child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Text("Celular: "+ datos_negocios[i].data()!['Celular'].toString()),
-                                          Text("Pagina Web: "+ datos_negocios[i].data()!['Pagina Web'].toString()),
-                                          Text("Telefono: " + datos_negocios[i].data()!['Teléfono'].toString()),
-                                          Text("Geo: "+ datos_negocios[i].data()!['Geolocalización'].toString()),
-
-                                        ]),
-
-                          ),
-
-
-
-                        ]
-
-                    )
-
-                );
+                          Text("Celular: " +
+                              datos_negocios[i].data()!['Celular'].toString()),
+                          Text("Pagina Web: " +
+                              datos_negocios[i]
+                                  .data()!['Pagina Web']
+                                  .toString()),
+                          Text("Telefono: " +
+                              datos_negocios[i].data()!['Teléfono'].toString()),
+                          Text("Geo: " +
+                              datos_negocios[i]
+                                  .data()!['Geolocalización']
+                                  .toString()),
+                        ]),
+                  ),
+                ]));
               },
             ),
           ),
