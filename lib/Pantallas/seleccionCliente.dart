@@ -1,3 +1,4 @@
+import 'package:equipo2_grupo15/Pantallas/productos.dart';
 import 'package:flutter/material.dart';
 import 'package:equipo2_grupo15/Pantallas/negocios.dart';
 import 'package:equipo2_grupo15/Pantallas/consultaNegocios.dart';
@@ -74,7 +75,7 @@ class next2 extends StatelessWidget {
         child:
         ElevatedButton(
             onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>negocios() /*aqui va productos*/  ));//Aca toca cambiarlo por el de productos cuando este.
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>productos() /*aqui va productos*/  ));//Aca toca cambiarlo por el de productos cuando este.
             },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
