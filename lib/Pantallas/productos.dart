@@ -78,7 +78,7 @@ class _productosState extends State<productos> {
     if(productos.docs.length>0){
       for(var doc in productos.docs){
         var data =  doc.data();
-        if(doc.get("Categoría").toLowerCase().indexOf(palabra.toLowerCase())!=-1){
+        if(doc.get("Categoria").toLowerCase().indexOf(palabra.toLowerCase())!=-1){
           //print("si ahy concidencia");
           setState(() {
             datos_productos.add(doc.data());
