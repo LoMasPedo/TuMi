@@ -1,3 +1,4 @@
+import 'package:equipo2_grupo15/Pantallas/seleccionCliente.dart';
 import 'package:flutter/material.dart';
 import 'package:equipo2_grupo15/Pantallas/negocios.dart';
 
@@ -80,7 +81,7 @@ class login extends StatelessWidget {
         ElevatedButton(
             onPressed: (){
               //aqui se pone el salto de pagina
-              //Navigator.push(context, MaterialPageRoute(builder: (context)=>loginUsuarios()));
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>seleccionCliente()));
             },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
