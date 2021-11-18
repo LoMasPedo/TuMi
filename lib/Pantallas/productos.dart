@@ -132,7 +132,7 @@ class _productosState extends State<productos> {
               keyboardType: TextInputType.name,
               textInputAction: TextInputAction.search,
               decoration: InputDecoration(
-                hintText: "Ingresa el producto ",
+                hintText: "Ingresa el producto a buscar",
 
                 suffixIcon: Icon(Icons.search),
                 contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),

@@ -59,7 +59,7 @@ class next1 extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
                 Text('Negocios'),
-                Icon(Icons.arrow_forward_sharp)
+                //Icon(Icons.arrow_forward_sharp)
               ],
             )
         )
@@ -81,7 +81,7 @@ class next2 extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
                 Text('Productos'),
-                Icon(Icons.arrow_forward_sharp)
+                //Icon(Icons.arrow_forward_sharp)
               ],
             )
         )
@@ -102,7 +102,7 @@ class imagen extends StatelessWidget {
     );
   }
 }
-class login extends StatelessWidget {
+/*class login extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
@@ -124,4 +124,4 @@ class login extends StatelessWidget {
     );
 
   }
-}
+}*/

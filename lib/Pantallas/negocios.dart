@@ -138,7 +138,7 @@ class _negociosState extends State<negocios> {
                 keyboardType: TextInputType.name,
                 textInputAction: TextInputAction.search,
                 decoration: InputDecoration(
-                    hintText: "ingresa el id a buscar",
+                    hintText: "Ingresa el negocio a buscar",
                     suffixIcon: Icon(Icons.search),
                     contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
                 ),
@@ -186,7 +186,7 @@ class _negociosState extends State<negocios> {
                   return Card(
                       child: ListTile(
                           title: Text(datos_negocios[i]['Nombre'].toString()),
-                          subtitle: Text(datos_negocios[i]['Id'].toString()),
+                          subtitle: Text(datos_negocios[i]['Tipo'].toString()),
                           leading: CircleAvatar(
                               backgroundImage: NetworkImage(
                                   img)),

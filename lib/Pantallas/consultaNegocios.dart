@@ -73,7 +73,7 @@ class _consultaNegociosState extends State<consultaNegocios> {
                     // trailing: Icon(Icons.favorite_outline),
                     title: Text(datos_negocios[i]['Nombre'].toString()),
                     subtitle: Text(
-                      datos_negocios[i]['Id'].toString(),
+                      datos_negocios[i]['Tipo'].toString(),
                       style: TextStyle(color: Colors.black.withOpacity(0.6)),
                     ),
                     leading: CircleAvatar(backgroundImage: NetworkImage(img)),
