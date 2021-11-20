@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:equipo2_grupo15/Pantallas/negocios.dart';
 import 'package:equipo2_grupo15/Pantallas/consultaNegocios.dart';
 //import 'package:equipo2_grupo15/Pantallas/consultaProductos.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+//import 'package:firebase_core/firebase_core.dart';
+//import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'bienvenida.dart';
 
@@ -49,20 +49,22 @@ class next1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child:
-        ElevatedButton(
-            onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=> negocios() ));
-            },
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Text('Negocios'),
-                //Icon(Icons.arrow_forward_sharp)
-              ],
-            )
-        )
+    return Center(
+      child: Container(
+          child:
+          ElevatedButton(
+              onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> negocios() ));
+              },
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: const [
+                  Text('Negocios '),
+                  //Icon(Icons.arrow_forward_sharp)
+                ],
+              )
+          )
+      ),
     );
 
   }
@@ -71,20 +73,22 @@ class next2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child:
-        ElevatedButton(
-            onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>productos() /*aqui va productos*/  ));//Aca toca cambiarlo por el de productos cuando este.
-            },
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Text('Productos'),
-                //Icon(Icons.arrow_forward_sharp)
-              ],
-            )
-        )
+    return Center(
+      child: Container(
+          child:
+          ElevatedButton(
+              onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>productos() /*aqui va productos*/  ));//Aca toca cambiarlo por el de productos cuando este.
+              },
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: const [
+                  Text('Productos'),
+                  //Icon(Icons.arrow_forward_sharp)
+                ],
+              )
+          )
+      ),
     );
 
 
