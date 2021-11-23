@@ -24,6 +24,10 @@ class _registroClienteState extends State<registroCliente> {
   final celular = TextEditingController();
   final contrasena = TextEditingController();
   final contrasena1 = TextEditingController();
+
+  void limpiar(){
+    correo.text=""; nombre.text=""; apellido.text=""; cedula.text=""; direccion.text=""; celular.text=""; contrasena.text=""; contrasena1.text="";
+  }
   
   CollectionReference clientes = FirebaseFirestore.instance.collection('Clientes');
 
@@ -191,6 +195,70 @@ class _registroClienteState extends State<registroCliente> {
                 child: Text("Registrar",style: TextStyle(color: Colors.white, fontSize: 20 ),)
               ),
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+
+                Container(
+                  child: ElevatedButton(
+
+                      onPressed: (){
+                        if(cedula.text.isEmpty){
+                          Fluttertoast.showToast(msg: "Campos Vacios", toastLength: Toast.LENGTH_LONG, gravity: ToastGravity.BOTTOM);
+                        }else
+                        {
+                          clientes.doc(cedula.text).delete();
+                          limpiar();
+                          Fluttertoast.showToast(msg: "Cliente Eliminado Exitosamente", toastLength: Toast.LENGTH_LONG, gravity: ToastGravity.BOTTOM);
+                        }
+                      },
+                      child: Text("Consultar",style: TextStyle(color: Colors.white, fontSize: 17)),
+                      style: ElevatedButton.styleFrom(
+                          primary: Colors.greenAccent)
+
+                  ),
+                ),
+                Container(
+                  child: ElevatedButton(
+
+                      onPressed: (){
+                        if(cedula.text.isEmpty){
+                          Fluttertoast.showToast(msg: "Campos Vacios", toastLength: Toast.LENGTH_LONG, gravity: ToastGravity.BOTTOM);
+                        }else
+                        {
+                          clientes.doc(cedula.text).delete();
+                          limpiar();
+                          Fluttertoast.showToast(msg: "Cliente Eliminado Exitosamente", toastLength: Toast.LENGTH_LONG, gravity: ToastGravity.BOTTOM);
+                        }
+                      },
+                      child: Text("Actualizar",style: TextStyle(color: Colors.white, fontSize: 17)),
+                      style: ElevatedButton.styleFrom(
+                          primary: Colors.orangeAccent)
+
+                  ),
+                ),
+                Container(
+                  child: ElevatedButton(
+
+                      onPressed: (){
+                        if(cedula.text.isEmpty){
+                          Fluttertoast.showToast(msg: "Campos Vacios", fontSize: 15, backgroundColor: Colors.black, textColor: Colors.white,toastLength: Toast.LENGTH_LONG, gravity: ToastGravity.BOTTOM);
+                        }else
+                        {
+                          clientes.doc(cedula.text).delete();
+                          limpiar();
+                          Fluttertoast.showToast(msg: "Cliente Eliminado Exitosamente", toastLength: Toast.LENGTH_LONG, gravity: ToastGravity.BOTTOM);
+                        }
+                      },
+                      child: Text("Eliminar",style: TextStyle(color: Colors.white, fontSize: 17)),
+                      style: ElevatedButton.styleFrom(
+                          primary: Colors.redAccent)
+
+                  ),
+                )
+              ],
+            ),
+
           ],
         ),
       ),

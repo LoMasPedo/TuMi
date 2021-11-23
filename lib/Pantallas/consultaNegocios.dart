@@ -99,9 +99,9 @@ class _consultaNegociosState extends State<consultaNegocios> {
                                   .toString()),
                           Text("Telefono: " +
                               datos_negocios[i].data()!['Teléfono'].toString()),
-                          Text("Geo: " +
+                          Text("Dirección: " +
                               datos_negocios[i]
-                                  .data()!['Geolocalización']
+                                  .data()!['Dirección']
                                   .toString()),
                         ]),
                   ),
