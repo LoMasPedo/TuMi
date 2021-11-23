@@ -36,6 +36,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   firebase_core:
   cloud_firestore:
+    # add this line to your dependencies
+  fluttertoast: ^8.0.8
 
 dev_dependencies:
   flutter_test:

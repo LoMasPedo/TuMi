@@ -1,6 +1,8 @@
+// ignore: file_names
 import 'package:flutter/material.dart';
 //import 'package:equipo2_grupo15/Pantallas/negocios.dart';
 import 'package:equipo2_grupo15/Pantallas/seleccionCliente.dart';
+import 'package:equipo2_grupo15/Pantallas/registro_cliente.dart';
 
 class loginClientes extends StatefulWidget {
   const loginClientes({Key? key}) : super(key: key);
@@ -11,11 +13,12 @@ class loginClientes extends StatefulWidget {
 
 class _loginClientesState extends State<loginClientes> {
   @override
-  String UsuarioC="";
-   String PasswordC="";
+  String UsuarioC = "";
+  String PasswordC = "";
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.cyan[300] ,
         title: Text("Login del Cliente"),
       ),
       body: Column(
@@ -23,9 +26,9 @@ class _loginClientesState extends State<loginClientes> {
           Container(
             padding: EdgeInsets.all(20.0),
             child: TextField(
-              onChanged: (usuarioc){
+              onChanged: (usuarioc) {
                 setState(() {
-                  UsuarioC=usuarioc;
+                  UsuarioC = usuarioc;
                 });
                 print(UsuarioC);
               },
@@ -33,17 +36,18 @@ class _loginClientesState extends State<loginClientes> {
               keyboardType: TextInputType.name,
               textInputAction: TextInputAction.search,
               decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.account_circle_rounded, color: Colors.cyan),border: OutlineInputBorder(),
-                  hintText: "Ingrese su nombre"
-              ),
+                  prefixIcon:
+                      Icon(Icons.account_circle_rounded, color: Colors.cyan[300]),
+                  border: OutlineInputBorder(),
+                  hintText: "Ingrese su nombre"),
             ),
           ),
           Container(
             padding: EdgeInsets.all(20.0),
             child: TextField(
-              onChanged: (passwordc){
+              onChanged: (passwordc) {
                 setState(() {
-                  PasswordC=passwordc;
+                  PasswordC = passwordc;
                 });
                 print(PasswordC);
               },
@@ -52,60 +56,48 @@ class _loginClientesState extends State<loginClientes> {
               keyboardType: TextInputType.name,
               textInputAction: TextInputAction.search,
               decoration: InputDecoration(
-                prefixIcon: Icon(Icons.password, color: Colors.cyan),border: OutlineInputBorder(),
+                prefixIcon: Icon(Icons.password, color: Colors.cyan[300]),
+                border: OutlineInputBorder(),
                 labelText: 'Password',
               ),
             ),
           ),
           Container(
-            child:
-              login(),
+            child: login(),
           ),
           Container(
-            child:
-              register(),
+            child: register(),
           ),
         ],
-
       ),
     );
   }
 }
 
 class login extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Container(
-        child:
-        ElevatedButton(
-            onPressed: (){
+        child: ElevatedButton(
+            onPressed: () {
               //aqui se pone el salto de pagina
-             Navigator.push(context, MaterialPageRoute(builder: (context)=>seleccionCliente()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => seleccionCliente()));
             },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Text('Login'),
-                Icon(Icons.arrow_forward_sharp)
-              ],
-            )
-        )
-    );
-
+              children: const [Text('Login'), Icon(Icons.arrow_forward_sharp) ],
+            )));
   }
 }
 
 class register extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Container(
-        child:
-        ElevatedButton(
-            onPressed: (){
-              //aqui se pone el salto de pagina
-              //Navigator.push(context, MaterialPageRoute(builder: (context)=>seleccionCliente()));
+        child: ElevatedButton(
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>registroCliente()));
             },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -113,9 +105,6 @@ class register extends StatelessWidget {
                 Text('Register'),
                 Icon(Icons.arrow_forward_sharp)
               ],
-            )
-        )
-    );
-
+            )));
   }
 }
