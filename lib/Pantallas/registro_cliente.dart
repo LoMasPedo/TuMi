@@ -157,8 +157,8 @@ class _registroClienteState extends State<registroCliente> {
               child: ElevatedButton(
                 onPressed: () async {
                   if(correo.text.isEmpty || nombre.text.isEmpty || apellido.text.isEmpty || cedula.text.isEmpty || direccion.text.isEmpty ||celular.text.isEmpty ||contrasena.text.isEmpty || contrasena1.text.isEmpty){
-                    print("Campos Vacios");
-                    Fluttertoast.showToast(msg: "Campos vacios", toastLength: Toast.LENGTH_LONG, gravity: ToastGravity.BOTTOM);
+                    print("Hacen  falta  campos  por ingresar");
+                    Fluttertoast.showToast(msg: "Hacen  falta  campos  por ingresar", toastLength: Toast.LENGTH_LONG, gravity: ToastGravity.BOTTOM);
                   }
                   else if(contrasena.text != contrasena1.text){
                     print("Las contraseñas no coinciden");
@@ -191,6 +191,11 @@ class _registroClienteState extends State<registroCliente> {
 
                     }
                   }
+
+                  setState(() {
+
+                  });
+
                 },
                 child: Text("Registrar",style: TextStyle(color: Colors.white, fontSize: 20 ),)
               ),
@@ -202,14 +207,38 @@ class _registroClienteState extends State<registroCliente> {
                 Container(
                   child: ElevatedButton(
 
-                      onPressed: (){
+                      onPressed: () async {
                         if(cedula.text.isEmpty){
-                          Fluttertoast.showToast(msg: "Campos Vacios", toastLength: Toast.LENGTH_LONG, gravity: ToastGravity.BOTTOM);
+                          Fluttertoast.showToast(msg: "Digite la cedula.", toastLength: Toast.LENGTH_LONG, gravity: ToastGravity.BOTTOM);
                         }else
                         {
-                          clientes.doc(cedula.text).delete();
-                          limpiar();
-                          Fluttertoast.showToast(msg: "Cliente Eliminado Exitosamente", toastLength: Toast.LENGTH_LONG, gravity: ToastGravity.BOTTOM);
+                          List lista=[];
+                          var id;
+                          var ced=cedula.text;
+                          QuerySnapshot consulta = await clientes.where(FieldPath.documentId, isEqualTo: cedula.text).get();
+                        if(consulta.docs.length>0) {
+                          for (var doc in consulta.docs) {
+                            lista.add(doc.data());
+                          }
+
+                          Fluttertoast.showToast(msg: "Cargando Datos del CLiente", toastLength: Toast.LENGTH_LONG, gravity: ToastGravity.BOTTOM);
+
+                          cedula.text = ced;
+                          correo.text = lista[0]['correo'];
+                          nombre.text = lista[0]['nombre'];
+                          apellido.text = lista[0]['apellido'];
+                          direccion.text = lista[0]['direccion'];
+                          celular.text = lista[0]['celular'];
+                          contrasena.text = lista[0]['contrasena'];
+                          contrasena1.text = lista[0]['contrasena1'];
+                        }
+                        else{
+                        limpiar();
+                        Fluttertoast.showToast(
+                        msg: "El cliente  no se encontro",
+                        toastLength: Toast.LENGTH_LONG,
+                        gravity: ToastGravity.BOTTOM);
+                        }
                         }
                       },
                       child: Text("Consultar",style: TextStyle(color: Colors.white, fontSize: 17)),
