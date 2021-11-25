@@ -20,9 +20,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Mí Tú',
       theme: ThemeData(
-        fontFamily: 'Roboto'
+          fontFamily: 'Roboto'
       ),
-      home: PaginaBienvenida(),
+      home: PaginaBienvenida(
+
+      ),
     );
   }
 }
@@ -37,28 +39,32 @@ class _PaginaBienvenidaState extends State<PaginaBienvenida> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       // appBar: AppBar(
       //   title: Text("Mí Tú"),
       // ),
-      
-      body: Column(
+
+      body: ListView(
+
         children: [
           Container(
 
-            child:
-            imagen(url: "https://raw.githubusercontent.com/festupinans/equipo2_grupo15/master/lib/Imagenes/TuMI.png")
+              child:
+              imagen(url: "https://raw.githubusercontent.com/festupinans/equipo2_grupo15/master/lib/Imagenes/TuMI.png")
           ),
 
 
           Container(
               padding: EdgeInsets.fromLTRB(20.0, 50.0, 20.0,20.0),
 
-            child:
-              const Text('Equipo2_Grupo4', style: TextStyle(
-                  color: Colors.cyan,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'RobotoR')
+              child:
+              const Text('Equipo2_Grupo4',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.cyan,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'RobotoR')
               )
           ),
           Container(
@@ -91,15 +97,14 @@ class next extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
 
-      child:
+        child:
         ElevatedButton(onPressed: (){
-          Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const bienvedina()));
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>const bienvenida()));
         },child:
-          Text('Continuar'),
-          style: ElevatedButton.styleFrom(
-              primary: Colors.pink)
+        Text('Continuar'),
+            style: ElevatedButton.styleFrom(
+                primary: Colors.pink)
         )
     );
-
   }
 }
