@@ -4,6 +4,8 @@ import 'package:equipo2_grupo15/Pantallas/bienvenida.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+import '../main.dart';
+
 /*class datosCliente {
 
   String cedula = "";
@@ -29,7 +31,7 @@ class actualizarClienteV2 extends StatelessWidget {
   //var cliente;
   final datosCliente cliente;
 
-  actualizarClienteV2(this.cliente);
+  actualizarClienteV2( this.cliente);
 
 
   void limpiar(){

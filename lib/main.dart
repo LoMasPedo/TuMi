@@ -1,4 +1,8 @@
+import 'package:equipo2_grupo15/Pantallas/actualizarClienteV2.dart';
 import 'package:equipo2_grupo15/Pantallas/bienvenida.dart';
+import 'package:equipo2_grupo15/Pantallas/loginCliente.dart';
+import 'package:equipo2_grupo15/Pantallas/loginTendero.dart';
+import 'package:equipo2_grupo15/Pantallas/registro_cliente.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -30,6 +34,7 @@ class MyApp extends StatelessWidget {
 }
 
 class PaginaBienvenida extends StatefulWidget {
+  final datosCliente2 cliente = datosCliente2("80265922","Mauro","Castelblanco Torres","mao@gmail.com","3125495132","carrera 81b # 2b -93");
 
   @override
   _PaginaBienvenidaState createState() => _PaginaBienvenidaState();
@@ -99,7 +104,7 @@ class next extends StatelessWidget {
 
         child:
         ElevatedButton(onPressed: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context)=>Home()));
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>Home(nombre: 'Tú Mí', cedula: '', apellido: '',)));
         },child:
         Text('Continuar'),
             style: ElevatedButton.styleFrom(
@@ -107,4 +112,95 @@ class next extends StatelessWidget {
         )
     );
   }
+}
+
+class menu extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: [
+          DrawerHeader(
+              decoration: BoxDecoration(gradient:
+              LinearGradient(colors: [
+                Color(0xFF61D5D4),
+                Color(0xFFFF6961)
+              ],
+              begin: Alignment.bottomRight,
+                end: Alignment.topLeft,
+              )
+
+              ),
+              child: Image.network('https://github.com/festupinans/equipo2_grupo15/blob/master/lib/Imagenes/TuMi2.png?raw=true' )
+          ),
+          Column(
+            children: [
+              ListTile(
+                leading: Icon(Icons.face_retouching_natural , size: 30, color:  Color(0xFFFF6961)),
+                title: Text('Login Cliente'),
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>loginClientes()));
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.login , size: 30, color:  Color(0xFFFF6961)),
+                title: Text('Login Tendero'),
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>loginTendero()));
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.person_add , size: 30, color:  Color(0xFFFF6961)),
+                enabled: true,
+                title: Text('Registrar Clientes'),
+
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>registroCliente()));
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.person_add , size: 30, color:  Color(0xFFFF6961)),
+                enabled: true,
+                title: Text('Registrar Terndero'),
+                onTap: (){
+                  // Navigator.push(context, MaterialPageRoute(builder: (context)=>registroTe));
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.person_add , size: 30, color:  Color(0xFFFF6961)),
+                enabled: true,
+                title: Text('Actualizar Cliente'),
+                onTap: (){
+                  //Navigator.push(context, MaterialPageRoute(builder: (context)=>actualizarClienteV2(cliente)));
+                },
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class datosCliente2 {
+
+  String cedula = "";
+  String nombre = "";
+  String apellido = "";
+  String correo = "";
+  String celular = "";
+  String direccion = "";
+
+
+  datosCliente2(cedula, nombre, apellido, correo, celular,direccion) {
+    this.nombre = nombre;
+    this.apellido = apellido;
+    this.correo = correo;
+    this.cedula = cedula;
+    this.celular = celular;
+    this.direccion = direccion;
+  }
+
 }

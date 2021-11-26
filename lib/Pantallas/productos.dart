@@ -102,10 +102,7 @@ class _productosState extends State<productos> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: AppBar(
 
-        title: Text('Listado de Productos'),
-      ),
 
       body: ListView(
         children: [

@@ -1,9 +1,12 @@
 import 'package:equipo2_grupo15/Pantallas/loginCliente.dart';
 import 'package:equipo2_grupo15/Pantallas/loginTendero.dart';
+import 'package:equipo2_grupo15/Pantallas/negocios.dart';
+import 'package:equipo2_grupo15/Pantallas/productos.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import '../main.dart';
 import 'actualizarClienteV2.dart';
 
 class datosCliente {
@@ -45,13 +48,19 @@ class datosCliente {
 
 
 class Home extends StatefulWidget {
+  final String nombre;
+  final String cedula;
+  final String apellido;
+  const Home( {required this.nombre, required this.cedula, required this.apellido});
+
+
 
   @override
   _HomeState createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
-
+  final nombre= TextEditingController();
   /*en el punto donde se consulte el usuario se crea este objeto*/
   final datosCliente cliente = datosCliente("80265922","Mauro","Castelblanco Torres","mao@gmail.com","3125495132","carrera 81b # 2b -93");
   late PageController _pageController;
@@ -72,18 +81,21 @@ class _HomeState extends State<Home> {
     super.initState();
   }
 
+
+
   @override
   Widget build(BuildContext context){
+
     return DefaultTabController(
-      length: 4,
+      length: 2,
       child: Scaffold(
         appBar: AppBar(
-          title: Text("TÚ MÍ"),
+          title: Text(widget.nombre+" "+widget.apellido),
           centerTitle: true,
-          leading: IconButton(
-            icon: Icon(Icons.menu),
-            onPressed: (){},
-          ),
+          // leading: IconButton(
+          //   icon: Icon(Icons.menu),
+          //   onPressed: (){},
+          // ),
           actions: [
             IconButton(
               icon: Icon(Icons.notifications_none),
@@ -99,7 +111,10 @@ class _HomeState extends State<Home> {
           flexibleSpace: Container(
             decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  colors:[Colors.blue,Colors.pink],
+                  colors:[
+                    Color(0xFF61D5D4),
+                    Color(0xFFFF6961)
+                  ],
                   begin: Alignment.bottomRight,
                   end: Alignment.topLeft,
                 )
@@ -110,53 +125,56 @@ class _HomeState extends State<Home> {
             indicatorColor: Colors.limeAccent,
             indicatorWeight: 5,
             tabs: [
-              Tab(icon: Icon(Icons.home), text: "Home"),
-              Tab(icon: Icon(Icons.star), text: "Feed"),
-              Tab(icon: Icon(Icons.face), text: "Profile"),
-              Tab(icon: Icon(Icons.settings), text: "settings"),
+              Tab(icon: Icon(Icons.store), text: "Negocios"),
+              //Tab(icon: Icon(Icons.star), text: "Feed"),
+              Tab(icon: Icon(Icons.shopping_basket), text: "Productos"),
+              //Tab(icon: Icon(Icons.settings), text: "settings"),
             ],
           ),
 
           elevation: 20,
           titleSpacing: 4,
         ),
-
+        drawer: menu(),
         body: TabBarView(
           children: [
-            ListView(
-              children: [
-                Container(
-                    child:
-                    imagen(url: "https://raw.githubusercontent.com/festupinans/equipo2_grupo15/master/lib/Imagenes/TuMI.png")
-                ),
-                Container(
-                    padding: EdgeInsets.fromLTRB(20.0, 50.0, 20.0,20.0),
-                    child:
-                    const Text('Equipo2_Grupo4',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.cyan,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'RobotoR')
-                    )
-                ),
-                Container(
-                  padding: EdgeInsets.only(top: 8.0, left: 40.0, right: 40.0),
-                  child:
-                  next1(),
-                ),
-                Container(
-                  padding: EdgeInsets.only(top: 8.0, left: 40.0, right: 40.0),
-                  child:
-                  next2(),
-                )
-              ],
-            ),
-            buildPage("Feed Page 1"),
+            // ListView(
+            //   children: [
+            //     Container(
+            //         child:
+            //         imagen(url: "https://raw.githubusercontent.com/festupinans/equipo2_grupo15/master/lib/Imagenes/TuMI.png")
+            //     ),
+            //     Container(
+            //         padding: EdgeInsets.fromLTRB(20.0, 50.0, 20.0,20.0),
+            //         child:
+            //         const Text('Equipo2_Grupo4',
+            //             textAlign: TextAlign.center,
+            //             style: TextStyle(
+            //                 color: Colors.cyan,
+            //                 fontSize: 20,
+            //                 fontWeight: FontWeight.bold,
+            //                 fontFamily: 'RobotoR')
+            //         )
+            //     ),
+            //     Container(
+            //       padding: EdgeInsets.only(top: 8.0, left: 40.0, right: 40.0),
+            //       child:
+            //       next1(),
+            //     ),
+            //     Container(
+            //       padding: EdgeInsets.only(top: 8.0, left: 40.0, right: 40.0),
+            //       child:
+            //       next2(),
+            //     )
+            //   ],
+            // ),
+
             //buildPage("Profile Page"),
-            actualizarClienteV2(cliente),
-            buildPage("Settings Page"),
+            //actualizarClienteV2(cliente),
+            negocios(),
+            productos(),
+
+
           ],
         ),
       ),

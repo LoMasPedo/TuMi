@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class consultaNegocios extends StatefulWidget {
   final String id;
+
   const consultaNegocios(this.id, {Key? key}) : super(key: key);
 
   @override
@@ -105,6 +107,11 @@ class _consultaNegociosState extends State<consultaNegocios> {
                                   .toString()),
                         ]),
                   ),
+                      ElevatedButton(
+                          onPressed:(){
+                            launch(datos_negocios[i]['Pagina Web']);
+                          },
+                          child: Text("Mi pagina web"))
                 ]));
               },
             ),

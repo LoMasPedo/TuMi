@@ -1,3 +1,4 @@
+import 'package:equipo2_grupo15/Pantallas/bienvenida.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -183,7 +184,7 @@ class _registroClienteState extends State<registroCliente> {
                       if(inserto.docs.length>0){
                         print("Se registro exitosamente");
                         Fluttertoast.showToast(msg: "Se registro exitosamente", toastLength: Toast.LENGTH_LONG, gravity: ToastGravity.BOTTOM);
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>seleccionCliente()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>Home(nombre: nombre.text, cedula: cedula.text, apellido: apellido.text)));
                       }else{
                         print("No se registro exitosamente");
                         Fluttertoast.showToast(msg: "No se registro exitosamente", toastLength: Toast.LENGTH_LONG, gravity: ToastGravity.BOTTOM);
