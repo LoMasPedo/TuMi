@@ -27,7 +27,7 @@ class datosCliente {
 
 }
 
-class bienvenida extends StatelessWidget {
+/*class bienvenida extends StatelessWidget {
   const bienvenida({Key? key}) : super(key: key);
 
   @override
@@ -41,19 +41,19 @@ class bienvenida extends StatelessWidget {
       home: PaginaBienvenida(),
     );
   }
-}
+}*/
 
-class PaginaBienvenida extends StatefulWidget {
+
+class Home extends StatefulWidget {
 
   @override
-  _PaginaBienvenidaState createState() => _PaginaBienvenidaState();
+  _HomeState createState() => _HomeState();
 }
 
-class _PaginaBienvenidaState extends State<PaginaBienvenida> {
+class _HomeState extends State<Home> {
 
   /*en el punto donde se consulte el usuario se crea este objeto*/
   final datosCliente cliente = datosCliente("80265922","Mauro","Castelblanco Torres","mao@gmail.com","3125495132","carrera 81b # 2b -93");
-
   late PageController _pageController;
   int _selectedPage = 0;
   List<Widget> pages = [
@@ -91,7 +91,9 @@ class _PaginaBienvenidaState extends State<PaginaBienvenida> {
             ),
             IconButton(
               icon: Icon(Icons.search),
-              onPressed: (){},
+              onPressed: (){
+                showSearch(context: context, delegate: dataSearch());
+              },
             ),
           ],
           flexibleSpace: Container(
@@ -218,4 +220,96 @@ class imagen extends StatelessWidget {
   }
 }
 
+class dataSearch extends SearchDelegate<String>{
+
+  final options = [
+    "Madelena 1",
+    "Madelena 2",
+    "Madelena 3",
+    "Madelena 4",
+    "Madelena 5",
+    "Madelena 6",
+    "Madelena 7",
+    "Madelena 8",
+    "Madelena 9",
+    "Madelena 10",
+    "Madelena 11",
+    "Madelena 12",
+    "Tiendas",
+    "Negocios",
+    "Log In",
+    "Compras",
+    "Domicilios",
+    "Categorias",
+  ];
+
+  final mainOptions = [
+    "Tiendas",
+    "Negocios",
+    "Log In",
+    "Compras",
+    "Domicilios",
+    "Categorias",
+  ];
+
+  @override
+  List<Widget>? buildActions(BuildContext context) {
+    // acciones para el appbar
+    return [IconButton(icon: Icon(Icons.clear), onPressed: (){
+      query = "";
+    })];
+    throw UnimplementedError();
+  }
+
+  @override
+  Widget? buildLeading(BuildContext context) {
+    // leading icon on the left of the app bar
+    return IconButton(
+      icon: AnimatedIcon(
+        icon: AnimatedIcons.menu_arrow,
+        progress: transitionAnimation,
+      ),
+      onPressed: (){
+        close(context, "_");
+      },
+    );
+
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    // show some result based on the selection
+    throw UnimplementedError();
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    // show when someone searchs for something
+    final listaPredeterminada = query.isEmpty?mainOptions: options.where((p)=>p.startsWith(query)).toList();
+
+    return ListView.builder(
+      itemBuilder: (context,index)=>ListTile(
+        leading: Icon(Icons.build),
+        title: RichText(
+          text: TextSpan(
+              text: listaPredeterminada[index].substring(0,query.length),
+              style: TextStyle(
+                  color: Colors.black, fontWeight: FontWeight.bold
+              ),
+              children: [
+                TextSpan(
+                    text: listaPredeterminada[index].substring(query.length),
+                    style: TextStyle(
+                        color: Colors.grey
+                    )
+                )
+              ]
+          ),
+        ),
+      ),
+      itemCount: listaPredeterminada.length,
+    );
+    throw UnimplementedError();
+  }
+}
 

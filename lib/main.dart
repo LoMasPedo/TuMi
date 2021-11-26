@@ -99,7 +99,7 @@ class next extends StatelessWidget {
 
         child:
         ElevatedButton(onPressed: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context)=>const bienvenida()));
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>Home()));
         },child:
         Text('Continuar'),
             style: ElevatedButton.styleFrom(
