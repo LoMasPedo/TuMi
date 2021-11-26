@@ -4,6 +4,29 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import 'actualizarClienteV2.dart';
+
+class datosCliente {
+
+  String cedula = "";
+  String nombre = "";
+  String apellido = "";
+  String correo = "";
+  String celular = "";
+  String direccion = "";
+
+
+  datosCliente(cedula, nombre, apellido, correo, celular,direccion) {
+    this.nombre = nombre;
+    this.apellido = apellido;
+    this.correo = correo;
+    this.cedula = cedula;
+    this.celular = celular;
+    this.direccion = direccion;
+  }
+
+}
+
 class bienvenida extends StatelessWidget {
   const bienvenida({Key? key}) : super(key: key);
 
@@ -27,6 +50,9 @@ class PaginaBienvenida extends StatefulWidget {
 }
 
 class _PaginaBienvenidaState extends State<PaginaBienvenida> {
+
+  /*en el punto donde se consulte el usuario se crea este objeto*/
+  final datosCliente cliente = datosCliente("80265922","Mauro","Castelblanco Torres","mao@gmail.com","3125495132","carrera 81b # 2b -93");
 
   late PageController _pageController;
   int _selectedPage = 0;
@@ -125,8 +151,9 @@ class _PaginaBienvenidaState extends State<PaginaBienvenida> {
                 )
               ],
             ),
-            buildPage("Feed Page"),
-            buildPage("Profile Page"),
+            buildPage("Feed Page 1"),
+            //buildPage("Profile Page"),
+            actualizarClienteV2(cliente),
             buildPage("Settings Page"),
           ],
         ),
