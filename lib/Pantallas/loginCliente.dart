@@ -8,6 +8,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:equipo2_grupo15/Pantallas/actualizarClienteV2.dart';
 
 import 'bienvenida.dart';
+import 'package:equipo2_grupo15/global.dart' as global;
+
 
 class loginClientes extends StatefulWidget {
   const loginClientes({Key? key}) : super(key: key);
@@ -89,12 +91,13 @@ class _loginClientesState extends State<loginClientes> {
                       {
                         listaCliente.add(cli.data());
                       }
-                      datosCliente dCli = datosCliente(
+
+                      global.clienteLogeado =  global.datosCliente(
                           cedula.text, listaCliente[0]['nombre'],
                           listaCliente[0]['apellido'], listaCliente[0]['correo'],
                           listaCliente[0]['celular'], listaCliente[0]['direccion'], listaCliente[0]['contrasena']);
-                      print(dCli.nombre);
                       Navigator.push(context, MaterialPageRoute(builder: (context) => Home(nombre: listaCliente[0]['nombre'], cedula: cedula.text, apellido: listaCliente[0]['apellido']), ));
+                      //Navigator.push(context, MaterialPageRoute(builder: (context) => Home(), ));
                       Fluttertoast.showToast(msg: "Cargando Datos",
                           fontSize: 20,
                           backgroundColor: Colors.red,
@@ -151,6 +154,8 @@ class register extends StatelessWidget {
   }
 }
 
+
+/*
 class datosCliente
 {
   String cedula = "";
@@ -171,4 +176,4 @@ class datosCliente
     this.contrasena = contrasena;
     this.direccion = direccion;
   }
-}
+}*/

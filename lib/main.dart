@@ -6,6 +6,8 @@ import 'package:equipo2_grupo15/Pantallas/registro_cliente.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:equipo2_grupo15/global.dart' as global;
+import 'package:fluttertoast/fluttertoast.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,7 +36,7 @@ class MyApp extends StatelessWidget {
 }
 
 class PaginaBienvenida extends StatefulWidget {
-  final datosCliente2 cliente = datosCliente2("80265922","Mauro","Castelblanco Torres","mao@gmail.com","3125495132","carrera 81b # 2b -93");
+  //final datosCliente2 cliente = datosCliente2("80265922","Mauro","Castelblanco Torres","mao@gmail.com","3125495132","carrera 81b # 2b -93");
 
   @override
   _PaginaBienvenidaState createState() => _PaginaBienvenidaState();
@@ -173,7 +175,18 @@ class menu extends StatelessWidget {
                 enabled: true,
                 title: Text('Actualizar Cliente'),
                 onTap: (){
-                  //Navigator.push(context, MaterialPageRoute(builder: (context)=>actualizarClienteV2(cliente)));
+                  if(global.clienteLogeado != null)
+                    {
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>actualizarClienteV2()));
+                    }
+                  else
+                    {
+                      Fluttertoast.showToast(msg: "Debe primero hacer login de cliente",
+                          fontSize: 20,
+                          textColor: Colors.black,
+                          toastLength: Toast.LENGTH_LONG,
+                          gravity: ToastGravity.CENTER);
+                    }
                 },
               ),
             ],

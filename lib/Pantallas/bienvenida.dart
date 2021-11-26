@@ -8,43 +8,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../main.dart';
 import 'actualizarClienteV2.dart';
+import 'package:equipo2_grupo15/global.dart' as global;
 
-class datosCliente {
-
-  String cedula = "";
-  String nombre = "";
-  String apellido = "";
-  String correo = "";
-  String celular = "";
-  String direccion = "";
-
-
-  datosCliente(cedula, nombre, apellido, correo, celular,direccion) {
-    this.nombre = nombre;
-    this.apellido = apellido;
-    this.correo = correo;
-    this.cedula = cedula;
-    this.celular = celular;
-    this.direccion = direccion;
-  }
-
-}
-
-/*class bienvenida extends StatelessWidget {
-  const bienvenida({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Mí TU',
-      theme: ThemeData(
-          fontFamily: 'Roboto'
-      ),
-      home: PaginaBienvenida(),
-    );
-  }
-}*/
 
 
 class Home extends StatefulWidget {
@@ -61,8 +26,6 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final nombre= TextEditingController();
-  /*en el punto donde se consulte el usuario se crea este objeto*/
-  final datosCliente cliente = datosCliente("80265922","Mauro","Castelblanco Torres","mao@gmail.com","3125495132","carrera 81b # 2b -93");
   late PageController _pageController;
   int _selectedPage = 0;
   List<Widget> pages = [
@@ -91,6 +54,7 @@ class _HomeState extends State<Home> {
       child: Scaffold(
         appBar: AppBar(
           title: Text(widget.nombre+" "+widget.apellido),
+          //Text(widget.nombre+" "+widget.apellido),
           centerTitle: true,
           // leading: IconButton(
           //   icon: Icon(Icons.menu),
