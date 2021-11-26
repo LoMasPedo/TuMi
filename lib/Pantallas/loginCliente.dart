@@ -100,8 +100,8 @@ class _loginClientesState extends State<loginClientes> {
                       //Navigator.push(context, MaterialPageRoute(builder: (context) => Home(), ));
                       Fluttertoast.showToast(msg: "Cargando Datos",
                           fontSize: 20,
-                          backgroundColor: Colors.red,
-                          textColor: Colors.lightGreen,
+                          backgroundColor: Colors.black54,
+                          textColor: Colors.white,
                           toastLength: Toast.LENGTH_LONG,
                           gravity: ToastGravity.CENTER);
                     }
@@ -109,8 +109,8 @@ class _loginClientesState extends State<loginClientes> {
                     {
                       Fluttertoast.showToast(msg: "Datos Incorrectos",
                           fontSize: 20,
-                          backgroundColor: Colors.red,
-                          textColor: Colors.lightGreen,
+                          backgroundColor: Colors.black54,
+                          textColor: Colors.white,
                           toastLength: Toast.LENGTH_LONG,
                           gravity: ToastGravity.CENTER);
                     }

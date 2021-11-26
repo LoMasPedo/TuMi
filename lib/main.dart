@@ -139,55 +139,85 @@ class menu extends StatelessWidget {
           ),
           Column(
             children: [
-              ListTile(
-                leading: Icon(Icons.face_retouching_natural , size: 30, color:  Color(0xFFFF6961)),
-                title: Text('Login Cliente'),
-                onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>loginClientes()));
-                },
+              Container(
+                margin: const EdgeInsets.only(top: 10),
+                padding: const EdgeInsets.all(10),
+                width: double.infinity,
+                color:  Colors.grey[100],
+                child: ListTile(
+                  leading: Icon(Icons.face_retouching_natural , size: 30, color:  Color(0xFFFF6961)),
+                  title: Text('Login Cliente'),
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>loginClientes()));
+                  },
+                ),
               ),
-              ListTile(
-                leading: Icon(Icons.login , size: 30, color:  Color(0xFFFF6961)),
-                title: Text('Login Tendero'),
-                onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>loginTendero()));
-                },
+              Container(
+                margin: const EdgeInsets.only(top: 2),
+                padding: const EdgeInsets.all(10),
+                width: double.infinity,
+                color:  Colors.cyan[50],
+                child: ListTile(
+                  leading: Icon(Icons.login , size: 30, color:  Color(0xFFFF6961)),
+                  title: Text('Login Tendero'),
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>loginTendero()));
+                  },
+                ),
               ),
-              ListTile(
-                leading: Icon(Icons.person_add , size: 30, color:  Color(0xFFFF6961)),
-                enabled: true,
-                title: Text('Registrar Clientes'),
+              Container(
+                margin: const EdgeInsets.only(top: 2),
+                padding: const EdgeInsets.all(10),
+                width: double.infinity,
+                color:  Colors.grey[100],
+                child: ListTile(
+                  leading: Icon(Icons.person_add , size: 30, color:  Color(0xFFFF6961)),
+                  enabled: true,
+                  title: Text('Registrar Clientes'),
 
-                onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>registroCliente()));
-                },
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>registroCliente()));
+                  },
+                ),
               ),
-              ListTile(
-                leading: Icon(Icons.person_add , size: 30, color:  Color(0xFFFF6961)),
-                enabled: true,
-                title: Text('Registrar Terndero'),
-                onTap: (){
-                  // Navigator.push(context, MaterialPageRoute(builder: (context)=>registroTe));
-                },
+              Container(
+                margin: const EdgeInsets.only(top: 2),
+                padding: const EdgeInsets.all(10),
+                width: double.infinity,
+                color:  Colors.cyan[50],
+                child: ListTile(
+                  leading: Icon(Icons.person_add , size: 30, color:  Color(0xFFFF6961)),
+                  enabled: true,
+                  title: Text('Registrar Tendero'),
+                  onTap: (){
+                    // Navigator.push(context, MaterialPageRoute(builder: (context)=>registroTe));
+                  },
+                ),
               ),
-              ListTile(
-                leading: Icon(Icons.person_add , size: 30, color:  Color(0xFFFF6961)),
-                enabled: true,
-                title: Text('Actualizar Cliente'),
-                onTap: (){
-                  if(global.clienteLogeado != null)
-                    {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>actualizarClienteV2()));
-                    }
-                  else
-                    {
-                      Fluttertoast.showToast(msg: "Debe primero hacer login de cliente",
-                          fontSize: 20,
-                          textColor: Colors.black,
-                          toastLength: Toast.LENGTH_LONG,
-                          gravity: ToastGravity.CENTER);
-                    }
-                },
+              Container(
+                margin: const EdgeInsets.only(top: 2),
+                padding: const EdgeInsets.all(10),
+                width: double.infinity,
+                color:  Colors.grey[100],
+                child: ListTile(
+                  leading: Icon(Icons.person_add , size: 30, color:  Color(0xFFFF6961)),
+                  enabled: true,
+                  title: Text('Actualizar Cliente'),
+                  onTap: (){
+                    if(global.clienteLogeado != null)
+                      {
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>actualizarClienteV2()));
+                      }
+                    else
+                      {
+                        Fluttertoast.showToast(msg: "Debe primero hacer login de cliente",
+                            fontSize: 20,
+                            textColor: Colors.black,
+                            toastLength: Toast.LENGTH_LONG,
+                            gravity: ToastGravity.CENTER);
+                      }
+                  },
+                ),
               ),
             ],
           ),

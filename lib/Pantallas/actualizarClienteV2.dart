@@ -115,6 +115,7 @@ class actualizarClienteV2 extends StatelessWidget {
           ),
 
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Container(
                 child: ElevatedButton(
@@ -143,12 +144,14 @@ class actualizarClienteV2 extends StatelessWidget {
                     }
 
                   },
-                  child: Text("Actualizar",style: TextStyle(color: Colors.white, fontSize: 25)),
+                  child: Text("Actualizar",style: TextStyle(color: Colors.white, fontSize: 25)),style: ElevatedButton.styleFrom(
+                    primary: Colors.greenAccent)
                 ),
               )
             ],
           ),
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Container(
               padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
@@ -165,7 +168,8 @@ class actualizarClienteV2 extends StatelessWidget {
                       Navigator.push(context, MaterialPageRoute(builder: (context)=>loginClientes()));
                     }
                   },
-                  child: Text("Eliminar ",style: TextStyle(color: Colors.white, fontSize: 25)),
+                  child: Text("Eliminar  ",style: TextStyle(color: Colors.white, fontSize: 25)),style: ElevatedButton.styleFrom(
+                  primary: Colors.redAccent)
 
 
 
