@@ -36,6 +36,7 @@ class actualizarClienteV2 extends StatelessWidget {
     correo.text=""; nombre.text=""; apellido.text="";  direccion.text=""; celular.text="";
   }
   CollectionReference clientes = FirebaseFirestore.instance.collection('Clientes');
+
   final nombre=TextEditingController();
   final apellido=TextEditingController();
   final correo=TextEditingController();
