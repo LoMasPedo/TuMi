@@ -1,3 +1,4 @@
+
 import 'package:equipo2_grupo15/Pantallas/loginCliente.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -32,15 +33,47 @@ class _negociosState extends State<negocios> {
     CollectionReference datos= FirebaseFirestore.instance.collection('Negocios'); //Conecta a la conexion
     QuerySnapshot negocios= await datos.get(); //Traer todas los ngocios
     if(negocios.docs.length>0){
-      //print('Trae datos getNegocios');
-
       for(var doc in negocios.docs){
-       // print("---------");
-       // print(doc.id);
-        setState(() {
-        datos_negocios.add(doc.data());
-        });
-       // print('agregar datos negocio');
+      //var data =  doc.data();
+      var productosResultado = [];
+          try {
+            var productos = doc["Productos"];
+
+            if (productos.length != 0) {
+              for (var i = 0; i < productos.length; i++) {
+                var productoInfo = productos[i];
+                var productoCompleto = await productoInfo["Producto"].get();
+                productosResultado.add({"precio":productoInfo["Precio"],
+                                         "Unidades":productoInfo["Unidades"],
+                                          "Producto": productoCompleto.data()
+                });
+              }
+            }
+          }catch(error){
+            print(error);
+            //es por que no existen productos en el negocio
+           print(doc["Nombre"] +" no tiene productos, agregar en la base de datos");
+
+          }
+
+        tiendaOnTAP tienda = tiendaOnTAP(
+            doc['Nombre'],
+            doc['Celular'],
+            doc['Tipo'],
+            doc['Categoria'],
+            doc['Foto'],
+            doc['Dirección'],
+            doc['Id'],
+            doc['Geolocalización'],
+            doc['Teléfono'],
+            doc['Pagina Web'],
+            doc['Logo'],
+            productosResultado,
+          );
+
+          setState(() {
+            datos_negocios.add(tienda);
+          });
 
       }
     }else{
@@ -59,9 +92,48 @@ class _negociosState extends State<negocios> {
       for(var doc in negocios.docs){
         var data =  doc.data();
         if(doc.get("Nombre").toLowerCase().indexOf(palabra.toLowerCase())!=-1){
-          //print("si ahy concidencia");
+
+          var productosResultado = [];
+          try {
+            var productos = doc["Productos"];
+
+            if (productos.length != 0) {
+              for (var i = 0; i < productos.length; i++) {
+                var productoInfo = productos[i];
+                var productoCompleto = await productoInfo["Producto"].get();
+                productosResultado.add({"precio":productoInfo["Precio"],
+                  "Unidades":productoInfo["Unidades"],
+                  "Producto11": productoCompleto.data()
+                });
+              }
+            }
+          }catch(error){
+            print(error);
+            //es por que no existen productos en el negocio
+            print(doc["Nombre"] +" no tiene productos, agregar en la base de datos");
+
+          }
+
+
+
+          tiendaOnTAP tienda = tiendaOnTAP(
+            doc['Nombre'],
+            doc['Celular'],
+            doc['Tipo'],
+            doc['Categoria'],
+            doc['Foto'],
+            doc['Dirección'],
+            doc['Id'],
+            doc['Geolocalización'],
+            doc['Teléfono'],
+            doc['Pagina Web'],
+            doc['Logo'],
+            productosResultado,
+          );
+
+
           setState(() {
-            datos_negocios.add(doc.data());
+            datos_negocios.add(tienda);//doc.data());
           });
         }
 
@@ -83,15 +155,46 @@ class _negociosState extends State<negocios> {
     if(negocios.docs.length>0){
       for(var doc in negocios.docs){
         var data =  doc.data();
-        if(doc.get("Categoria").toLowerCase().indexOf(palabra.toLowerCase())!=-1){
-          //print("si ahy concidencia");
-          setState(() {
-            datos_negocios.add(doc.data());
+       if(doc.get("Categoria").toLowerCase().indexOf(palabra.toLowerCase())!=-1){
 
-            // for(var doc in datos_negocios){
-            //         print(doc.data());
-            //
-            //       };
+         var productosResultado = [];
+         try {
+           var productos = doc["Productos"];
+
+           if (productos.length != 0) {
+             for (var i = 0; i < productos.length; i++) {
+               var productoInfo = productos[i];
+               var productoCompleto = await productoInfo["Producto"].get();
+               productosResultado.add({"precio":productoInfo["Precio"],
+                 "Unidades":productoInfo["Unidades"],
+                 "Producto11": productoCompleto.data()
+               });
+             }
+           }
+         }catch(error){
+           print(error);
+           //es por que no existen productos en el negocio
+           print(doc["Nombre"] +" no tiene productos, agregar en la base de datos");
+
+         }
+
+
+         tiendaOnTAP tienda = tiendaOnTAP(
+           doc['Nombre'],
+           doc['Celular'],
+           doc['Tipo'],
+           doc['Categoria'],
+           doc['Foto'],
+           doc['Dirección'],
+           doc['Id'],
+           doc['Geolocalización'],
+           doc['Teléfono'],
+           doc['Pagina Web'],
+           doc['Logo'],
+           productosResultado,
+         );
+          setState(() {
+            datos_negocios.add(tienda);//doc.data());
           });
         }
       }
@@ -124,7 +227,6 @@ class _negociosState extends State<negocios> {
               margin: const EdgeInsets.all(30.0),
               child: TextField(
                 onSubmitted: (idbusquedainterno){
-                  //print("presione enter o search en el celular");
                   getNegociosConParametro(idbusqueda);
                 } ,
                 onChanged: (idbusquedainterno){
@@ -177,21 +279,22 @@ class _negociosState extends State<negocios> {
                 itemCount: datos_negocios.length,
                 itemBuilder: (BuildContext context, i){
                   var img=  "https://raw.githubusercontent.com/festupinans/equipo2_grupo15/master/lib/Imagenes/icono-tienda.jpg";
-                  if(datos_negocios[i]['Logo'] !=null){
-                    img = datos_negocios[i]['Logo'];
+                  if(datos_negocios[i].Logo !=null){
+                    img = datos_negocios[i].Logo;
                   }
 
                   return Card(
                       child: ListTile(
-                          title: Text(datos_negocios[i]['Nombre'].toString()),
-                          subtitle: Text(datos_negocios[i]['Tipo'].toString()),
+                          title: Text(datos_negocios[i].Nombre.toString()),
+                          subtitle: Text(datos_negocios[i].Tipo.toString()),
                           leading: CircleAvatar(
                               backgroundImage: NetworkImage(
                                   img)),
                           trailing: Icon(Icons.add_business_outlined),
 
                           onTap:(){
-                            print(datos_negocios[i]['Categoria'].toString());
+                            print('Productos');
+                            /*print(datos_negocios[i]['Productos']);
                             tiendaOnTAP tiendaSeleccionada = tiendaOnTAP(
                                 datos_negocios[i]['Nombre'],
                                 datos_negocios[i] ['Celular'],
@@ -203,10 +306,12 @@ class _negociosState extends State<negocios> {
                                 datos_negocios[i] ['Geolocalización'],
                                 datos_negocios[i] ['Teléfono'],
                                 datos_negocios[i] ['Pagina Web'],
-                                datos_negocios[i] ['Logo']);
+                                datos_negocios[i] ['Logo'],
+                                datos_negocios[i] ['Productos']
+                            );*/
 
 
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=> BkTiendas(tienda: tiendaSeleccionada)));
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=> BkTiendas(tienda: datos_negocios[i])));
                           }
                       )
                   );
@@ -237,8 +342,10 @@ class tiendaOnTAP{
   String Telefono="";
   String Pagina="";
   String Logo="";
+  var Productos= [];
 
-  tiendaOnTAP(nombre,celular,tipo,categoria,foto,direccion,id,geolocalizacion,telefono,pagina,logo) {
+
+  tiendaOnTAP(nombre,celular,tipo,categoria,foto,direccion,id,geolocalizacion,telefono,pagina,logo,productos) {
     this.Nombre=nombre;
     this.Celular=celular.toString();
     this.Tipo=tipo;
@@ -249,7 +356,8 @@ class tiendaOnTAP{
     this.Geolocalizacion=geolocalizacion;
     this.Telefono=telefono.toString();
     this.Pagina=pagina;
-    this.Logo=logo;
+    this.Logo=logo ?? "";
+    this.Productos=productos ?? [] ;
   }
 
 }

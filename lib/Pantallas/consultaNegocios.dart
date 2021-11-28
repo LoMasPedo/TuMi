@@ -26,8 +26,31 @@ class _consultaNegociosState extends State<consultaNegocios> {
     QuerySnapshot negocio = await datos.where('Id', isEqualTo: widget.id).get();
     if (negocio.docs.length != 0) {
       for (var per in negocio.docs) {
-        print(per.data());
+       // print(per.data());
+
+
+        /*1 forma por referencia aqui */
+        /* se agrega campo en firestore del tipo ref*/
+        var productos =per["Productos"];
+        ///productos.forEach((productos){})
+        for (var i = 0; i < productos.length; i++){
+          //este producto info contiene unidades, precio,y referencia a la otra tabla
+          var productoInfo= productos[i];
+          //aqui debemos cargar la referencia es decir traer el dato del producto de la otra tabla
+          var productoCompleto = await productoInfo["Producto"].get();
+          //la linea de arriba trae todo la info del producto, lo que hago es remplazarlo en el objeto
+          productoInfo["ProductoCompleto"] =productoCompleto.data();
+            print(productoCompleto.data());
+            //falta es como actualizarlo en el objeto papa, para que cuando uno lo pinte, esten estos valores
+          //LA OTRA OPCION ES simplemente un array, y se va consultando en la otra tabla
+        }
+
+
+        /******************************/
+
         setState(() {
+         // print(per.data());
+          //aqui en per no esta llegando aun este cambio
           datos_negocios.add(per);
         });
       }
