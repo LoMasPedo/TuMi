@@ -51,7 +51,13 @@ class _PaginaBienvenidaState extends State<PaginaBienvenida> {
       //   title: Text("Mí Tú"),
       // ),
 
-      body: ListView(
+      body: Container(
+        decoration: new BoxDecoration(
+            gradient: new LinearGradient(
+              begin: const FractionalOffset(1.0, 0.1),
+                end: const FractionalOffset(1.0, 0.9),
+                colors: [Color(0xFF61D5D4), Color(0xFFFF6961)])),
+        child: ListView(
 
         children: [
           Container(
@@ -80,7 +86,7 @@ class _PaginaBienvenidaState extends State<PaginaBienvenida> {
           ),
 
         ],
-      ),
+      ),)
     );
   }
 }
@@ -103,14 +109,14 @@ class next extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-
+        margin: EdgeInsets.all(100),
         child:
         ElevatedButton(onPressed: (){
           Navigator.push(context, MaterialPageRoute(builder: (context)=>Home(nombre: 'Tú Mí', cedula: '', apellido: '',)));
         },child:
         Text('Continuar'),
             style: ElevatedButton.styleFrom(
-                primary: Colors.pink)
+                primary: Color(0xff2a2a2a))
         )
     );
   }

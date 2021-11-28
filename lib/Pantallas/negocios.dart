@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equipo2_grupo15/Pantallas/consultaNegocios.dart';
 import 'dart:convert';
+import 'BkTiendas.dart';
 
 
 
@@ -188,10 +189,24 @@ class _negociosState extends State<negocios> {
                               backgroundImage: NetworkImage(
                                   img)),
                           trailing: Icon(Icons.add_business_outlined),
-                          onTap: () => {
-                            print(datos_negocios[i]['Id'].toString()),
-                           // Navigator.push(context, MaterialPageRoute(builder: (context)=> consultaNegocios(datos_negocios[i])))
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=> consultaNegocios(datos_negocios[i]['Id'].toString())))
+
+                          onTap:(){
+                            print(datos_negocios[i]['Categoria'].toString());
+                            tiendaOnTAP tiendaSeleccionada = tiendaOnTAP(
+                                datos_negocios[i]['Nombre'],
+                                datos_negocios[i] ['Celular'],
+                                datos_negocios[i] ['Tipo'],
+                                datos_negocios[i] ['Categoria'],
+                                datos_negocios[i] ['Foto'],
+                                datos_negocios[i] ['Dirección'],
+                                datos_negocios[i] ['Id'],
+                                datos_negocios[i] ['Geolocalización'],
+                                datos_negocios[i] ['Teléfono'],
+                                datos_negocios[i] ['Pagina Web'],
+                                datos_negocios[i] ['Logo']);
+
+
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=> BkTiendas(tienda: tiendaSeleccionada)));
                           }
                       )
                   );
@@ -200,10 +215,43 @@ class _negociosState extends State<negocios> {
             ),
           ],
 
+
       ),
     );
 
   }
+}
+
+
+
+class tiendaOnTAP{
+
+  String Nombre="";
+  String Celular= "";
+  String Tipo="";
+  String Categoria="";
+  String Foto="";
+  String Direccion="";
+  String id="";
+  String Geolocalizacion="";
+  String Telefono="";
+  String Pagina="";
+  String Logo="";
+
+  tiendaOnTAP(nombre,celular,tipo,categoria,foto,direccion,id,geolocalizacion,telefono,pagina,logo) {
+    this.Nombre=nombre;
+    this.Celular=celular.toString();
+    this.Tipo=tipo;
+    this.Categoria=categoria;
+    this.Foto=foto;
+    this.Direccion=direccion;
+    this.id=id;
+    this.Geolocalizacion=geolocalizacion;
+    this.Telefono=telefono.toString();
+    this.Pagina=pagina;
+    this.Logo=logo;
+  }
+
 }
 /*
 class boton extends StatefulWidget {
