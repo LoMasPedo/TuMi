@@ -1,7 +1,9 @@
+import 'package:equipo2_grupo15/Pantallas/BkTiendas.dart';
 import 'package:equipo2_grupo15/Pantallas/actualizarClienteV2.dart';
 import 'package:equipo2_grupo15/Pantallas/bienvenida.dart';
 import 'package:equipo2_grupo15/Pantallas/loginCliente.dart';
 import 'package:equipo2_grupo15/Pantallas/loginTendero.dart';
+import 'package:equipo2_grupo15/Pantallas/moduloPedido.dart';
 import 'package:equipo2_grupo15/Pantallas/registro_cliente.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -212,6 +214,7 @@ class menu extends StatelessWidget {
                   onTap: (){
                     if(global.clienteLogeado != null)
                       {
+                        //Navigator.push(context, MaterialPageRoute(builder: (context)=>BkTiendas(tienda)));
                         Navigator.push(context, MaterialPageRoute(builder: (context)=>actualizarClienteV2()));
                       }
                     else
@@ -225,6 +228,29 @@ class menu extends StatelessWidget {
                   },
                 ),
               ),
+
+
+
+
+              Container(
+                margin: const EdgeInsets.only(top: 2),
+                padding: const EdgeInsets.all(10),
+                width: double.infinity,
+                color:  Colors.grey[100],
+                child: ListTile(
+                  leading: Icon(Icons.account_box, size: 30, color:  Color(0xFFFF6961)),
+                  enabled: true,
+                  title: Text('Registrar Pedido'),
+                  onTap: (){
+                     Navigator.push(context, MaterialPageRoute(builder: (context)=>moduloPedido()));
+                    }
+
+                ),
+              ),
+
+
+
+
             ],
           ),
         ],

@@ -16,15 +16,15 @@ class listaTiendas extends StatefulWidget {
 
 class _listaTiendasState extends State<listaTiendas> {
 
-  List tiendasOscar=[];
+  List negocios=[];
   List codigos=[];
 
   void initState(){
     super.initState();
-    getPersonas();
+    getNegocios();
   }
 
-  void getPersonas() async {
+  void getNegocios() async {
     CollectionReference negocio = FirebaseFirestore.instance.collection("Negocios");
     String id="";
     QuerySnapshot datos = await negocio.get();
@@ -32,7 +32,7 @@ class _listaTiendasState extends State<listaTiendas> {
       for(var doc in datos.docs){
         id=doc.id.toString();
         codigos.add(id);
-        tiendasOscar.add(doc.data());
+        negocios.add(doc.data());
       }
     }
     setState(() {
@@ -47,15 +47,20 @@ class _listaTiendasState extends State<listaTiendas> {
       ),
       drawer: menu(),
       body: ListView.builder(
-          itemCount: tiendasOscar.length,
+          itemCount: negocios.length,
           itemBuilder: (BuildContext context,i){
             return ListTile(
                 onTap:(){
                   Navigator.push(context, MaterialPageRoute(builder: (context)=>registrarPedido(id: codigos[i], cedula: widget.cedula)));
                 },
-                title: Card(url: tiendasOscar[i]['foto'],texto: tiendasOscar[i]['nombre']+" "+tiendasOscar[i]['apellido']+'\n'+tiendasOscar[i]['correo'])
+              //  title: Card(url: negocios[i]['Foto'],texto: negocios[i]['nombre']+" "+negocios[i]['apellido']+'\n'+negocios[i]['correo'])
+
             );
           }),
     );
   }
+
+
 }
+
+
