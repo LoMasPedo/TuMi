@@ -205,21 +205,20 @@ class BkTiendas extends StatelessWidget {
                                           leading: CircleAvatar(
                                               backgroundImage: NetworkImage(
                                                   img)),
+                                          trailing:Icon (Icons.add),
                                           title: Text(tienda.Productos[index]["Producto"]["Producto"]),
                                           subtitle: Text("Stock: "+tienda.Productos[index]["Unidades"] +
                                               "\nPrecio: "+ tienda.Productos[index]["precio"] +
                                               "\nCategoria: "+ tienda.Productos[index]["Producto"]["Categoria"]
                                           ),
+
                                         ),
                                     );
                                   },
                                 ),
                               ),
                             ),
-                            new IconButton(
-                              icon: Icon(Icons.remove_circle),
-                              onPressed: () {},
-                            ),
+
                           ],
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         ),

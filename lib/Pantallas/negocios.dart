@@ -1,20 +1,13 @@
-
 import 'package:equipo2_grupo15/Pantallas/loginCliente.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:equipo2_grupo15/Pantallas/consultaNegocios.dart';
 import 'dart:convert';
 import 'BkTiendas.dart';
 
-
-
 class negocios extends StatefulWidget {
-
-
   TextEditingController idbusqueda=TextEditingController();
   @override
-
   State<negocios> createState() => _negociosState();
 }
 
@@ -26,7 +19,6 @@ class _negociosState extends State<negocios> {
   void initState(){
     super.initState();
     getNegocios();
-
   }
 
   void getNegocios() async {

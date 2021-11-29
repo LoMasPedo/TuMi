@@ -6,10 +6,8 @@ import 'package:equipo2_grupo15/Pantallas/consultaProductos.dart';
 import 'dart:convert';
 
 class productos extends StatefulWidget {
-
   TextEditingController idbusqueda=TextEditingController();
   @override
-
   State<productos> createState() => _productosState();
 }
 
@@ -197,6 +195,6 @@ class _productosState extends State<productos> {
 
       ),
     );
-
   }
 }
+

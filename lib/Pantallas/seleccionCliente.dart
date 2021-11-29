@@ -1,7 +1,7 @@
 import 'package:equipo2_grupo15/Pantallas/productos.dart';
 import 'package:flutter/material.dart';
 import 'package:equipo2_grupo15/Pantallas/negocios.dart';
-import 'package:equipo2_grupo15/Pantallas/consultaNegocios.dart';
+//import 'package:equipo2_grupo15/Pantallas/consultaNegocios.dart';
 //import 'package:equipo2_grupo15/Pantallas/consultaProductos.dart';
 //import 'package:firebase_core/firebase_core.dart';
 //import 'package:cloud_firestore/cloud_firestore.dart';

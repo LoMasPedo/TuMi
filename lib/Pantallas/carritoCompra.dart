@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+/*import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equipo2_grupo15/Pantallas/listaTiendas.dart';
 import '../main.dart';
 import 'package:equipo2_grupo15/Pantallas/registrarPedido.dart';
@@ -165,4 +165,6 @@ class _carritoBarState extends State<carritoBar> {
     );
   }
 }
+
+ */
 
