@@ -86,7 +86,7 @@ class _HomeState extends State<Home> {
           ),
 
           bottom: TabBar(
-            indicatorColor: Colors.limeAccent,
+            indicatorColor: Color(0xFFFF6961),
             indicatorWeight: 5,
             tabs: [
               Tab(icon: Icon(Icons.store), text: "Negocios"),

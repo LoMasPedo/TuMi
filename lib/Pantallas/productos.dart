@@ -96,7 +96,7 @@ class _productosState extends State<productos> {
     }
   }
 
-  var _listacategoria = ['Cuidado Hogar','lacteos y huevos','Bebidas','Cervezas','Abarrotes','Bebidas'];
+  var _listacategoria = ['Cuidado Hogar','lacteos y huevos','Bebidas','Cervezas','Abarrotes','Bebidas','Futras y Verduras','Snacks','Licores','Cuidado Personal','Panaderia'];
   String _vista = 'categoria';
 
   @override
