@@ -8,8 +8,8 @@ import 'bienvenida.dart';
 
 class BkTiendas extends StatelessWidget {
   final tiendaOnTAP tienda;
-
-  const BkTiendas({required this.tienda});
+  final String cedula;
+  const BkTiendas({required this.tienda, required this.cedula});
 
   @override
   Widget build(BuildContext context) {
@@ -200,7 +200,7 @@ class BkTiendas extends StatelessWidget {
                                                 leading: CircleAvatar(
                                                     backgroundImage:
                                                         NetworkImage(img)),
-                                                trailing:Icon (Icons.add),
+                                                trailing:addbotonmas(j: index, nombre: tienda.Productos[index]["Producto"]["Producto"], categoria: tienda.Productos[index]["Producto"]["Categoria"], precio: tienda.Productos[index]["precio"]),
                                                 title: Text(tienda.Productos[index]
                                                     ["Producto"]["Producto"]),
                                                 subtitle: Text("Stock: " +
@@ -235,8 +235,7 @@ class BkTiendas extends StatelessWidget {
           floatingActionButton: FloatingActionButton.extended(
               backgroundColor: Color(0xff2a2a2a),
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => productos()));
+                //Navigator.push(context,MaterialPageRoute(builder: (context) => productos(cedula: cedula)));
               },
               label: Text("Comprar"),
               icon: Icon(Icons
@@ -249,3 +248,63 @@ class BkTiendas extends StatelessWidget {
 //]));;
 }
 //}
+
+
+List<produc> pedido=[];
+
+
+class addbotonmas extends StatefulWidget {
+  final int j;
+  final String nombre;
+  final String categoria;
+  final String precio;
+  const addbotonmas({required this.j, required this.nombre, required this.categoria, required this.precio});
+
+  @override
+  _addbotonmasState createState() => _addbotonmasState();
+}
+
+class _addbotonmasState extends State<addbotonmas> {
+  int cont = 0;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+                primary: Color(0xFFFF6961),
+                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                textStyle:
+                TextStyle(fontSize: 11, fontWeight: FontWeight.bold)),
+            onPressed: () {
+              cont++;
+
+              int total = cont* int.parse(widget.precio);
+
+              produc p = produc(widget.nombre, widget.categoria, widget.precio, cont, total);
+
+              pedido.add(p);
+
+              print(cont);
+              print(widget.precio.toString());
+              print(total);
+            },
+            child: Icon(Icons.add)));
+  }
+}
+
+
+class produc{
+  String nombre='';
+  String descripcion='';
+  String precio='';
+  int cantidad=0;
+  int total=0;
+
+  produc(nombre,descripcion,precio,cantidad,total){
+    this.nombre=nombre;
+    this.descripcion=descripcion;
+    this.precio=precio;
+    this.cantidad=cantidad;
+    this.total=total;
+  }
+}

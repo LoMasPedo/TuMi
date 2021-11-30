@@ -1,15 +1,24 @@
-import 'package:equipo2_grupo15/Pantallas/loginCliente.dart';
+import 'package:equipo2_grupo15/Pantallas/login_cliente.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:convert';
-import 'BkTiendas.dart';
+import 'bk_tiendas.dart';
+
+
+
 
 class negocios extends StatefulWidget {
-  TextEditingController idbusqueda=TextEditingController();
+
+  final String cedula;
+
+  const negocios ({required this.cedula});
+
+
   @override
   State<negocios> createState() => _negociosState();
 }
+TextEditingController idbusqueda=TextEditingController();
 
 class _negociosState extends State<negocios> {
 
@@ -26,46 +35,46 @@ class _negociosState extends State<negocios> {
     QuerySnapshot negocios= await datos.get(); //Traer todas los ngocios
     if(negocios.docs.length>0){
       for(var doc in negocios.docs){
-      //var data =  doc.data();
-      var productosResultado = [];
-          try {
-            var productos = doc["Productos"];
+        //var data =  doc.data();
+        var productosResultado = [];
+        try {
+          var productos = doc["Productos"];
 
-            if (productos.length != 0) {
-              for (var i = 0; i < productos.length; i++) {
-                var productoInfo = productos[i];
-                var productoCompleto = await productoInfo["Producto"].get();
-                productosResultado.add({"precio":productoInfo["Precio"],
-                                         "Unidades":productoInfo["Unidades"],
-                                          "Producto": productoCompleto.data()
-                });
-              }
+          if (productos.length != 0) {
+            for (var i = 0; i < productos.length; i++) {
+              var productoInfo = productos[i];
+              var productoCompleto = await productoInfo["Producto"].get();
+              productosResultado.add({"precio":productoInfo["Precio"],
+                "Unidades":productoInfo["Unidades"],
+                "Producto": productoCompleto.data()
+              });
             }
-          }catch(error){
-            print(error);
-            //es por que no existen productos en el negocio
-           print(doc["Nombre"] +" no tiene productos, agregar en la base de datos");
-
           }
+        }catch(error){
+          print(error);
+          //es por que no existen productos en el negocio
+          print(doc["Nombre"] +" no tiene productos, agregar en la base de datos");
+
+        }
 
         tiendaOnTAP tienda = tiendaOnTAP(
-            doc['Nombre'],
-            doc['Celular'],
-            doc['Tipo'],
-            doc['Categoria'],
-            doc['Foto'],
-            doc['Dirección'],
-            doc['Id'],
-            doc['Geolocalización'],
-            doc['Teléfono'],
-            doc['Pagina Web'],
-            doc['Logo'],
-            productosResultado,
-          );
+          doc['Nombre'],
+          doc['Celular'],
+          doc['Tipo'],
+          doc['Categoria'],
+          doc['Foto'],
+          doc['Dirección'],
+          doc['Id'],
+          doc['Geolocalización'],
+          doc['Teléfono'],
+          doc['Pagina Web'],
+          doc['Logo'],
+          productosResultado,
+        );
 
-          setState(() {
-            datos_negocios.add(tienda);
-          });
+        setState(() {
+          datos_negocios.add(tienda);
+        });
 
       }
     }else{
@@ -147,44 +156,44 @@ class _negociosState extends State<negocios> {
     if(negocios.docs.length>0){
       for(var doc in negocios.docs){
         var data =  doc.data();
-       if(doc.get("Categoria").toLowerCase().indexOf(palabra.toLowerCase())!=-1){
+        if(doc.get("Categoria").toLowerCase().indexOf(palabra.toLowerCase())!=-1){
 
-         var productosResultado = [];
-         try {
-           var productos = doc["Productos"];
+          var productosResultado = [];
+          try {
+            var productos = doc["Productos"];
 
-           if (productos.length != 0) {
-             for (var i = 0; i < productos.length; i++) {
-               var productoInfo = productos[i];
-               var productoCompleto = await productoInfo["Producto"].get();
-               productosResultado.add({"precio":productoInfo["Precio"],
-                 "Unidades":productoInfo["Unidades"],
-                 "Producto11": productoCompleto.data()
-               });
-             }
-           }
-         }catch(error){
-           print(error);
-           //es por que no existen productos en el negocio
-           print(doc["Nombre"] +" no tiene productos, agregar en la base de datos");
+            if (productos.length != 0) {
+              for (var i = 0; i < productos.length; i++) {
+                var productoInfo = productos[i];
+                var productoCompleto = await productoInfo["Producto"].get();
+                productosResultado.add({"precio":productoInfo["Precio"],
+                  "Unidades":productoInfo["Unidades"],
+                  "Producto11": productoCompleto.data()
+                });
+              }
+            }
+          }catch(error){
+            print(error);
+            //es por que no existen productos en el negocio
+            print(doc["Nombre"] +" no tiene productos, agregar en la base de datos");
 
-         }
+          }
 
 
-         tiendaOnTAP tienda = tiendaOnTAP(
-           doc['Nombre'],
-           doc['Celular'],
-           doc['Tipo'],
-           doc['Categoria'],
-           doc['Foto'],
-           doc['Dirección'],
-           doc['Id'],
-           doc['Geolocalización'],
-           doc['Teléfono'],
-           doc['Pagina Web'],
-           doc['Logo'],
-           productosResultado,
-         );
+          tiendaOnTAP tienda = tiendaOnTAP(
+            doc['Nombre'],
+            doc['Celular'],
+            doc['Tipo'],
+            doc['Categoria'],
+            doc['Foto'],
+            doc['Dirección'],
+            doc['Id'],
+            doc['Geolocalización'],
+            doc['Teléfono'],
+            doc['Pagina Web'],
+            doc['Logo'],
+            productosResultado,
+          );
           setState(() {
             datos_negocios.add(tienda);//doc.data());
           });
@@ -207,86 +216,86 @@ class _negociosState extends State<negocios> {
 
 
       body: ListView(
-          children: [
-            Container(
-                decoration: BoxDecoration(
-                border: Border.all(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(
                 color: Colors.grey.withOpacity(0.5),
                 width: 1.0,
-                ),
-                 borderRadius: BorderRadius.circular(4.0),
               ),
-              margin: const EdgeInsets.all(30.0),
-              child: TextField(
-                onSubmitted: (idbusquedainterno){
-                  getNegociosConParametro(idbusqueda);
-                } ,
-                onChanged: (idbusquedainterno){
-                  setState(() {
-                    idbusqueda=idbusquedainterno;
-                  });
-                },
-                autofocus: false,
-                keyboardType: TextInputType.name,
-                textInputAction: TextInputAction.search,
-                decoration: InputDecoration(
-                    hintText: "Ingresa el negocio a buscar",
-                    suffixIcon: Icon(Icons.search),
-                    contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                ),
-              ),
-
+              borderRadius: BorderRadius.circular(4.0),
             ),
-
-            Container(
-              padding: EdgeInsets.fromLTRB(40.0, 0.0, 40.0,0.0),
-              child: DropdownButton(
-                items: _listacategoria.map((String a){
-                  return DropdownMenuItem(
-                      value: a,
-                      child: Text(a));
-                }).toList(),
-                onChanged: (_value)=>{
-                  setState((){
-                    String _vista1 = _value.toString();
-                    _vista = _vista1;
-                    getNegociosCategoria(_vista);
-                  })
-                },
-                hint: Text(_vista),
+            margin: const EdgeInsets.all(30.0),
+            child: TextField(
+              onSubmitted: (idbusquedainterno){
+                getNegociosConParametro(idbusqueda);
+              } ,
+              onChanged: (idbusquedainterno){
+                setState(() {
+                  idbusqueda=idbusquedainterno;
+                });
+              },
+              autofocus: false,
+              keyboardType: TextInputType.name,
+              textInputAction: TextInputAction.search,
+              decoration: InputDecoration(
+                hintText: "Ingresa el negocio a buscar",
+                suffixIcon: Icon(Icons.search),
+                contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
               ),
             ),
 
-            Container(
-                   // margin: const EdgeInsets.only(top: 10.0),
-                    child:Divider(),
-                ),
+          ),
 
-            Container(
-              margin: const EdgeInsets.all(30.0),
-              child: ListView.builder(
+          Container(
+            padding: EdgeInsets.fromLTRB(40.0, 0.0, 40.0,0.0),
+            child: DropdownButton(
+              items: _listacategoria.map((String a){
+                return DropdownMenuItem(
+                    value: a,
+                    child: Text(a));
+              }).toList(),
+              onChanged: (_value)=>{
+                setState((){
+                  String _vista1 = _value.toString();
+                  _vista = _vista1;
+                  getNegociosCategoria(_vista);
+                })
+              },
+              hint: Text(_vista),
+            ),
+          ),
 
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                itemCount: datos_negocios.length,
-                itemBuilder: (BuildContext context, i){
-                  var img=  "https://raw.githubusercontent.com/festupinans/equipo2_grupo15/master/lib/Imagenes/icono-tienda.jpg";
-                  if(datos_negocios[i].Logo !=null){
-                    img = datos_negocios[i].Logo;
-                  }
+          Container(
+            // margin: const EdgeInsets.only(top: 10.0),
+            child:Divider(),
+          ),
 
-                  return Card(
-                      child: ListTile(
-                          title: Text(datos_negocios[i].Nombre.toString()),
-                          subtitle: Text(datos_negocios[i].Tipo.toString()),
-                          leading: CircleAvatar(
-                              backgroundImage: NetworkImage(
-                                  img)),
-                          trailing: Icon(Icons.add_business_outlined),
+          Container(
+            margin: const EdgeInsets.all(30.0),
+            child: ListView.builder(
 
-                          onTap:(){
-                            print('Productos');
-                            /*print(datos_negocios[i]['Productos']);
+              scrollDirection: Axis.vertical,
+              shrinkWrap: true,
+              itemCount: datos_negocios.length,
+              itemBuilder: (BuildContext context, i){
+                var img=  "https://raw.githubusercontent.com/festupinans/equipo2_grupo15/master/lib/Imagenes/icono-tienda.jpg";
+                if(datos_negocios[i].Logo !=null){
+                  img = datos_negocios[i].Logo;
+                }
+
+                return Card(
+                    child: ListTile(
+                        title: Text(datos_negocios[i].Nombre.toString()),
+                        subtitle: Text(datos_negocios[i].Tipo.toString()),
+                        leading: CircleAvatar(
+                            backgroundImage: NetworkImage(
+                                img)),
+                        trailing: Icon(Icons.add_business_outlined),
+
+                        onTap:(){
+                          print('Productos');
+                          /*print(datos_negocios[i]['Productos']);
                             tiendaOnTAP tiendaSeleccionada = tiendaOnTAP(
                                 datos_negocios[i]['Nombre'],
                                 datos_negocios[i] ['Celular'],
@@ -303,14 +312,14 @@ class _negociosState extends State<negocios> {
                             );*/
 
 
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=> BkTiendas(tienda: datos_negocios[i])));
-                          }
-                      )
-                  );
-                },
-              ),
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=> BkTiendas(tienda: datos_negocios[i], cedula: widget.cedula)));
+                        }
+                    )
+                );
+              },
             ),
-          ],
+          ),
+        ],
 
 
       ),
@@ -353,30 +362,7 @@ class tiendaOnTAP{
   }
 
 }
-/*
-class boton extends StatefulWidget {
 
-  @override
-  _botonState createState() => _botonState();
-}
-
-class _botonState extends State<boton> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        child: ElevatedButton(onPressed: (){
-          var idbusqueda;
-          print(idbusqueda.text);
-          //Navigator.push(context, MaterialPageRoute(builder: (context)=> consultaNegocios(idbusqueda.text)));
-        },child:
-        Text('Consultar'),
-            style: ElevatedButton.styleFrom(
-                primary: Colors.cyan)
-        ),
-    );
-  }
-}
-*/
 
 
 

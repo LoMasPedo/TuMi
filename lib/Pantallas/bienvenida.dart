@@ -1,5 +1,5 @@
-import 'package:equipo2_grupo15/Pantallas/loginCliente.dart';
-import 'package:equipo2_grupo15/Pantallas/loginTendero.dart';
+import 'package:equipo2_grupo15/Pantallas/login_cliente.dart';
+import 'package:equipo2_grupo15/Pantallas/login_tendero.dart';
 import 'package:equipo2_grupo15/Pantallas/negocios.dart';
 import 'package:equipo2_grupo15/Pantallas/productos.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +7,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../main.dart';
-import 'actualizarClienteV2.dart';
+import 'actualizar_cliente_v2.dart';
 import 'package:equipo2_grupo15/global.dart' as global;
 
 
@@ -135,8 +135,8 @@ class _HomeState extends State<Home> {
 
             //buildPage("Profile Page"),
             //actualizarClienteV2(cliente),
-            negocios(),
-            productos(),
+            negocios(cedula: widget.cedula,),
+            productos(cedula: widget.cedula,),
 
 
           ],

@@ -1,4 +1,4 @@
-import 'package:equipo2_grupo15/Pantallas/BkTiendas.dart';
+import 'package:equipo2_grupo15/Pantallas/bk_tiendas.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -6,7 +6,8 @@ import 'negocios.dart';
 
 class consultaProductos extends StatefulWidget {
   final String id;
-  const consultaProductos(this.id, {Key? key}) : super(key: key);
+  final String cedula;
+  const consultaProductos({required this.id, required this.cedula});
 
   @override
   _consultaProductosState createState() => _consultaProductosState();
@@ -169,7 +170,7 @@ class _consultaProductosState extends State<consultaProductos>{
                                   );
 
 
-                              Navigator.push(context, MaterialPageRoute(builder: (context)=> BkTiendas(tienda: tienda )));
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=> BkTiendas(tienda: tienda,cedula: widget.cedula )));
 
                                 }
                               }else{

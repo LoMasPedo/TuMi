@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:equipo2_grupo15/Pantallas/seleccionCliente.dart';
+import 'package:equipo2_grupo15/Pantallas/seleccion_cliente.dart';
 
 
 
@@ -36,7 +36,18 @@ class _registroClienteState extends State<registroCliente> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.cyan[300],
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors:[
+                  Color(0xFF61D5D4),
+                  Color(0xFFFF6961)
+                ],
+                begin: Alignment.bottomRight,
+                end: Alignment.topLeft,
+              )
+          ),
+        ),
         title: Text('Registro Cliente'),
       ),
       body: Center(
@@ -45,7 +56,7 @@ class _registroClienteState extends State<registroCliente> {
             Expanded(
               child: Image(
                 image: NetworkImage(
-                    "https://raw.githubusercontent.com/festupinans/equipo2_grupo15/master/lib/Imagenes/TuMI.png"),
+                    'https://github.com/festupinans/equipo2_grupo15/blob/master/lib/Imagenes/TuMi2.png?raw=true'),
                 height: 160,
               ),
             ),
@@ -57,7 +68,7 @@ class _registroClienteState extends State<registroCliente> {
                 decoration: InputDecoration(
                     filled: true,
                     icon: Icon(Icons.attach_email_rounded,
-                        size: 50, color: Colors.cyan[300]),
+                        size: 50, color: Color(0xFFFF6961)),
                     hintText: "Digite su e-mail",
                     hintStyle: TextStyle(color: Colors.black)),
               ),
@@ -70,7 +81,7 @@ class _registroClienteState extends State<registroCliente> {
                 decoration: InputDecoration(
                     filled: true,
                     icon: Icon(Icons.assignment_ind_rounded,
-                        size: 50, color: Colors.cyan[300]),
+                        size: 50, color: Color(0xFFFF6961)),
                     hintText: "Digite su nombre",
                     hintStyle: TextStyle(color: Colors.black)),
               ),
@@ -83,7 +94,7 @@ class _registroClienteState extends State<registroCliente> {
                 decoration: InputDecoration(
                     filled: true,
                     icon: Icon(Icons.assignment_ind_outlined,
-                        size: 50, color: Colors.cyan[300]),
+                        size: 50, color: Color(0xFFFF6961)),
                     hintText: "Digite su apellido",
                     hintStyle: TextStyle(color: Colors.black)),
               ),
@@ -96,7 +107,7 @@ class _registroClienteState extends State<registroCliente> {
                 decoration: InputDecoration(
                     filled: true,
                     icon: Icon(Icons.contact_mail_rounded,
-                        size: 50, color: Colors.cyan[300]),
+                        size: 50, color: Color(0xFFFF6961)),
                     hintText: "Digite su cedula",
                     hintStyle: TextStyle(color: Colors.black)),
               ),
@@ -109,7 +120,7 @@ class _registroClienteState extends State<registroCliente> {
                 decoration: InputDecoration(
                     filled: true,
                     icon: Icon(Icons.home_sharp,
-                        size: 50, color: Colors.cyan[300]),
+                        size: 50, color: Color(0xFFFF6961)),
                     hintText: "Digite su direccion",
                     hintStyle: TextStyle(color: Colors.black)),
               ),
@@ -122,7 +133,7 @@ class _registroClienteState extends State<registroCliente> {
                 decoration: InputDecoration(
                     filled: true,
                     icon: Icon(Icons.phone,
-                        size: 50, color: Colors.cyan[300]),
+                        size: 50, color: Color(0xFFFF6961)),
                     hintText: "Digite su celular",
                     hintStyle: TextStyle(color: Colors.black)),
               ),
@@ -135,7 +146,7 @@ class _registroClienteState extends State<registroCliente> {
                 decoration: InputDecoration(
                     filled: true,
                     icon: Icon(Icons.password,
-                        size: 50, color: Colors.cyan[300]),
+                        size: 50, color: Color(0xFFFF6961)),
                     hintText: "Digite su contraseña",
                     hintStyle: TextStyle(color: Colors.black)),
               ),
@@ -148,7 +159,7 @@ class _registroClienteState extends State<registroCliente> {
                 decoration: InputDecoration(
                     filled: true,
                     icon: Icon(Icons.password,
-                        size: 50, color: Colors.cyan[300]),
+                        size: 50, color: Color(0xFFFF6961)),
                     hintText: "Digite su contraseña nuevamente",
                     hintStyle: TextStyle(color: Colors.black)),
               ),

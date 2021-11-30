@@ -1,4 +1,4 @@
-import 'package:equipo2_grupo15/Pantallas/seleccionCliente.dart';
+import 'package:equipo2_grupo15/Pantallas/seleccion_cliente.dart';
 import 'package:flutter/material.dart';
 import 'package:equipo2_grupo15/Pantallas/negocios.dart';
 
@@ -16,10 +16,26 @@ class _loginTenderoState extends State<loginTendero> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors:[
+                  Color(0xFF61D5D4),
+                  Color(0xFFFF6961)
+                ],
+                begin: Alignment.bottomRight,
+                end: Alignment.topLeft,
+              )
+          ),
+        ),
         title: Text("Login del Veci"),
       ),
-      body: Column(
+      body: ListView(
         children: <Widget>[
+          Container(
+            padding: EdgeInsets.fromLTRB(50.0, 20.0, 50.0, 50.0),
+            child: Image.network('https://github.com/festupinans/equipo2_grupo15/blob/master/lib/Imagenes/TuMi2.png?raw=true'),
+          ),
           Container(
             padding: EdgeInsets.all(20.0),
             child: TextField(
@@ -33,7 +49,7 @@ class _loginTenderoState extends State<loginTendero> {
               keyboardType: TextInputType.name,
               textInputAction: TextInputAction.search,
               decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.account_circle_rounded, color: Colors.cyan),border: OutlineInputBorder(),
+                  prefixIcon: Icon(Icons.account_circle_rounded, color: Color(0xFFFF6961)),border: OutlineInputBorder(),
                   hintText: "Ingrese su nombre"
               ),
             ),
@@ -52,7 +68,7 @@ class _loginTenderoState extends State<loginTendero> {
               keyboardType: TextInputType.name,
               textInputAction: TextInputAction.search,
               decoration: InputDecoration(
-                prefixIcon: Icon(Icons.password, color: Colors.cyan),border: OutlineInputBorder(),
+                prefixIcon: Icon(Icons.password, color: Color(0xFFFF6961)),border: OutlineInputBorder(),
                 labelText: 'Password',
               ),
             ),
@@ -77,8 +93,16 @@ class login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+        width: 150,
         child:
         ElevatedButton(
+            style: ElevatedButton.styleFrom(
+                primary: Color(0xFFFF6961),
+
+                textStyle: TextStyle(
+                    fontSize: 18,
+                    fontWeight:
+                    FontWeight.bold)),
             onPressed: (){
               //aqui se pone el salto de pagina
               Navigator.push(context, MaterialPageRoute(builder: (context)=>seleccionCliente()));
@@ -101,8 +125,16 @@ class register extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+        width: 150,
         child:
         ElevatedButton(
+            style: ElevatedButton.styleFrom(
+                primary: Color(0xFFFF6961),
+
+                textStyle: TextStyle(
+                    fontSize: 18,
+                    fontWeight:
+                    FontWeight.bold)),
             onPressed: (){
               //aqui se pone el salto de pagina
               //Navigator.push(context, MaterialPageRoute(builder: (context)=>loginUsuarios()));

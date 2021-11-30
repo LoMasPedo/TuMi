@@ -1,11 +1,11 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
 //import 'package:equipo2_grupo15/Pantallas/negocios.dart';
-import 'package:equipo2_grupo15/Pantallas/seleccionCliente.dart';
+import 'package:equipo2_grupo15/Pantallas/seleccion_cliente.dart';
 import 'package:equipo2_grupo15/Pantallas/registro_cliente.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:equipo2_grupo15/Pantallas/actualizarClienteV2.dart';
+import 'package:equipo2_grupo15/Pantallas/actualizar_cliente_v2.dart';
 
 import 'bienvenida.dart';
 import 'package:equipo2_grupo15/global.dart' as global;
@@ -29,13 +29,28 @@ class _loginClientesState extends State<loginClientes> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.cyan[300] ,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors:[
+                  Color(0xFF61D5D4),
+                  Color(0xFFFF6961)
+                ],
+                begin: Alignment.bottomRight,
+                end: Alignment.topLeft,
+              )
+          ),
+        ),
         title: Text("Login del Cliente"),
       ),
-      body: Column(
+      body: ListView(
         children: <Widget>[
           Container(
-            padding: EdgeInsets.all(20.0),
+            padding: EdgeInsets.fromLTRB(50.0, 20.0, 50.0, 50.0),
+            child: Image.network('https://github.com/festupinans/equipo2_grupo15/blob/master/lib/Imagenes/TuMi2.png?raw=true'),
+          ),
+          Container(
+            padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 20.0),
             child: TextField(
               controller: cedula,
 /*              onChanged: (usuarioc) {
@@ -49,7 +64,7 @@ class _loginClientesState extends State<loginClientes> {
               textInputAction: TextInputAction.search,
               decoration: InputDecoration(
                   prefixIcon:
-                  Icon(Icons.account_circle_rounded, color: Colors.cyan[300]),
+                  Icon(Icons.account_circle_rounded, color: Color(0xFFFF6961)),
                   border: OutlineInputBorder(),
                   hintText: "Ingrese su cedula"),
             ),
@@ -69,15 +84,22 @@ class _loginClientesState extends State<loginClientes> {
               keyboardType: TextInputType.name,
               textInputAction: TextInputAction.search,
               decoration: InputDecoration(
-                prefixIcon: Icon(Icons.password, color: Colors.cyan[300]),
+                prefixIcon: Icon(Icons.password, color: Color(0xFFFF6961)),
                 border: OutlineInputBorder(),
-                labelText: 'ContraseÃ±a',
+                labelText: 'Contraseña',
               ),
             ),
           ),
           Container(
-            //child: login(),
+              width: 150,
               child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      primary: Color(0xFFFF6961),
+
+                      textStyle: TextStyle(
+                          fontSize: 18,
+                          fontWeight:
+                          FontWeight.bold)),
                   onPressed: () async {
                     QuerySnapshot ingreso = await cliente
                     //.where(FieldPath.documentId, isEqualTo: cedula.text)
@@ -140,7 +162,15 @@ class register extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: 150,
         child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+                primary: Color(0xFFFF6961),
+
+                textStyle: TextStyle(
+                    fontSize: 18,
+                    fontWeight:
+                    FontWeight.bold)),
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context)=>registroCliente()));
             },

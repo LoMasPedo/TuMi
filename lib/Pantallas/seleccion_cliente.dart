@@ -2,7 +2,7 @@ import 'package:equipo2_grupo15/Pantallas/productos.dart';
 import 'package:flutter/material.dart';
 import 'package:equipo2_grupo15/Pantallas/negocios.dart';
 //import 'package:equipo2_grupo15/Pantallas/consultaNegocios.dart';
-//import 'package:equipo2_grupo15/Pantallas/consultaProductos.dart';
+//import 'package:equipo2_grupo15/Pantallas/consulta_productos.dart';
 //import 'package:firebase_core/firebase_core.dart';
 //import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -54,7 +54,7 @@ class next1 extends StatelessWidget {
           child:
           ElevatedButton(
               onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> negocios() ));
+                //Navigator.push(context, MaterialPageRoute(builder: (context)=> negocios() ));
               },
               child: Row(
                 mainAxisSize: MainAxisSize.min,
@@ -78,7 +78,7 @@ class next2 extends StatelessWidget {
           child:
           ElevatedButton(
               onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>productos() /*aqui va productos*/  ));//Aca toca cambiarlo por el de productos cuando este.
+                //Navigator.push(context, MaterialPageRoute(builder: (context)=>productos(cedula: widget.cedula,) /*aqui va productos*/  ));//Aca toca cambiarlo por el de productos cuando este.
               },
               child: Row(
                 mainAxisSize: MainAxisSize.min,

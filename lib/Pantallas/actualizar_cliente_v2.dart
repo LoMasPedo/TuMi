@@ -1,4 +1,4 @@
-//import 'package:firebase_grupo15/loginCliente.dart';
+//import 'package:firebase_grupo15/login_cliente.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equipo2_grupo15/Pantallas/bienvenida.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:equipo2_grupo15/global.dart' as global;
 
 import '../main.dart';
-import 'loginCliente.dart';
+import 'login_cliente.dart';
 
 
 
@@ -39,6 +39,18 @@ class actualizarClienteV2 extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors:[
+                  Color(0xFF61D5D4),
+                  Color(0xFFFF6961)
+                ],
+                begin: Alignment.bottomRight,
+                end: Alignment.topLeft,
+              )
+          ),
+        ),
         title: Text("Actualizar Datos: "+ global.clienteLogeado!.nombre),
       ),
       body: ListView(
@@ -51,7 +63,7 @@ class actualizarClienteV2 extends StatelessWidget {
               decoration: InputDecoration(
                   filled: true,
                   icon: Icon(Icons.assignment_ind_rounded,
-                      size: 50, color: Colors.cyan[300]),
+                      size: 50, color: Color(0xFFFF6961)),
                   hintText: "Digite su nombre",
                   hintStyle: TextStyle(color: Colors.black)),
             ),
@@ -60,12 +72,12 @@ class actualizarClienteV2 extends StatelessWidget {
           Container(
             padding: EdgeInsets.all(16.0),
             child: TextField(
-              style: TextStyle(color: Colors.black),
+              style: TextStyle(color: Color(0xFFFF6961)),
               controller: apellido,
               decoration: InputDecoration(
                   filled: true,
                   icon: Icon(Icons.assignment_ind_outlined,
-                      size: 50, color: Colors.cyan[300]),
+                      size: 50, color: Color(0xFFFF6961)),
                   hintText: "Digite su apellido",
                   hintStyle: TextStyle(color: Colors.black)),
             ),
@@ -79,7 +91,7 @@ class actualizarClienteV2 extends StatelessWidget {
               decoration: InputDecoration(
                   filled: true,
                   icon: Icon(Icons.attach_email_rounded,
-                      size: 50, color: Colors.cyan[300]),
+                      size: 50, color: Color(0xFFFF6961)),
                   hintText: "Digite su e-mail",
                   hintStyle: TextStyle(color: Colors.black)),
             ),
@@ -93,7 +105,7 @@ class actualizarClienteV2 extends StatelessWidget {
               decoration: InputDecoration(
                   filled: true,
                   icon: Icon(Icons.home_sharp,
-                      size: 50, color: Colors.cyan[300]),
+                      size: 50, color: Color(0xFFFF6961)),
                   hintText: "Digite su direccion",
                   hintStyle: TextStyle(color: Colors.black)),
             ),
@@ -108,7 +120,7 @@ class actualizarClienteV2 extends StatelessWidget {
               decoration: InputDecoration(
                   filled: true,
                   icon: Icon(Icons.phone,
-                      size: 50, color: Colors.cyan[300]),
+                      size: 50, color: Color(0xFFFF6961)),
                   hintText: "Digite su celular",
                   hintStyle: TextStyle(color: Colors.black)),
             ),

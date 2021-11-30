@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:equipo2_grupo15/Pantallas/listaTiendas.dart';
+import 'package:equipo2_grupo15/Pantallas/lista_tiendas.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 

@@ -1,16 +1,19 @@
-import 'package:equipo2_grupo15/Pantallas/loginCliente.dart';
+import 'package:equipo2_grupo15/Pantallas/login_cliente.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:equipo2_grupo15/Pantallas/consultaProductos.dart';
+import 'package:equipo2_grupo15/Pantallas/consulta_productos.dart';
 import 'dart:convert';
 
 class productos extends StatefulWidget {
-  TextEditingController idbusqueda=TextEditingController();
+  final String cedula;
+  const productos( {required this.cedula});
+
   @override
   State<productos> createState() => _productosState();
 }
 
+TextEditingController idbusqueda=TextEditingController();
 class _productosState extends State<productos> {
 
   List datos_productos=[];
@@ -184,7 +187,7 @@ class _productosState extends State<productos> {
                         onTap: () => {
                           print(datos_productos[i]['Producto'].toString()),
                           // Navigator.push(context, MaterialPageRoute(builder: (context)=> consultaNegocios(datos_negocios[i])))
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=> consultaProductos(datos_productos[i]['Id'].toString())))
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=> consultaProductos(id: datos_productos[i]['Id'].toString(), cedula: widget.cedula)))
                         }
                     )
                 );
