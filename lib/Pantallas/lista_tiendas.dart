@@ -1,3 +1,4 @@
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equipo2_grupo15/Pantallas/negocios.dart';
 import 'package:equipo2_grupo15/Pantallas/registrar_pedido.dart';
@@ -62,5 +63,6 @@ class _listaTiendasState extends State<listaTiendas> {
 
 
 }
+
 
 

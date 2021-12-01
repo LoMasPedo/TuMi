@@ -1,7 +1,8 @@
+
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../main.dart';
-import 'package:equipo2_grupo15/Pantallas/negocios.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:equipo2_grupo15/Pantallas/carrito_compra.dart';
+import 'package:equipo2_grupo15/Pantallas/lista_tiendas.dart';
+//import 'package:firebase_grupo15/main.dart';
 import 'package:flutter/material.dart';
 
 class registrarPedido extends StatefulWidget {
@@ -15,6 +16,7 @@ class registrarPedido extends StatefulWidget {
 class _registrarPedidoState extends State<registrarPedido> {
   List listaCursos=[];
   List codigosGustos=[];
+  List<datosPedido> pedido=[];
 
   void initState(){
     super.initState();
@@ -22,6 +24,7 @@ class _registrarPedidoState extends State<registrarPedido> {
   }
 
   void getCursos() async {
+
     CollectionReference gustos = FirebaseFirestore.instance.collection("Gustos");
     String cod="";
     QuerySnapshot cursos= await gustos.where("persona", isEqualTo: widget.id).get();
@@ -41,8 +44,14 @@ class _registrarPedidoState extends State<registrarPedido> {
     return Scaffold(
         appBar: AppBar(
           title: Text("Regsitrar Pedido"),
+          actions: [
+            IconButton(
+                onPressed: (){
+                 // Navigator.push(context, MaterialPageRoute(builder: (context)=>carritoCompras(pedido: pedido)));
+                }, icon: Icon(Icons.add_shopping_cart, size: 30, color: Colors.amber))
+          ],
         ),
-        drawer: menu(),
+       //drawer: menu(),
         body: ListView.builder(
             itemCount: listaCursos.length,
             itemBuilder: (BuildContext context,i){
@@ -61,13 +70,29 @@ class _registrarPedidoState extends State<registrarPedido> {
                   ),
                 ),
                 onTap: (){
-                  print("Cantidad: "+can.text);
-                  print("Precio: "+listaCursos[i]['precio'].toString());
-                  print(int.parse(can.text)*(int.parse(listaCursos[i]['precio'].toString())));
+                  if(can.text.isEmpty){
+                    can.text="0";
+                  }
+                  int total=int.parse(can.text)*(int.parse(listaCursos[i]['precio'].toString()));
+                  datosPedido p = datosPedido(codigosGustos[i], listaCursos[i]['nombre'], listaCursos[i]['descripcion'],
+                      listaCursos[i]['precio'].toString(), int.parse(can.text), total);
+                  pedido.add(p);
                 },
               );
             })
 
     );
   }
+}
+
+class datosPedido{
+
+  String codigo="";
+  String nombre="";
+  String descripcion="";
+  String precio="";
+  int cant=0;
+  int total=0;
+
+  datosPedido(this.codigo, this.nombre, this.descripcion, this.precio, this.cant, this.total);
 }

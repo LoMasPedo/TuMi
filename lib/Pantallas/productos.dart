@@ -179,7 +179,7 @@ class _productosState extends State<productos> {
                 return Card(
                     child: ListTile(
                         title: Text(datos_productos[i]['Producto'].toString()),
-                        subtitle: Text(datos_productos[i]['Precio Unitario'].toString()),
+                        subtitle: Text(datos_productos[i]['Precio'].toString()),
                         leading: CircleAvatar(
                             backgroundImage: NetworkImage(
                                 img)),

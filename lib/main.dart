@@ -220,10 +220,10 @@ class menu extends StatelessWidget {
                     else
                       {
                         Fluttertoast.showToast(msg: "Debe primero hacer login de cliente",
-                            fontSize: 20,
-                            textColor: Colors.black,
+                            fontSize: 15,
+                            textColor: Colors.white,
                             toastLength: Toast.LENGTH_LONG,
-                            gravity: ToastGravity.CENTER);
+                            gravity: ToastGravity.BOTTOM);
                       }
                   },
                 ),

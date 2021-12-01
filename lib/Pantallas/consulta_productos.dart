@@ -108,7 +108,7 @@ class _consultaProductosState extends State<consultaProductos>{
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text("Producto: "+ datos_productos[i].data()!['Producto'].toString()),
-                                  Text("Precio: "+ datos_productos[i].data()!['Precio Unitario'].toString()),
+                                  Text("Precio: "+ datos_productos[i].data()!['Precio'].toString()),
                                   Text("Unidad Medida: " + datos_productos[i].data()!['Unidad Medida'].toString()),
                                   Text("Categoría: "+ datos_productos[i].data()!['Categoria'].toString()),
 
