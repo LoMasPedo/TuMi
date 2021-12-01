@@ -52,13 +52,13 @@ class _carritoComprasState extends State<carritoCompras> {
                     title:
 
                     Text(widget.pedido[i].nombre +
-                        " - " +
+                        "-"+
                         widget.pedido[i].descripcion +
-                        " - " +
+                        "\nPrecio: " +
                         widget.pedido[i].precio +
-                        " - " +
+                        "       Cantidad: " +
                         widget.pedido[i].cantidad.toString() +
-                        " - " +
+                        "       Total: " +
                         widget.pedido[i].total.toString()),
                     trailing: Icon(
                       Icons.delete,
@@ -138,7 +138,7 @@ class _carritoBarState extends State<carritoBar> {
           BottomNavigationBarItem(
             //backgroundColor: Colors.blue,
               icon: Icon(Icons.add_shopping_cart_sharp, size: 30),
-              label: "Agregar\nCurso"),
+              label: "Agregar\nProducto"),
           BottomNavigationBarItem(
               icon: Icon(Icons.app_registration, size: 30), label: "TOTAL"),
           BottomNavigationBarItem(
