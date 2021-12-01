@@ -44,21 +44,20 @@ class _carritoComprasState extends State<carritoCompras> {
 
       body: Center(
           child: SizedBox(
-            height: MediaQuery.of(context).size.height * 0.50,
+            height: MediaQuery.of(context).size.height,
             child: ListView.builder(
                 itemCount: widget.pedido.length,
                 itemBuilder: (BuildContext context, i) {
                   return ListTile(
-                    title:
-
-                    Text(widget.pedido[i].nombre +
+                    title: Text(widget.pedido[i].nombre +
                         "-"+
-                        widget.pedido[i].descripcion +
-                        "\nPrecio: " +
+                        widget.pedido[i].descripcion
+                        ),
+                    subtitle: Text("   Precio: " +
                         widget.pedido[i].precio +
-                        "       Cantidad: " +
+                        "       \n   Cantidad: " +
                         widget.pedido[i].cantidad.toString() +
-                        "       Total: " +
+                        "       \n   Total: " +
                         widget.pedido[i].total.toString()),
                     trailing: Icon(
                       Icons.delete,
@@ -132,8 +131,8 @@ class _carritoBarState extends State<carritoBar> {
               colors: [Color(0xFF61D5D4), Color(0xFFFF6961)])),
       child: BottomNavigationBar(
         backgroundColor: Colors.transparent,
-        selectedItemColor: Colors.grey,
-        unselectedItemColor: Colors.grey,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.white,
         items: [
           BottomNavigationBarItem(
             //backgroundColor: Colors.blue,
