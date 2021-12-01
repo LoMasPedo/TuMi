@@ -1,16 +1,20 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equipo2_grupo15/Pantallas/lista_tiendas.dart';
+import 'package:equipo2_grupo15/Pantallas/negocios.dart';
 import '../main.dart';
 import 'package:equipo2_grupo15/Pantallas/registrar_pedido.dart';
 import 'package:equipo2_grupo15/Pantallas/bk_tiendas.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'bk_tiendas.dart';
 
 class carritoCompras extends StatefulWidget {
   final List<produc> pedido;
+  final String cedula;
+  final String id;
 
-  const carritoCompras({required this.pedido});
+  const carritoCompras({required this.pedido, required this.cedula, required this.id});
 
   @override
   _carritoComprasState createState() => _carritoComprasState();
@@ -23,7 +27,7 @@ class _carritoComprasState extends State<carritoCompras> {
       appBar: AppBar(
         title: Text("Carrito de Compras"),
       ),
-      drawer: menu(),
+
       body: Center(
           child: SizedBox(
             height: MediaQuery.of(context).size.height * 0.50,
@@ -31,7 +35,9 @@ class _carritoComprasState extends State<carritoCompras> {
                 itemCount: widget.pedido.length,
                 itemBuilder: (BuildContext context, i) {
                   return ListTile(
-                    title: Text(widget.pedido[i].nombre +
+                    title:
+
+                    Text(widget.pedido[i].nombre +
                         " - " +
                         widget.pedido[i].descripcion +
                         " - " +
@@ -54,7 +60,7 @@ class _carritoComprasState extends State<carritoCompras> {
                 }),
           ),
       ),
-      //bottomNavigationBar: carritoBar(listaPedido: widget.pedido, cliente: widget.cedula, negocio: widget.id),
+      bottomNavigationBar: carritoBar(listaPedido: widget.pedido, negocio: widget.id, cliente: widget.cedula, ),
     );
   }
 }
@@ -64,9 +70,7 @@ class carritoBar extends StatefulWidget {
   final String negocio;
   final String cliente;
   const carritoBar(
-      {required this.listaPedido,
-      required this.negocio,
-      required this.cliente});
+      {required this.listaPedido, required this.negocio,required this.cliente});
 
   @override
   _carritoBarState createState() => _carritoBarState();
@@ -94,8 +98,7 @@ class _carritoBarState extends State<carritoBar> {
     for (int i = 0; i < widget.listaPedido.length; i++) {
       totalP += widget.listaPedido[i].total;
     }
-    CollectionReference pedidos =
-        FirebaseFirestore.instance.collection("Pedidos");
+    CollectionReference pedidos = FirebaseFirestore.instance.collection("Pedidos");
     pedidos.add({
       "negocio": widget.negocio,
       "cedula": widget.cliente,
@@ -175,7 +178,7 @@ class _carritoBarState extends State<carritoBar> {
                                 textColor: Colors.lightGreen,
                                 toastLength: Toast.LENGTH_LONG,
                                 gravity: ToastGravity.CENTER);
-                            //Navigator.push(context, MaterialPageRoute(builder: (context)=>listaPersonas(cedula: widget.cliente)));
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>negocios(cedula: widget.cliente) ));
                           },
                           child: Text("Confirmar")),
                       ElevatedButton(

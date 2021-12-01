@@ -170,7 +170,7 @@ class _consultaProductosState extends State<consultaProductos>{
                                   );
 
 
-                              Navigator.push(context, MaterialPageRoute(builder: (context)=> BkTiendas(tienda: tienda,cedula: widget.cedula )));
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=> BkTiendas(tienda: tienda,cedula: widget.cedula)));
 
                                 }
                               }else{

@@ -12,6 +12,8 @@ class BkTiendas extends StatelessWidget {
   final String cedula;
   const BkTiendas({required this.tienda, required this.cedula});
 
+
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -244,24 +246,25 @@ class BkTiendas extends StatelessWidget {
           floatingActionButton: FloatingActionButton.extended(
               backgroundColor: Color(0xff2a2a2a),
               onPressed: () {
+
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => carritoCompras(pedido: pedido)));
+                        builder: (context) => carritoCompras(pedido: pedido, cedula: cedula, id: tienda.id)));
               },
               label: Text("Comprar"),
               icon: Icon(Icons
                   .shopping_cart) // This trailing comma makes auto-formatting nicer for build methods.
               )),
     );
+
   }
-//),
-//),
-//]));;
+
 }
-//}
+
 
 List<produc> pedido = [];
+
 
 class addbotonmas extends StatefulWidget {
   final int j;
@@ -292,24 +295,47 @@ class _addbotonmasState extends State<addbotonmas> {
             onPressed: () {
               cont++;
               int total = cont * int.parse(widget.precio);
-              produc p = produc(
-                  widget.nombre, widget.categoria, widget.precio, cont, total);
 
-              if (cont == 1) {
-                pedido.add(p);
-                cont = 1;
-              }
-              if (cont > 1) {
-                pedido.remove(p);
-                cont = 0;
-              }
+              produc p = produc(widget.nombre, widget.categoria, widget.precio, cont, total);
+
+              // if (cont == 1) {
+              pedido.add(p);
+              // cont = 1;
+              // }
+              // if (cont > 1) {
+              //   pedido.remove(p);
+              //   cont = 0;
+              // }
               print(cont);
               print(widget.precio.toString());
               print(total);
             },
-            child: Icon(Icons.add)));
+            child: Icon(Icons.add)
+        ),
+
+    );
+
   }
 }
+
+class prueba extends StatefulWidget {
+  const prueba({Key? key}) : super(key: key);
+
+  @override
+  _pruebaState createState() => _pruebaState();
+}
+
+class _pruebaState extends State<prueba> {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
+
+
+
+
 
 class produc {
   String nombre = '';
