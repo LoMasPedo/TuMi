@@ -1,4 +1,5 @@
 import 'package:equipo2_grupo15/Pantallas/bk_tiendas.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -46,147 +47,169 @@ class _consultaProductosState extends State<consultaProductos>{
 
 
 
-    return Scaffold(
-        appBar: AppBar(
-          title: Text('Información del producto'),
-        ),
-        body: ListView(
-            children: [
+    return Container(
+      decoration: BoxDecoration(
 
-              ListView.builder(
-              scrollDirection: Axis.vertical,
-              shrinkWrap: true,
-              itemCount: datos_productos.length,
-              itemBuilder: (BuildContext context, i) {
-                var img = "https://raw.githubusercontent.com/festupinans/equipo2_grupo15/master/lib/Imagenes/icono-tienda.jpg";
+          gradient: new LinearGradient(
+              begin: const FractionalOffset(0.4, 0.1),
+              end: const FractionalOffset(1.0, 0.9),
+              colors: [Color(0xFF61D5D4), Color(0xFFFF6961)])
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            title: Text('Información del producto'),
 
-                var urlimage= 'https://source.unsplash.com/random/800x600?market';
-
-                // ESTO FUE NECESARIO YA QUE NO TODOS LOS REGISTROS TRAEN LOGO, DEBERIAN TRAER LOGO O UNA IMAGEN POR DFEFECTO PARA EVITAR ESTO
-                if ( datos_productos[i].data()!["Logo"] != null &&  datos_productos[i].data()!["Logo"] != "") {
-                  img = datos_productos[i]['Logo'];
-                }
-
-                if ( datos_productos[i].data()!['Foto'] != null && datos_productos[i].data()!['Foto'] != "") {
-                  urlimage = datos_productos[i]['Foto'];
-                }
-
-                var cardImage = NetworkImage(
-                    urlimage);
-
-                return Card(
-                    child:
-                    Column(
-
-                        children: [
-                          ListTile(
-                            // trailing: Icon(Icons.favorite_outline),
-                            title: Text(datos_productos[i]['Producto'].toString()),
-                            subtitle: Text(
-                              datos_productos[i]['Unidad Medida'].toString(),
-                              style: TextStyle(color: Colors.black.withOpacity(0.6)),
-                            ),
-                            leading: CircleAvatar(
-                                backgroundImage: NetworkImage(
-                                    img)),
-                          ),
-
-                          Container(
-                            height: 300.0,
-                            child: Ink.image(
-                              image: cardImage,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-
-                          Container(
-
-
-                            margin: const EdgeInsets.all(10.0),
-                            child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text("Producto: "+ datos_productos[i].data()!['Producto'].toString()),
-                                  Text("Precio: "+ datos_productos[i].data()!['Precio'].toString()),
-                                  Text("Unidad Medida: " + datos_productos[i].data()!['Unidad Medida'].toString()),
-                                  Text("Categoría: "+ datos_productos[i].data()!['Categoria'].toString()),
-
-                                ]),
-
-                          ),
-
-                        ]
-                    )
-                );
-              },
+          ),
+          body: Container(
+            decoration: BoxDecoration(
+                gradient: new LinearGradient(
+                    begin: const FractionalOffset(0.4, 0.1),
+                    end: const FractionalOffset(1.0, 0.9),
+                    colors: [Color(0xFF61D5D4), Color(0xFFFF6961)])
             ),
+            child: ListView(
+                children: [
 
-        ]
-        ),
-                          floatingActionButton: FloatingActionButton.extended(
-                            onPressed:()async{
+                  ListView.builder(
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                  itemCount: datos_productos.length,
+                  itemBuilder: (BuildContext context, i) {
+                    var img = "https://raw.githubusercontent.com/festupinans/equipo2_grupo15/master/lib/Imagenes/icono-tienda.jpg";
+
+                    var urlimage= 'https://source.unsplash.com/random/800x600?market';
+
+                    // ESTO FUE NECESARIO YA QUE NO TODOS LOS REGISTROS TRAEN LOGO, DEBERIAN TRAER LOGO O UNA IMAGEN POR DFEFECTO PARA EVITAR ESTO
+                    if ( datos_productos[i].data()!["Logo"] != null &&  datos_productos[i].data()!["Logo"] != "") {
+                      img = datos_productos[i]['Logo'];
+                    }
+
+                    if ( datos_productos[i].data()!['Foto'] != null && datos_productos[i].data()!['Foto'] != "") {
+                      urlimage = datos_productos[i]['Foto'];
+                    }
+
+                    var cardImage = NetworkImage(
+                        urlimage);
+
+                    return Card(
+                      color: Colors.transparent,
+                        child:
+                        Column(
+
+                            children: [
+                              ListTile(
+                                // trailing: Icon(Icons.favorite_outline),
+                                title: Text(datos_productos[i]['Producto'].toString()),
+                                subtitle: Text(
+                                  datos_productos[i]['Unidad Medida'].toString(),
+                                  style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                                ),
+                                leading: CircleAvatar(
+                                    backgroundImage: NetworkImage(
+                                        img)),
+                              ),
+
+                              Container(
+                                height: 300.0,
+                                child: Ink.image(
+                                  image: cardImage,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+
+                              Container(
 
 
-                              CollectionReference datos= FirebaseFirestore.instance.collection('Negocios'); //Conecta a la conexion
-                              QuerySnapshot negocio= await datos.where('Id', isEqualTo: widget.id).get();
-                              if(negocio.docs.length>0){
-                                for(var doc in negocio.docs){
-                                  //var data =  doc.data();
-                                  var productosResultado = [];
-                                  try {
-                                    var productos = doc["Productos"];
+                                margin: const EdgeInsets.all(10.0),
+                                child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text("Producto: "+ datos_productos[i].data()!['Producto'].toString()),
+                                      Text("Precio: "+ datos_productos[i].data()!['Precio'].toString()),
+                                      Text("Unidad Medida: " + datos_productos[i].data()!['Unidad Medida'].toString()),
+                                      Text("Categoría: "+ datos_productos[i].data()!['Categoria'].toString()),
 
-                                    if (productos.length != 0) {
-                                      for (var i = 0; i < productos.length; i++) {
-                                        var productoInfo = productos[i];
-                                        var productoCompleto = await productoInfo["Producto"].get();
-                                        productosResultado.add({"precio":productoInfo["Precio"],
-                                          "Unidades":productoInfo["Unidades"],
-                                          "Producto": productoCompleto.data()
-                                        });
+                                    ]),
+
+                              ),
+
+                            ]
+                        )
+                    );
+                  },
+                ),
+
+            ]
+            ),
+          ),
+                            floatingActionButton: FloatingActionButton.extended(
+                              backgroundColor: Color(0xFF61D5D4),
+                              onPressed:()async{
+
+
+                                CollectionReference datos= FirebaseFirestore.instance.collection('Negocios'); //Conecta a la conexion
+                                QuerySnapshot negocio= await datos.where('Id', isEqualTo: widget.id).get();
+                                if(negocio.docs.length>0){
+                                  for(var doc in negocio.docs){
+                                    //var data =  doc.data();
+                                    var productosResultado = [];
+                                    try {
+                                      var productos = doc["Productos"];
+
+                                      if (productos.length != 0) {
+                                        for (var i = 0; i < productos.length; i++) {
+                                          var productoInfo = productos[i];
+                                          var productoCompleto = await productoInfo["Producto"].get();
+                                          productosResultado.add({"precio":productoInfo["Precio"],
+                                            "Unidades":productoInfo["Unidades"],
+                                            "Producto": productoCompleto.data()
+                                          });
+                                        }
                                       }
+                                    }catch(error){
+                                      print(error);
+                                      //es por que no existen productos en el negocio
+                                      print(doc["Nombre"] +" no tiene productos, agregar en la base de datos");
+
                                     }
-                                  }catch(error){
-                                    print(error);
-                                    //es por que no existen productos en el negocio
-                                    print(doc["Nombre"] +" no tiene productos, agregar en la base de datos");
+
+                                    tiendaOnTAP tienda = tiendaOnTAP(
+                                      doc['Nombre'],
+                                      doc['Celular'],
+                                      doc['Tipo'],
+                                      doc['Categoria'],
+                                      doc['Foto'],
+                                      doc['Dirección'],
+                                      doc['Id'],
+                                      doc['Geolocalización'],
+                                      doc['Teléfono'],
+                                      doc['Pagina Web'],
+                                      doc['Logo'],
+                                      productosResultado,
+                                    );
+
+
+                                Navigator.push(context, MaterialPageRoute(builder: (context)=> BkTiendas(tienda: tienda,cedula: widget.cedula)));
 
                                   }
-
-                                  tiendaOnTAP tienda = tiendaOnTAP(
-                                    doc['Nombre'],
-                                    doc['Celular'],
-                                    doc['Tipo'],
-                                    doc['Categoria'],
-                                    doc['Foto'],
-                                    doc['Dirección'],
-                                    doc['Id'],
-                                    doc['Geolocalización'],
-                                    doc['Teléfono'],
-                                    doc['Pagina Web'],
-                                    doc['Logo'],
-                                    productosResultado,
-                                  );
-
-
-                              Navigator.push(context, MaterialPageRoute(builder: (context)=> BkTiendas(tienda: tienda,cedula: widget.cedula)));
-
+                                }else{
+                                  print('ha fallado....');
                                 }
-                              }else{
-                                print('ha fallado....');
-                              }
 
 
 
-                              //Navigator.push(context, MaterialPageRoute(builder:(context)=> BkTienda(tienda: tiendaOnTAP(nombre, celular, tipo, categoria, foto, direccion, id, geolocalizacion, telefono, pagina, logo, productos))));
+                                //Navigator.push(context, MaterialPageRoute(builder:(context)=> BkTienda(tienda: tiendaOnTAP(nombre, celular, tipo, categoria, foto, direccion, id, geolocalizacion, telefono, pagina, logo, productos))));
 
-                            },
-                            label: Text("Ir a la tienda"),
-                            icon: Icon(Icons.arrow_forward_ios),
-                            // This trailing comma makes auto-formatting nicer for build methods.
-                          ),
+                              },
+                              label: Text("Ir a la tienda"),
+                              icon: Icon(Icons.arrow_forward_ios),
+                              // This trailing comma makes auto-formatting nicer for build methods.
+                            ),
 
+      ),
     );
 
 

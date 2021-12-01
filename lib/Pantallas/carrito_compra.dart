@@ -1,5 +1,4 @@
-import 'dart:ffi';
-
+//import 'dart:ffi';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equipo2_grupo15/Pantallas/lista_tiendas.dart';
 import 'package:equipo2_grupo15/Pantallas/negocios.dart';
@@ -28,6 +27,18 @@ class _carritoComprasState extends State<carritoCompras> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors:[
+                  Color(0xFF61D5D4),
+                  Color(0xFFFF6961)
+                ],
+                begin: Alignment.bottomRight,
+                end: Alignment.topLeft,
+              )
+          ),
+        ),
         title: Text("Carrito de Compras"),
       ),
 
@@ -113,87 +124,95 @@ class _carritoBarState extends State<carritoBar> {
 
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      backgroundColor: Colors.amber,
-      selectedItemColor: Colors.white,
-      unselectedItemColor: Colors.white,
-      items: [
-        BottomNavigationBarItem(
-            icon: Icon(Icons.add_shopping_cart_sharp, size: 30),
-            label: "Agregar\nCurso"),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.app_registration, size: 30), label: "TOTAL"),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.add_business_sharp, size: 30),
-            label: "Confirmar\nCompra")
-      ],
-      onTap: (indice) {
-        if (indice == 0) {
-          Navigator.pop(context);
-        } else if (indice == 1) {
-          int totalPedido = 0;
-          for (int i = 0; i < widget.listaPedido.length; i++) {
-            totalPedido += widget.listaPedido[i].total;
+    return Container(
+      decoration: BoxDecoration(
+          gradient: new LinearGradient(
+              begin: const FractionalOffset(0.4, 0.1),
+              end: const FractionalOffset(1.0, 0.9),
+              colors: [Color(0xFF61D5D4), Color(0xFFFF6961)])),
+      child: BottomNavigationBar(
+        backgroundColor: Colors.transparent,
+        selectedItemColor: Colors.grey,
+        unselectedItemColor: Colors.grey,
+        items: [
+          BottomNavigationBarItem(
+            //backgroundColor: Colors.blue,
+              icon: Icon(Icons.add_shopping_cart_sharp, size: 30),
+              label: "Agregar\nCurso"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.app_registration, size: 30), label: "TOTAL"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.add_business_sharp, size: 30),
+              label: "Confirmar\nCompra")
+        ],
+        onTap: (indice) {
+          if (indice == 0) {
+            Navigator.pop(context);
+          } else if (indice == 1) {
+            int totalPedido = 0;
+            for (int i = 0; i < widget.listaPedido.length; i++) {
+              totalPedido += widget.listaPedido[i].total;
+            }
+            print("Total es: " + totalPedido.toString());
+            showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                      title: Text(
+                        "Total de la Compra:",
+                        style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.green),
+                      ),
+                      contentPadding: EdgeInsets.all(20.0),
+                      content: Text(
+                        totalPedido.toString(),
+                        style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.green),
+                      ),
+                    ));
+          } else {
+            showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                      title: Text(
+                        "Confirmar la Compra:",
+                        style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.green),
+                      ),
+                      contentPadding: EdgeInsets.all(23.0),
+                      content: Text(
+                        "Confirma el registro de la Compra.",
+                        style: TextStyle(fontSize: 16.0, color: Colors.green),
+                      ),
+                      actions: [
+                        ElevatedButton(
+                            onPressed: () {
+                              registrarP();
+                              Fluttertoast.showToast(
+                                  msg: "Pedido Registrado exitosamente.",
+                                  fontSize: 20,
+                                  backgroundColor: Colors.red,
+                                  textColor: Colors.lightGreen,
+                                  toastLength: Toast.LENGTH_LONG,
+                                  gravity: ToastGravity.CENTER);
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=> Home(nombre: 'Gracias por', cedula: widget.cliente, apellido: 'Tu Compra')  ));
+                            },
+                            child: Text("Confirmar")),
+                        ElevatedButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Text("Cancelar"))
+                      ],
+                    ));
           }
-          print("Total es: " + totalPedido.toString());
-          showDialog(
-              context: context,
-              builder: (context) => AlertDialog(
-                    title: Text(
-                      "Total de la Compra:",
-                      style: TextStyle(
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.green),
-                    ),
-                    contentPadding: EdgeInsets.all(20.0),
-                    content: Text(
-                      totalPedido.toString(),
-                      style: TextStyle(
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.green),
-                    ),
-                  ));
-        } else {
-          showDialog(
-              context: context,
-              builder: (context) => AlertDialog(
-                    title: Text(
-                      "Confirmar la Compra:",
-                      style: TextStyle(
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.green),
-                    ),
-                    contentPadding: EdgeInsets.all(23.0),
-                    content: Text(
-                      "Confirma el registro de la Compra.",
-                      style: TextStyle(fontSize: 16.0, color: Colors.green),
-                    ),
-                    actions: [
-                      ElevatedButton(
-                          onPressed: () {
-                            registrarP();
-                            Fluttertoast.showToast(
-                                msg: "Pedido Registrado exitosamente.",
-                                fontSize: 20,
-                                backgroundColor: Colors.red,
-                                textColor: Colors.lightGreen,
-                                toastLength: Toast.LENGTH_LONG,
-                                gravity: ToastGravity.CENTER);
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=> Home(nombre: 'Gracias por', cedula: widget.cliente, apellido: 'Tu Compra')  ));
-                          },
-                          child: Text("Confirmar")),
-                      ElevatedButton(
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                          child: Text("Cancelar"))
-                    ],
-                  ));
-        }
-      },
+        },
+      ),
     );
   }
 }
