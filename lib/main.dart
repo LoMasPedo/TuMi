@@ -65,7 +65,7 @@ class _PaginaBienvenidaState extends State<PaginaBienvenida> {
           Container(
 
               child:
-              imagen(url: "https://raw.githubusercontent.com/festupinans/equipo2_grupo15/master/lib/Imagenes/TuMI.png")
+              imagen(url: "https://github.com/festupinans/equipo2_grupo15/blob/master/lib/Imagenes/TuMi2.png?raw=true")
           ),
 
 

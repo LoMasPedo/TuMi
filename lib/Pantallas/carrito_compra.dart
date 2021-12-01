@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equipo2_grupo15/Pantallas/lista_tiendas.dart';
 import 'package:equipo2_grupo15/Pantallas/negocios.dart';
@@ -8,6 +10,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'bk_tiendas.dart';
+import 'bienvenida.dart';
 
 class carritoCompras extends StatefulWidget {
   final List<produc> pedido;
@@ -69,6 +72,7 @@ class carritoBar extends StatefulWidget {
   final List<produc> listaPedido;
   final String negocio;
   final String cliente;
+
   const carritoBar(
       {required this.listaPedido, required this.negocio,required this.cliente});
 
@@ -178,7 +182,7 @@ class _carritoBarState extends State<carritoBar> {
                                 textColor: Colors.lightGreen,
                                 toastLength: Toast.LENGTH_LONG,
                                 gravity: ToastGravity.CENTER);
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=>negocios(cedula: widget.cliente) ));
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=> Home(nombre: 'Gracias por', cedula: widget.cliente, apellido: 'Tu Compra')  ));
                           },
                           child: Text("Confirmar")),
                       ElevatedButton(

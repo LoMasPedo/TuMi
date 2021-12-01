@@ -1,3 +1,5 @@
+// import 'dart:html';
+
 import 'package:equipo2_grupo15/Pantallas/carrito_compra.dart';
 import 'package:equipo2_grupo15/Pantallas/negocios.dart';
 import 'package:flutter/material.dart';
@@ -12,10 +14,10 @@ class BkTiendas extends StatelessWidget {
   final String cedula;
   const BkTiendas({required this.tienda, required this.cedula});
 
-
-
   @override
+
   Widget build(BuildContext context) {
+
     // TODO: implement build
 
     var img =
@@ -71,8 +73,8 @@ class BkTiendas extends StatelessWidget {
                                                 )));
                                   },
                                   child: Icon(Icons.arrow_back_ios_new),
-                                  elevation: 50.0,
-                                  backgroundColor: Color(0xff2a2a2a),
+                                  elevation: 30.0,
+                                  backgroundColor: Color(0xFFFF6961),
                                 )),
                             Text(
                               "" + tienda.Nombre,
@@ -126,11 +128,11 @@ class BkTiendas extends StatelessWidget {
                                       )),
                                   Container(
                                     width:
-                                        MediaQuery.of(context).size.width * 0.5,
+                                        MediaQuery.of(context).size.width * 0.45,
                                     child: Column(
                                       children: [
                                         Padding(
-                                          padding: EdgeInsets.all(20),
+                                          padding: EdgeInsets.all(10),
                                           child: CircleAvatar(
                                             backgroundImage:
                                                 NetworkImage(tienda.Logo),
@@ -187,6 +189,10 @@ class BkTiendas extends StatelessWidget {
                                     itemCount: tienda.Productos.length,
                                     itemBuilder:
                                         (BuildContext ctxt, int index) {
+
+                                      int contt = 0;
+                                      var can = TextEditingController();
+
                                       //return new Text(tienda.Productos[index]["Producto"]["Producto"]);
                                       print(tienda.Productos[index]);
 
@@ -199,30 +205,106 @@ class BkTiendas extends StatelessWidget {
                                             ["Producto"]["Logo"];
                                       }
 
-                                      return new Card(
+                                      return Card(
                                         child: ListTile(
                                           leading: CircleAvatar(
                                               backgroundImage:
                                                   NetworkImage(img)),
-                                          trailing: addbotonmas(
-                                              j: index,
-                                              nombre: tienda.Productos[index]
-                                                  ["Producto"]["Producto"],
-                                              categoria: tienda.Productos[index]
-                                                  ["Producto"]["Categoria"],
-                                              precio: tienda.Productos[index]
-                                                  ["precio"]),
                                           title: Text(tienda.Productos[index]
                                               ["Producto"]["Producto"]),
-                                          subtitle: Text("Stock: " +
-                                              tienda.Productos[index]
-                                                  ["Unidades"] +
-                                              "\nPrecio: " +
-                                              tienda.Productos[index]
-                                                  ["precio"] +
-                                              "\nCategoria: " +
-                                              tienda.Productos[index]
-                                                  ["Producto"]["Categoria"]),
+                                          subtitle: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Container(
+                                                child: Padding(
+                                                  padding: EdgeInsets.fromLTRB(
+                                                      0.0, 0.0, 0.0, 10.0),
+                                                  child: Text("Stock: " +
+                                                      tienda.Productos[index]
+                                                          ["Unidades"] +
+                                                      "\nPrecio: " +
+                                                      tienda.Productos[index]
+                                                          ["precio"] +
+                                                      "\nCategoria: " +
+                                                      tienda.Productos[index]
+                                                              ["Producto"]
+                                                          ["Categoria"]),
+                                                ),
+                                              ),
+                                              // Row(
+                                              //   children: [
+                                              //     botones(),
+                                              //   ],
+                                              // ),
+                                              Container(
+                                                child: Row(
+                                                children: [
+                                                  Container(
+                                                    child: ElevatedButton(
+                                                        style: ElevatedButton.styleFrom(
+                                                            primary: Color(
+                                                                0xFFFF6961),
+
+                                                            textStyle: TextStyle(
+                                                                fontSize: 11,
+                                                                fontWeight:
+                                                                FontWeight
+                                                                    .bold)),
+                                                        onPressed: () {
+                                                          contt++;
+                                                          print(contt.toString());
+                                                        },
+                                                        child: Icon(Icons.add)),
+                                                  ),
+
+                                                  Container(
+                                                    child: Padding(
+                                                      padding:
+                                                      EdgeInsets.all(15.0),
+                                                      child: Text(contt.toString()),
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    child: ElevatedButton(
+                                                      style: ElevatedButton.styleFrom(
+                                                          primary:
+                                                          Color(0xFFFF6961),
+
+                                                          textStyle: TextStyle(
+                                                              fontSize: 11,
+                                                              fontWeight:
+                                                              FontWeight
+                                                                  .bold)),
+                                                      onPressed: () {
+
+                                                        contt--;
+                                                        if (contt < 0) {
+                                                          contt = 0;
+                                                        }
+                                                        print(contt.toString());
+                                                      },
+                                                      child: Icon(Icons.remove),
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    padding: EdgeInsets.fromLTRB(40, 0, 0, 0),
+                                                    child: Icon(Icons.add_shopping_cart, size: 40, color: Color(0xFFFF6961)),
+                                                  ),
+
+                                                ],
+                                              ),
+                                              ),
+                                            ],
+                                          ),
+                                          onTap: () {
+                                            int total = contt * int.parse( tienda.Productos[index]["precio"]);
+                                                p = produc(tienda.Productos[index]["Producto"]["Producto"],  tienda.Productos[index]["Producto"]["Categoria"],  tienda.Productos[index]["precio"], contt, total);
+                                                print(contt);
+                                                print( tienda.Productos[index]["precio"].toString());
+                                                print(total);
+                                                pedido.add(p);
+                                          },
                                         ),
                                       );
                                     },
@@ -246,37 +328,78 @@ class BkTiendas extends StatelessWidget {
           floatingActionButton: FloatingActionButton.extended(
               backgroundColor: Color(0xff2a2a2a),
               onPressed: () {
-
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => carritoCompras(pedido: pedido, cedula: cedula, id: tienda.id)));
+                        builder: (context) => carritoCompras(
+                            pedido: pedido, cedula: cedula, id: tienda.id)));
               },
               label: Text("Comprar"),
               icon: Icon(Icons
                   .shopping_cart) // This trailing comma makes auto-formatting nicer for build methods.
               )),
     );
-
   }
-
 }
 
-
 List<produc> pedido = [];
+produc p = produc('', '', '', 0, 0);
 
+class botones extends StatefulWidget {
+  const botones({Key? key}) : super(key: key);
+
+  @override
+  _botonesState createState() => _botonesState();
+}
+
+class _botonesState extends State<botones> {
+
+  int contt = 0;
+  var can = TextEditingController();
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Container(
+          child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  primary: Color(0xFFFF6961),
+                  padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                  textStyle:
+                      TextStyle(fontSize: 11, fontWeight: FontWeight.bold)),
+              onPressed: () {
+                contt++;
+              },
+              child: Icon(Icons.add)),
+        ),
+        Container(
+          child: TextField(
+            controller: can,
+            decoration: InputDecoration(hintText: contt.toString()),
+          ),
+        ),
+        Container(
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+                primary: Color(0xFFFF6961),
+                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                textStyle:
+                    TextStyle(fontSize: 11, fontWeight: FontWeight.bold)),
+            onPressed: () {
+              contt--;
+              if (contt < 0) {
+                contt = 0;
+              }
+            },
+            child: Icon(Icons.remove),
+          ),
+        ),
+      ],
+    );
+  }
+}
 
 class addbotonmas extends StatefulWidget {
-  final int j;
-  final String nombre;
-  final String categoria;
-  final String precio;
-  const addbotonmas(
-      {required this.j,
-      required this.nombre,
-      required this.categoria,
-      required this.precio});
-
   @override
   _addbotonmasState createState() => _addbotonmasState();
 }
@@ -286,56 +409,40 @@ class _addbotonmasState extends State<addbotonmas> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                primary: Color(0xFFFF6961),
-                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                textStyle:
-                    TextStyle(fontSize: 11, fontWeight: FontWeight.bold)),
-            onPressed: () {
-              cont++;
-              int total = cont * int.parse(widget.precio);
+      child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+              primary: Color(0xFFFF6961),
+              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+              textStyle: TextStyle(fontSize: 11, fontWeight: FontWeight.bold)),
+          onPressed: () {
+            //   if (pedido['nombre'] == widget.nombre || p.nombre == widget.nombre) {
+            //     print('El producto ya ha sido seleccionado');
+            //   } else {
+            //     cont++;
+            //     int total = cont * int.parse(widget.precio);
+            //     p = produc(
+            //         widget.nombre, widget.categoria, widget.precio, cont,
+            //         total);
+            //     print(cont);
+            //     print(widget.precio.toString());
+            //     print(total);
+            //     pedido.add(p);
+            //
+            // }
 
-              produc p = produc(widget.nombre, widget.categoria, widget.precio, cont, total);
+            // if (cont == 1) {
 
-              // if (cont == 1) {
-              pedido.add(p);
-              // cont = 1;
-              // }
-              // if (cont > 1) {
-              //   pedido.remove(p);
-              //   cont = 0;
-              // }
-              print(cont);
-              print(widget.precio.toString());
-              print(total);
-            },
-            child: Icon(Icons.add)
-        ),
-
+            // cont = 1;
+            // }
+            // if (cont > 1) {
+            //   pedido.remove(p);
+            //   cont = 0;
+            // }
+          },
+          child: Icon(Icons.add)),
     );
-
   }
 }
-
-class prueba extends StatefulWidget {
-  const prueba({Key? key}) : super(key: key);
-
-  @override
-  _pruebaState createState() => _pruebaState();
-}
-
-class _pruebaState extends State<prueba> {
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
-}
-
-
-
-
-
 
 class produc {
   String nombre = '';
