@@ -12,6 +12,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equipo2_grupo15/global.dart' as global;
 import 'package:fluttertoast/fluttertoast.dart';
 
+
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   Firebase.initializeApp().then((value) {
