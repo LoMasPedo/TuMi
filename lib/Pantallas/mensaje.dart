@@ -15,6 +15,7 @@ class _mensajeState extends State<mensaje> {
 
     super.initState();
     final objeto = new recibiendoMensajes();
+    objeto.notificaciones();
   }
 
   @override
