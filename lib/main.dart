@@ -12,6 +12,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equipo2_grupo15/global.dart' as global;
 import 'package:fluttertoast/fluttertoast.dart';
 
+import 'mapas.dart';
+
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   Firebase.initializeApp().then((value) {
@@ -245,7 +247,19 @@ class menu extends StatelessWidget {
                   },
                 ),
               ),
-
+              Container(
+                margin: const EdgeInsets.only(top: 2),
+                padding: const EdgeInsets.all(10),
+                width: double.infinity,
+                color:  Colors.grey[50],
+                child: ListTile(
+                  leading: Icon(Icons.notifications , size: 30, color:  Color(0xFFFF6961)),
+                  title: Text('Mapa'),
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>mapas()));
+                  },
+                ),
+              ),
 
               // Container(
               //   margin: const EdgeInsets.only(top: 2),
@@ -294,3 +308,13 @@ class datosCliente2 {
   }
 
 }
+/*class datosMapa {
+  String Nombre= "";
+  String Categoria= "";
+  String Direccion= "";
+  String Celular= "";
+  String Tipo= "";
+  late GeoPoint posicion;
+
+
+}*/ //esto es para llamar los datos en el mapa, tenemos que mirar donde lo vamos a ubicar

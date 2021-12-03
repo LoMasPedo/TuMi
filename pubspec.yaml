@@ -40,6 +40,7 @@ dependencies:
     # add this line to your dependencies
   fluttertoast: ^8.0.8
   firebase_messaging:
+  google_maps_flutter: ^2.1.1
 
 
 dev_dependencies:
