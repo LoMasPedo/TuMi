@@ -8,8 +8,9 @@ class recibiendoMensajes{
 
       mensaje.requestPermission();
       mensaje.getToken().then((token){
-      print(token);
-          print("-------T O K E N -------");
+        print("-------T O K E N -------");
+        print(token);
+
        });
       
       FirebaseMessaging.onMessage.listen((RemoteMessage message) {//se usa cuando la app esta abierta
