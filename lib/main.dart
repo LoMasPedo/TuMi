@@ -3,6 +3,7 @@ import 'package:equipo2_grupo15/Pantallas/actualizar_cliente_v2.dart';
 import 'package:equipo2_grupo15/Pantallas/bienvenida.dart';
 import 'package:equipo2_grupo15/Pantallas/login_cliente.dart';
 import 'package:equipo2_grupo15/Pantallas/login_tendero.dart';
+import 'package:equipo2_grupo15/Pantallas/mensaje.dart';
 import 'package:equipo2_grupo15/Pantallas/modulo_pedido.dart';
 import 'package:equipo2_grupo15/Pantallas/registro_cliente.dart';
 import 'package:flutter/material.dart';
@@ -173,6 +174,8 @@ class menu extends StatelessWidget {
                   },
                 ),
               ),
+
+
               // Container(
               //   margin: const EdgeInsets.only(top: 2),
               //   padding: const EdgeInsets.all(10),
@@ -229,7 +232,19 @@ class menu extends StatelessWidget {
                 ),
               ),
 
-
+              Container(
+                margin: const EdgeInsets.only(top: 2),
+                padding: const EdgeInsets.all(10),
+                width: double.infinity,
+                color:  Colors.cyan[50],
+                child: ListTile(
+                  leading: Icon(Icons.notifications , size: 30, color:  Color(0xFFFF6961)),
+                  title: Text('Notificaciones'),
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>mensaje()));
+                  },
+                ),
+              ),
 
 
               // Container(

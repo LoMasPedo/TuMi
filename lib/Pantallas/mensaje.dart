@@ -1,0 +1,28 @@
+import 'package:equipo2_grupo15/Pantallas/RecibirMensaje.dart';
+import 'package:flutter/material.dart';
+
+
+class mensaje extends StatefulWidget {
+  const mensaje({Key? key}) : super(key: key);
+
+  @override
+  _mensajeState createState() => _mensajeState();
+}
+
+class _mensajeState extends State<mensaje> {
+
+  void initState(){
+
+    super.initState();
+    final objeto = new recibiendoMensajes();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Notificaciones"),
+      ),
+    );
+  }
+}

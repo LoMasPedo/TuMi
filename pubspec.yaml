@@ -39,6 +39,8 @@ dependencies:
   cloud_firestore:
     # add this line to your dependencies
   fluttertoast: ^8.0.8
+  firebase_messaging:
+
 
 dev_dependencies:
   flutter_test:
