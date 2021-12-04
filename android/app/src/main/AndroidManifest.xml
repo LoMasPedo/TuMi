@@ -4,7 +4,8 @@
         android:label="equipo2_grupo15"
         android:icon="@mipmap/ic_launcher">
        <meta-data android:name="com.google.android.geo.API_KEY"
-           android:value="AIzaSyD915BCzbGU7iLvky81oJq03mNAo1tdy8M"/>
+           android:value="AIzaSyD4Hy42AOYC9rqfi8gRnHa586m9dS4BVFI"/>
+
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
