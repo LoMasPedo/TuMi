@@ -187,7 +187,7 @@ class _productosState extends State<productos> {
                         onTap: () => {
                           print(datos_productos[i]['Producto'].toString()),
                           // Navigator.push(context, MaterialPageRoute(builder: (context)=> consultaNegocios(datos_negocios[i])))
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=> consultaProductos(id: datos_productos[i]['Id'].toString(), cedula: widget.cedula)))
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=> consultaProductos(id: datos_productos[i]['Id'].toString(), cedula: widget.cedula, IdNego: datos_productos[i]['IdNegocio'].toString())))
                         }
                     )
                 );
