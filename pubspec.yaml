@@ -41,6 +41,7 @@ dependencies:
   fluttertoast: ^8.0.8
   firebase_messaging:
   google_maps_flutter: ^2.1.1
+  google_maps_flutter_web: ^0.3.2
 
 
 dev_dependencies:

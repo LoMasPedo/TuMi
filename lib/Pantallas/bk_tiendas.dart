@@ -8,6 +8,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'productos.dart';
 import 'bienvenida.dart';
+import '../mapas.dart';
 
 class BkTiendas extends StatelessWidget {
   final tiendaOnTAP tienda;
@@ -160,6 +161,25 @@ class BkTiendas extends StatelessWidget {
                                                 style: ElevatedButton.styleFrom(
                                                     primary: Color(0xFFFF6961),
                                                     padding:
+                                                    EdgeInsets.symmetric(
+                                                        horizontal: 15,
+                                                        vertical: 10),
+                                                    textStyle: TextStyle(
+                                                        fontSize: 11,
+                                                        fontWeight:
+                                                        FontWeight.bold)),
+                                                onPressed: () {
+                                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>mapas()));
+                                                 // launch(tienda.);
+                                                },
+                                                child: Text("Ver Ubicación"))
+                                        ),
+
+                                        Container(
+                                            child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                    primary: Color(0xFFFF6961),
+                                                    padding:
                                                         EdgeInsets.symmetric(
                                                             horizontal: 15,
                                                             vertical: 10),
@@ -170,7 +190,8 @@ class BkTiendas extends StatelessWidget {
                                                 onPressed: () {
                                                   launch(tienda.Pagina);
                                                 },
-                                                child: Text("Mi pagina web"))),
+                                                child: Text("Mi pagina web"))
+                                        ),
                                       ],
                                     ),
                                   ),
