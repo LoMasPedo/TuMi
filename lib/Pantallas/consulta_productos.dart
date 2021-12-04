@@ -8,7 +8,8 @@ import 'negocios.dart';
 class consultaProductos extends StatefulWidget {
   final String id;
   final String cedula;
-  const consultaProductos({required this.id, required this.cedula});
+  final String IdNego;
+  const consultaProductos({required this.id, required this.cedula, required this.IdNego});
 
   @override
   _consultaProductosState createState() => _consultaProductosState();
@@ -149,9 +150,8 @@ class _consultaProductosState extends State<consultaProductos>{
                               backgroundColor: Color(0xFF61D5D4),
                               onPressed:()async{
 
-
                                 CollectionReference datos= FirebaseFirestore.instance.collection('Negocios'); //Conecta a la conexion
-                                QuerySnapshot negocio= await datos.where('Id', isEqualTo: widget.id).get();
+                                QuerySnapshot negocio= await datos.where('Id', isEqualTo: widget.IdNego).get();
                                 if(negocio.docs.length>0){
                                   for(var doc in negocio.docs){
                                     //var data =  doc.data();
