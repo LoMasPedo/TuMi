@@ -1,10 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-//import 'package:google_maps_flutter_web/google_maps_flutter_web.dart';
+import 'package:google_maps_flutter_web/google_maps_flutter_web.dart';
 
 class mapas extends StatefulWidget {
-  const mapas({Key? key}) : super(key: key);
+  //const mapas({Key? key }) : super(key: key);
+  final String geolocalizacion;
+
+  const mapas({required this.geolocalizacion});
+
 
   @override
   _mapasState createState() => _mapasState();
@@ -16,7 +20,12 @@ class _mapasState extends State<mapas> {
 
   @override
   Widget build(BuildContext context) {
-    final posicion = CameraPosition(target: LatLng(4.728276250752934,-74.05270287353575),
+
+    double Lat = double.parse(widget.geolocalizacion.toString().split(",")[0]);//.slip(",")[0];
+    double Lng = double.parse(widget.geolocalizacion.toString().split(",")[1]);
+
+
+    final posicion = CameraPosition(target: LatLng(Lat,Lng),
     zoom: 15
     );
 
@@ -25,7 +34,7 @@ class _mapasState extends State<mapas> {
     marcador.add(
       Marker(
           markerId: MarkerId(cedula),
-        position: LatLng(4.728276250752934,-74.05270287353575),
+        position: LatLng(Lat,Lng),
         icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueCyan),
         infoWindow: InfoWindow(
           title: "Negocio de Prueba",

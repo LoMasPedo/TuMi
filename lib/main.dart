@@ -256,7 +256,7 @@ class menu extends StatelessWidget {
                   leading: Icon(Icons.notifications , size: 30, color:  Color(0xFFFF6961)),
                   title: Text('Mapa'),
                   onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>mapas()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>mapas(geolocalizacion:"4.728276250752934,-74.05270287353575")));
                   },
                 ),
               ),
