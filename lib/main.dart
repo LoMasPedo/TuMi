@@ -247,7 +247,7 @@ class menu extends StatelessWidget {
                   },
                 ),
               ),
-              Container(
+            /*  Container(
                 margin: const EdgeInsets.only(top: 2),
                 padding: const EdgeInsets.all(10),
                 width: double.infinity,
@@ -259,7 +259,7 @@ class menu extends StatelessWidget {
                     Navigator.push(context, MaterialPageRoute(builder: (context)=>mapas(geolocalizacion:"4.728276250752934,-74.05270287353575")));
                   },
                 ),
-              ),
+              ),*/
 
               // Container(
               //   margin: const EdgeInsets.only(top: 2),

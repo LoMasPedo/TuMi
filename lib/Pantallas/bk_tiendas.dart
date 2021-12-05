@@ -170,7 +170,7 @@ class BkTiendas extends StatelessWidget {
                                                         FontWeight.bold)),
                                                 onPressed: () {
 
-                                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>mapas(geolocalizacion:tienda.Geolocalizacion.toString())));
+                                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>mapas(tienda:tienda)));
                                                  // launch(tienda.);
                                                 },
                                                 child: Text("Ver Ubicación"))

@@ -1,13 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+
+import 'Pantallas/negocios.dart';
 //import 'package:google_maps_flutter_web/google_maps_flutter_web.dart';
 
 class mapas extends StatefulWidget {
   //const mapas({Key? key }) : super(key: key);
-  final String geolocalizacion;
+  //final String geolocalizacion;
+  final tiendaOnTAP tienda;
 
-  const mapas({required this.geolocalizacion});
+  const mapas({required this.tienda});
 
 
   @override
@@ -21,8 +24,8 @@ class _mapasState extends State<mapas> {
   @override
   Widget build(BuildContext context) {
 
-    double Lat = double.parse(widget.geolocalizacion.toString().split(",")[0]);//.slip(",")[0];
-    double Lng = double.parse(widget.geolocalizacion.toString().split(",")[1]);
+    double Lat = double.parse(widget.tienda.Geolocalizacion.toString().split(",")[0]);//.slip(",")[0];
+    double Lng = double.parse(widget.tienda.Geolocalizacion.toString().split(",")[1]);
 
 
     final posicion = CameraPosition(target: LatLng(Lat,Lng),
@@ -31,18 +34,21 @@ class _mapasState extends State<mapas> {
 
     final Set<Marker> marcador = Set();
     String cedula= "123456";
-    marcador.add(
-      Marker(
-          markerId: MarkerId(cedula),
+
+
+    marcador.add(Marker(
+        markerId: MarkerId(widget.tienda.id),
+
+        visible: true,
         position: LatLng(Lat,Lng),
         icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueCyan),
         infoWindow: InfoWindow(
-          title: "Negocio de Prueba",
-          snippet: "Supermercado y Abarrotes"
+            title: widget.tienda.Nombre,
+            snippet: "Tel: "+ widget.tienda.Celular +" Dir: "+ widget.tienda.Direccion
         )
+    ));
 
-      )
-    );
+
     return Scaffold(
 
       appBar: AppBar(
@@ -69,7 +75,7 @@ class _mapasState extends State<mapas> {
           zoomGesturesEnabled: false,//activar - desactivar zoom con la mano
           zoomControlsEnabled: true,// desactivar botones zomm
           mapType: MapType.normal,
-            markers: marcador,
+          markers: marcador,
         ),
       ),
     );
