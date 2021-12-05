@@ -33,9 +33,7 @@ class _mapasState extends State<mapas> {
     );
 
     final Set<Marker> marcador = Set();
-    String cedula= "123456";
-
-
+    
     marcador.add(Marker(
         markerId: MarkerId(widget.tienda.id),
 
