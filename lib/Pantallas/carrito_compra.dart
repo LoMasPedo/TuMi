@@ -161,7 +161,7 @@ class _carritoBarState extends State<carritoBar> {
                         style: TextStyle(
                             fontSize: 20.0,
                             fontWeight: FontWeight.bold,
-                            color: Colors.green),
+                            color: Colors.black),
                       ),
                       contentPadding: EdgeInsets.all(20.0),
                       content: Text(
@@ -169,7 +169,7 @@ class _carritoBarState extends State<carritoBar> {
                         style: TextStyle(
                             fontSize: 20.0,
                             fontWeight: FontWeight.bold,
-                            color: Colors.green),
+                            color: Colors.black54),
                       ),
                     ));
           } else {
@@ -181,12 +181,12 @@ class _carritoBarState extends State<carritoBar> {
                         style: TextStyle(
                             fontSize: 20.0,
                             fontWeight: FontWeight.bold,
-                            color: Colors.green),
+                            color: Colors.black),
                       ),
                       contentPadding: EdgeInsets.all(23.0),
                       content: Text(
                         "Confirma el registro de la Compra.",
-                        style: TextStyle(fontSize: 16.0, color: Colors.green),
+                        style: TextStyle(fontSize: 16.0, color: Colors.black54),
                       ),
                       actions: [
                         ElevatedButton(
@@ -194,11 +194,11 @@ class _carritoBarState extends State<carritoBar> {
                               registrarP();
                               Fluttertoast.showToast(
                                   msg: "Pedido Registrado exitosamente.",
-                                  fontSize: 20,
-                                  backgroundColor: Colors.red,
-                                  textColor: Colors.lightGreen,
+                                  fontSize: 15,
+                                  backgroundColor: Colors.black,
+                                  textColor: Colors.white,
                                   toastLength: Toast.LENGTH_LONG,
-                                  gravity: ToastGravity.CENTER);
+                                  gravity: ToastGravity.BOTTOM);
                               Navigator.push(context, MaterialPageRoute(builder: (context)=> Home(nombre: 'Gracias por', cedula: widget.cliente, apellido: 'Tu Compra')  ));
                             },
                             child: Text("Confirmar")),

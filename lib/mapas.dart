@@ -65,8 +65,8 @@ class _mapasState extends State<mapas> {
         title: Text ("Geolocalización"),
       ),
       body: Container(
-        width: 400,
-        height: 600,
+       // width: 400,
+        //height: 600,
         child: GoogleMap(
           initialCameraPosition : posicion,
           scrollGesturesEnabled: true,//activar - desactivar mover el mapa
