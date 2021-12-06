@@ -10,29 +10,32 @@ import 'productos.dart';
 import 'bienvenida.dart';
 import '../mapas.dart';
 
-class BkTiendas extends StatelessWidget {
+class BkTiendas extends StatefulWidget {
   final tiendaOnTAP tienda;
   final String cedula;
+
   const BkTiendas({required this.tienda, required this.cedula});
 
   @override
+  State<BkTiendas> createState() => _BkTiendasState();
+}
 
+class _BkTiendasState extends State<BkTiendas> {
+  @override
   Widget build(BuildContext context) {
-
     // TODO: implement build
 
-    var img =
-        "https://raw.githubusercontent.com/festupinans/equipo2_grupo15/master/lib/Imagenes/icono-tienda.jpg";
+    var img = "https://raw.githubusercontent.com/festupinans/equipo2_grupo15/master/lib/Imagenes/icono-tienda.jpg";
 
     var urlimage = 'https://source.unsplash.com/random/800x600?market';
 
     // ESTO FUE NECESARIO YA QUE NO TODOS LOS REGISTROS TRAEN LOGO, DEBERIAN TRAER LOGO O UNA IMAGEN POR DFEFECTO PARA EVITAR ESTO
-    if (tienda.Logo != null && tienda.Logo != "") {
-      img = tienda.Logo;
+    if (widget.tienda.Logo != null && widget.tienda.Logo != "") {
+      img = widget.tienda.Logo;
     }
 
-    if (tienda.Foto != null && tienda.Foto != "") {
-      urlimage = tienda.Foto;
+    if (widget.tienda.Foto != null && widget.tienda.Foto != "") {
+      urlimage = widget.tienda.Foto;
     }
 
     var cardImage = NetworkImage(urlimage);
@@ -51,11 +54,6 @@ class BkTiendas extends StatelessWidget {
                 new Positioned(
                     child: Container(
                         margin: new EdgeInsets.only(bottom: 30),
-                        /*decoration: new BoxDecoration(
-                              gradient: new LinearGradient(
-                                  begin: const FractionalOffset(1.0, 0.1),
-                                  end: const FractionalOffset(1.0, 0.9),
-                                  colors: [Color(0xFF61D5D4), Color(0xFFFF6961)])),*/
                         width: MediaQuery.of(context).size.width,
                         child: Column(children: [
                           Container(
@@ -78,7 +76,7 @@ class BkTiendas extends StatelessWidget {
                                   backgroundColor: Color(0xFFFF6961),
                                 )),
                             Text(
-                              "" + tienda.Nombre,
+                              "" + widget.tienda.Nombre,
                               style: const TextStyle(
                                 fontSize: 25,
                                 fontWeight: FontWeight.w600,
@@ -122,60 +120,45 @@ class BkTiendas extends StatelessWidget {
                                           child: ClipRRect(
                                               borderRadius:
                                                   BorderRadius.circular(30),
-                                              child:
-                                                  Image.network(tienda.Foto)),
+                                              child: Image.network(
+                                                  widget.tienda.Foto)),
                                           // fit: BoxFit.cover
                                         ),
                                       )),
                                   Container(
-                                    width:
-                                        MediaQuery.of(context).size.width * 0.45,
+                                    width: MediaQuery.of(context).size.width *
+                                        0.45,
                                     child: Column(
                                       children: [
                                         Padding(
                                           padding: EdgeInsets.all(10),
                                           child: CircleAvatar(
-                                            backgroundImage:
-                                                NetworkImage(tienda.Logo),
+                                            backgroundImage: NetworkImage(
+                                                widget.tienda.Logo),
                                             radius: 30,
                                           ),
                                         ),
-                                        Text("Celular: " + tienda.Celular,
+                                        Text(
+                                            "Celular: " + widget.tienda.Celular,
                                             style: const TextStyle(
                                                 fontSize: 12,
                                                 fontWeight: FontWeight.bold)),
-                                        Text("Telefono: " + tienda.Telefono,
+                                        Text(
+                                            "Telefono: " +
+                                                widget.tienda.Telefono,
                                             style: const TextStyle(
                                                 fontSize: 12,
                                                 fontWeight: FontWeight.bold)),
-                                        Text("Dirección: " + tienda.Direccion,
+                                        Text(
+                                            "Dirección: " +
+                                                widget.tienda.Direccion,
                                             style: const TextStyle(
                                                 fontSize: 12,
                                                 fontWeight: FontWeight.bold)),
-                                        Text("Tipo: " + tienda.Tipo,
+                                        Text("Tipo: " + widget.tienda.Tipo,
                                             style: const TextStyle(
                                                 fontSize: 12,
                                                 fontWeight: FontWeight.bold)),
-                                        Container(
-                                            child: ElevatedButton(
-                                                style: ElevatedButton.styleFrom(
-                                                    primary: Color(0xFFFF6961),
-                                                    padding:
-                                                    EdgeInsets.symmetric(
-                                                        horizontal: 15,
-                                                        vertical: 10),
-                                                    textStyle: TextStyle(
-                                                        fontSize: 11,
-                                                        fontWeight:
-                                                        FontWeight.bold)),
-                                                onPressed: () {
-
-                                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>mapas(tienda:tienda)));
-                                                 // launch(tienda.);
-                                                },
-                                                child: Text("Ver Ubicación"))
-                                        ),
-
                                         Container(
                                             child: ElevatedButton(
                                                 style: ElevatedButton.styleFrom(
@@ -189,10 +172,32 @@ class BkTiendas extends StatelessWidget {
                                                         fontWeight:
                                                             FontWeight.bold)),
                                                 onPressed: () {
-                                                  launch(tienda.Pagina);
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              mapas(
+                                                                  tienda: widget
+                                                                      .tienda)));
+                                                  // launch(tienda.);
                                                 },
-                                                child: Text("Mi pagina web"))
-                                        ),
+                                                child: Text("Ver Ubicación"))),
+                                        Container(
+                                            child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                    primary: Color(0xFFFF6961),
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            horizontal: 15,
+                                                            vertical: 10),
+                                                    textStyle: TextStyle(
+                                                        fontSize: 11,
+                                                        fontWeight:
+                                                            FontWeight.bold)),
+                                                onPressed: () {
+                                                  launch(widget.tienda.Pagina);
+                                                },
+                                                child: Text("Mi pagina web"))),
                                       ],
                                     ),
                                   ),
@@ -208,126 +213,13 @@ class BkTiendas extends StatelessWidget {
                                       MediaQuery.of(context).size.height * 0.50,
                                   child: new ListView.builder(
                                     scrollDirection: Axis.vertical,
-                                    itemCount: tienda.Productos.length,
+                                    itemCount: widget.tienda.Productos.length,
                                     itemBuilder:
                                         (BuildContext ctxt, int index) {
-
-                                      int contt = 0;
-                                      var can = TextEditingController();
-
-                                      //return new Text(tienda.Productos[index]["Producto"]["Producto"]);
-                                      print(tienda.Productos[index]);
-
-                                      var img =
-                                          "https://raw.githubusercontent.com/festupinans/equipo2_grupo15/master/lib/Imagenes/icono-tienda.jpg";
-                                      if (tienda.Productos[index]["Producto"]
-                                              ["Logo"] !=
-                                          null) {
-                                        img = tienda.Productos[index]
-                                            ["Producto"]["Logo"];
-                                      }
-
-                                      return Card(
-                                        child: ListTile(
-                                          leading: CircleAvatar(
-                                              backgroundImage:
-                                                  NetworkImage(img)),
-                                          title: Text(tienda.Productos[index]
-                                              ["Producto"]["Producto"]),
-                                          subtitle: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Container(
-                                                child: Padding(
-                                                  padding: EdgeInsets.fromLTRB(
-                                                      0.0, 0.0, 0.0, 10.0),
-                                                  child: Text("Stock: " +
-                                                      tienda.Productos[index]
-                                                          ["Unidades"] +
-                                                      "\nPrecio: " +
-                                                      tienda.Productos[index]
-                                                          ["precio"] +
-                                                      "\nCategoria: " +
-                                                      tienda.Productos[index]
-                                                              ["Producto"]
-                                                          ["Categoria"]),
-                                                ),
-                                              ),
-                                              // Row(
-                                              //   children: [
-                                              //     botones(),
-                                              //   ],
-                                              // ),
-                                              Container(
-                                                child: Row(
-                                                children: [
-                                                  Container(
-                                                    child: ElevatedButton(
-                                                        style: ElevatedButton.styleFrom(
-                                                            primary: Color(
-                                                                0xFFFF6961),
-
-                                                            textStyle: TextStyle(
-                                                                fontSize: 11,
-                                                                fontWeight:
-                                                                FontWeight
-                                                                    .bold)),
-                                                        onPressed: () {
-                                                          contt++;
-                                                          print(contt.toString());
-                                                        },
-                                                        child: Icon(Icons.add)),
-                                                  ),
-
-                                                  Container(
-                                                    child: Padding(
-                                                      padding:
-                                                      EdgeInsets.all(15.0),
-                                                      child: Text(contt.toString()),
-                                                    ),
-                                                  ),
-                                                  Container(
-                                                    child: ElevatedButton(
-                                                      style: ElevatedButton.styleFrom(
-                                                          primary:
-                                                          Color(0xFFFF6961),
-
-                                                          textStyle: TextStyle(
-                                                              fontSize: 11,
-                                                              fontWeight:
-                                                              FontWeight
-                                                                  .bold)),
-                                                      onPressed: () {
-
-                                                        contt--;
-                                                        if (contt < 0) {
-                                                          contt = 0;
-                                                        }
-                                                        print(contt.toString());
-                                                      },
-                                                      child: Icon(Icons.remove),
-                                                    ),
-                                                  ),
-                                                  Container(
-                                                    padding: EdgeInsets.fromLTRB(40, 0, 0, 0),
-                                                    child: Icon(Icons.add_shopping_cart, size: 40, color: Color(0xFFFF6961)),
-                                                  ),
-
-                                                ],
-                                              ),
-                                              ),
-                                            ],
-                                          ),
-                                          onTap: () {
-                                            int total = contt * int.parse( tienda.Productos[index]["precio"]);
-                                                p = produc(tienda.Productos[index]["Producto"]["Producto"],  tienda.Productos[index]["Producto"]["Categoria"],  tienda.Productos[index]["precio"], contt, total);
-                                                print(contt);
-                                                print( tienda.Productos[index]["precio"].toString());
-                                                print(total);
-                                                pedido.add(p);
-                                          },
-                                        ),
+                                      return cantidad(
+                                        tienda: widget.tienda,
+                                        cedula: widget.cedula,
+                                        index: index,
                                       );
                                     },
                                   ),
@@ -354,7 +246,9 @@ class BkTiendas extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                         builder: (context) => carritoCompras(
-                            pedido: pedido, cedula: cedula, id: tienda.id)));
+                            pedido: pedido,
+                            cedula: widget.cedula,
+                            id: widget.tienda.id)));
               },
               label: Text("Comprar"),
               icon: Icon(Icons
@@ -367,6 +261,7 @@ class BkTiendas extends StatelessWidget {
 List<produc> pedido = [];
 produc p = produc('', '', '', 0, 0);
 
+/*
 class botones extends StatefulWidget {
   const botones({Key? key}) : super(key: key);
 
@@ -375,7 +270,6 @@ class botones extends StatefulWidget {
 }
 
 class _botonesState extends State<botones> {
-
   int contt = 0;
   var can = TextEditingController();
   @override
@@ -465,6 +359,7 @@ class _addbotonmasState extends State<addbotonmas> {
     );
   }
 }
+*/
 
 class produc {
   String nombre = '';
@@ -479,5 +374,119 @@ class produc {
     this.precio = precio;
     this.cantidad = cantidad;
     this.total = total;
+  }
+}
+
+class cantidad extends StatefulWidget {
+  final tiendaOnTAP tienda;
+  final String cedula;
+  final int index;
+
+  const cantidad(
+      {required this.tienda, required this.cedula, required this.index});
+
+  @override
+  _cantidadState createState() => _cantidadState();
+}
+
+class _cantidadState extends State<cantidad> {
+  int contt = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    var img =
+        "https://raw.githubusercontent.com/festupinans/equipo2_grupo15/master/lib/Imagenes/icono-tienda.jpg";
+    if (widget.tienda.Productos[widget.index]["Producto"]["Logo"] != null) {
+      img = widget.tienda.Productos[widget.index]["Producto"]["Logo"];
+    }
+
+    return Card(
+      child: ListTile(
+        leading: CircleAvatar(backgroundImage: NetworkImage(img)),
+        title:
+            Text(widget.tienda.Productos[widget.index]["Producto"]["Producto"]),
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 10.0),
+                child: Text("Stock: " +
+                    widget.tienda.Productos[widget.index]["Unidades"] +
+                    "\nPrecio: " +
+                    widget.tienda.Productos[widget.index]["precio"] +
+                    "\nCategoria: " +
+                    widget.tienda.Productos[widget.index]["Producto"]
+                        ["Categoria"]),
+              ),
+            ),
+            Container(
+              child: Row(
+                children: [
+                  Container(
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            primary: Color(0xFFFF6961),
+                            textStyle: TextStyle(
+                                fontSize: 11, fontWeight: FontWeight.bold)),
+                        onPressed: () {
+                          contt++;
+
+                          print(contt.toString());
+                          setState(() {});
+                        },
+                        child: Icon(Icons.add)),
+                  ),
+                  Container(
+                    child: Padding(
+                      padding: EdgeInsets.all(15.0),
+                      child: Text(contt.toString()),
+                    ),
+                  ),
+                  Container(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          primary: Color(0xFFFF6961),
+                          textStyle: TextStyle(
+                              fontSize: 11, fontWeight: FontWeight.bold)),
+                      onPressed: () {
+                        contt--;
+                        if (contt < 0) {
+                          contt = 0;
+                        }
+
+                        setState(() {});
+
+                        print(contt.toString());
+                      },
+                      child: Icon(Icons.remove),
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.fromLTRB(40, 0, 0, 0),
+                    child: Icon(Icons.add_shopping_cart,
+                        size: 40, color: Color(0xFFFF6961)),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+        onTap: () {
+          int total = contt *
+              int.parse(widget.tienda.Productos[widget.index]["precio"]);
+          p = produc(
+              widget.tienda.Productos[widget.index]["Producto"]["Producto"],
+              widget.tienda.Productos[widget.index]["Producto"]["Categoria"],
+              widget.tienda.Productos[widget.index]["precio"],
+              contt,
+              total);
+          print(contt);
+          print(widget.tienda.Productos[widget.index]["precio"].toString());
+          print(total);
+          pedido.add(p);
+        },
+      ),
+    );
   }
 }
